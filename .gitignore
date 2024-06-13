@@ -1,0 +1,76 @@
+# Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+*.pidb
+*.suo
+*.user
+*.userprefs
+*.csproj
+*.pidb.meta
+*.unityproj
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Unity Asset Store tools
+[Tt]ools/Unity
+
+# Unity-generated metadata files
+*.unitypackage
+*.prefab
+*.fbx
+
+# Project Settings
+ProjectSettings/ProjectSettings.asset
+ProjectSettings/QualitySettings.asset
+ProjectSettings/TagManager.asset
+ProjectSettings/GraphicsSettings.asset
+ProjectSettings/DynamicsManager.asset
+ProjectSettings/NetworkManager.asset
+ProjectSettings/EditorBuildSettings.asset
+ProjectSettings/InputManager.asset
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.nfs*
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# Visual Studio Code
+.vscode/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Logs
+*.log
+
+# Crashlytics generated files
+crashlytics-build.properties
+crashlytics
+fabric.properties
