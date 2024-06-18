@@ -6,13 +6,15 @@ public class ProceduralRoomGenerator : MonoBehaviour
     public List<GameObject> roomPrefabs; // 방 Prefab들을 Inspector에서 할당하세요.
     public Vector3 startPosition; // 시작 위치
     public float roomOffset = 10.0f; // 방 간의 거리 (적절히 조정 필요)
+    public int maxRooms = 10; // 최대 방 개수 (초기값 10)
 
     private Dictionary<GameObject, List<Transform>> roomPortals = new Dictionary<GameObject, List<Transform>>();
+    private List<GameObject> generatedRooms = new List<GameObject>(); // 생성된 방들을 저장
 
     void Start()
     {
         InitializeRoomPortals();
-        GenerateRooms();
+        GenerateInitRooms();
     }
 
     void InitializeRoomPortals()
@@ -44,41 +46,123 @@ public class ProceduralRoomGenerator : MonoBehaviour
         return portals;
     }
 
-    void GenerateRooms()
+    void GenerateInitRooms()
     {
-        // 무작위로 하나의 방 선택
-        GameObject initialRoomPrefab = roomPrefabs[2];
+        GameObject initialRoomPrefab = roomPrefabs[1];
         GameObject initialRoom = Instantiate(initialRoomPrefab, startPosition, Quaternion.identity);
+        initialRoom.AddComponent<BoxCollider>().isTrigger = true; // 트리거 Collider 추가
+
+        generatedRooms.Add(initialRoom);
 
         List<Transform> initialRoomPortals = roomPortals[initialRoomPrefab];
 
-        foreach (Transform portal in initialRoomPortals)
-        {
-            // 새로운 방을 무작위로 선택
-            GameObject newRoomPrefab = roomPrefabs[Random.Range(0, roomPrefabs.Count)];
-            GameObject newRoom = Instantiate(newRoomPrefab, Vector3.zero, Quaternion.identity);
-
-            // 방의 포탈을 맞추기 위해 회전과 위치 조정
-            Transform newRoomPortalsParent = newRoom.transform.Find("Portals");
-            if (newRoomPortalsParent != null && newRoomPortalsParent.childCount > 0)
-            {
-                Transform newRoomPortal = newRoomPortalsParent.GetChild(0);
-                MatchPortalPositionAndRotation(portal, newRoomPortal, newRoom);
-            }
-        }
+        GenerateRooms(initialRoom, initialRoomPortals);
     }
 
     void MatchPortalPositionAndRotation(Transform portalA, Transform portalB, GameObject newRoom)
     {
-        // 1. 포탈 A의 월드 회전과 반대가 되도록 포탈 B의 회전을 조정
-        newRoom.transform.rotation = Quaternion.Euler(0, 180, 0);
-
-        // 2. 포탈 B의 월드 포지션을 포탈 A의 월드 포지션과 일치시키기 위해 위치를 조정
         Vector3 positionOffset = portalA.position - portalB.position;
         newRoom.transform.position += positionOffset;
 
-        // 포탈이 정확히 겹치는지 확인하여 미세 조정
-        positionOffset = portalA.position - portalB.position;
-        newRoom.transform.position += positionOffset;
+        newRoom.transform.rotation = Quaternion.Euler(0, 180, 0);
+
+        Debug.Log($"Portal A Position: {portalA.position}, Portal B Position: {portalB.position}");
+        Debug.Log($"New Room Position After Adjustment: {newRoom.transform.position}");
+
+        // BoxCollider 위치 확인
+        BoxCollider newRoomCollider = newRoom.GetComponentInChildren<BoxCollider>();
+        if (newRoomCollider != null)
+        {
+            Debug.Log($"New Room Collider After Adjustment: Position={newRoomCollider.transform.position}, Center={newRoomCollider.bounds.center}, Size={newRoomCollider.bounds.size}");
+        }
+    }
+
+    bool CheckCollision(GameObject newRoom)
+    {
+        BoxCollider newCollider = newRoom.GetComponent<BoxCollider>();
+        if (newCollider == null)
+        {
+            return false;
+        }
+
+        foreach (var existingRoom in generatedRooms)
+        {
+            BoxCollider existingCollider = existingRoom.GetComponent<BoxCollider>();
+            if (existingCollider == null)
+            {
+                continue;
+            }
+
+            Vector3 worldCenterNew = newCollider.transform.TransformPoint(newCollider.center);
+            Vector3 worldCenterExisting = existingCollider.transform.TransformPoint(existingCollider.center);
+            Vector3 worldSizeNew = newCollider.transform.TransformVector(newCollider.size);
+            Vector3 worldSizeExisting = existingCollider.transform.TransformVector(existingCollider.size);
+
+            worldSizeNew = new Vector3(Mathf.Abs(worldSizeNew.x), Mathf.Abs(worldSizeNew.y), Mathf.Abs(worldSizeNew.z));
+            worldSizeExisting = new Vector3(Mathf.Abs(worldSizeExisting.x), Mathf.Abs(worldSizeExisting.y), Mathf.Abs(worldSizeExisting.z));
+
+            Bounds boundsNew = new Bounds(worldCenterNew, worldSizeNew);
+            Bounds boundsExisting = new Bounds(worldCenterExisting, worldSizeExisting);
+
+            if (boundsNew.Intersects(boundsExisting))
+            {
+                Debug.Log($"Collision Detected between new room and existing room {existingRoom.name}");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    void GenerateRooms(GameObject currentRoom, List<Transform> currentRoomPortals)
+    {
+        if (generatedRooms.Count >= maxRooms)
+        {
+            return;
+        }
+
+        foreach (Transform portal in currentRoomPortals)
+        {
+            if (generatedRooms.Count >= maxRooms)
+            {
+                return;
+            }
+
+            GameObject newRoomPrefab = roomPrefabs[0];
+            //GameObject newRoomPrefab = roomPrefabs[Random.Range(0, roomPrefabs.Count)];
+            GameObject newRoom = Instantiate(newRoomPrefab, Vector3.zero, Quaternion.identity);
+            
+            newRoom.AddComponent<BoxCollider>().isTrigger = true; // 트리거 Collider 추가
+
+            Transform newRoomPortalsParent = newRoom.transform.Find("Portals");
+            if (newRoomPortalsParent != null && newRoomPortalsParent.childCount > 0)
+            {
+                // 자식 포탈 중 랜덤하게 선택
+                Transform newRoomPortal = newRoomPortalsParent.GetChild(0);
+
+                bool isCollision = true;
+                for (int i = 0; i < 4 && isCollision; i++)
+                {
+                    MatchPortalPositionAndRotation(portal, newRoomPortal, newRoom);
+                    isCollision = CheckCollision(newRoom);
+
+                    if (isCollision)
+                    {
+                        newRoom.transform.Rotate(0, 90, 0);
+                    }
+                }
+
+                if (isCollision)
+                {
+                    Destroy(newRoom);
+                    continue;
+                }
+
+                generatedRooms.Add(newRoom);
+
+                List<Transform> newRoomPortals = roomPortals[newRoomPrefab];
+                newRoomPortals.Remove(newRoomPortal);
+                GenerateRooms(newRoom, newRoomPortals);
+            }
+        }
     }
 }
