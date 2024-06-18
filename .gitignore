@@ -19,6 +19,7 @@
 *.mdb
 *.opendb
 *.VC.db
+.vs/
 
 # Unity Asset Store tools
 [Tt]ools/Unity
