@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProceduralRoomGenerator : MonoBehaviour
+public class MapGenerator: MonoBehaviour
 {
     public List<GameObject> roomPrefabs; // 방 Prefab들을 Inspector에서 할당하세요.
     public Vector3 startPosition; // 시작 위치
