@@ -13,8 +13,22 @@ public class ProceduralRoomGenerator : MonoBehaviour
 
     void Start()
     {
-        InitializeRoomPortals();
-        GenerateInitRooms();
+        InitializeAndGenerateRooms();
+    }
+
+    void InitializeAndGenerateRooms()
+    {
+        while (generatedRooms.Count < maxRooms)
+        {
+            InitializeRoomPortals();
+            GenerateInitRooms();
+
+            if (generatedRooms.Count < maxRooms)
+            {
+                //Debug.Log("Not enough rooms generated. Restarting...");
+                ClearGeneratedRooms();
+            }
+        }
     }
 
     void InitializeRoomPortals()
@@ -40,7 +54,7 @@ public class ProceduralRoomGenerator : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"Room {room.name} does not have a 'Portals' object.");
+            //Debug.LogWarning($"Room {room.name} does not have a 'Portals' object.");
         }
 
         return portals;
@@ -88,7 +102,7 @@ public class ProceduralRoomGenerator : MonoBehaviour
 
             if (boundsNew.Intersects(boundsExisting))
             {
-                Debug.Log($"Collision Detected between new room and existing room {existingRoom.name}");
+                //Debug.Log($"Collision Detected between new room and existing room {existingRoom.name}");
                 return true;
             }
         }
@@ -181,5 +195,17 @@ public class ProceduralRoomGenerator : MonoBehaviour
                 }
             }
         }
+        
+        
+    }
+
+    void ClearGeneratedRooms()
+    {
+        foreach (var room in generatedRooms)
+        {
+            Destroy(room);
+        }
+        generatedRooms.Clear();
+        roomPortals.Clear();
     }
 }
