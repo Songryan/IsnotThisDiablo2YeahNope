@@ -48,7 +48,7 @@ public class ProceduralRoomGenerator : MonoBehaviour
 
     void GenerateInitRooms()
     {
-        GameObject initialRoomPrefab = roomPrefabs[1];
+        GameObject initialRoomPrefab = roomPrefabs[2];
         GameObject initialRoom = Instantiate(initialRoomPrefab, startPosition, Quaternion.identity);
         initialRoom.AddComponent<BoxCollider>().isTrigger = true; // 트리거 Collider 추가
 
@@ -58,14 +58,6 @@ public class ProceduralRoomGenerator : MonoBehaviour
 
         GenerateRooms(initialRoom, initialRoomPortals);
     }
-
-    void MatchPortalPositionAndRotation(Transform portalA, Transform portalB, GameObject newRoom)
-    {
-        // 포탈 B의 월드 포지션을 포탈 A의 월드 포지션과 일치시키기 위해 위치를 조정
-        Vector3 positionOffset = portalA.position - portalB.position;
-        newRoom.transform.position = newRoom.transform.position + positionOffset;
-    }
-
 
     bool CheckCollision(GameObject newRoom)
     {
@@ -103,6 +95,49 @@ public class ProceduralRoomGenerator : MonoBehaviour
         return false;
     }
 
+    bool MatchPortalPositionAndRotation(Transform portalA, Transform portalB, GameObject currentRoom, GameObject newRoom)
+    {
+        // 포탈 A와 포탈 B의 월드 포지션을 계산
+        Vector3 portalAWorldPosition = currentRoom.transform.TransformPoint(portalA.localPosition);
+        Vector3 portalBWorldPosition = newRoom.transform.TransformPoint(portalB.localPosition);
+
+        // 포탈 B의 위치를 포탈 A의 위치로 맞추기 위해 오프셋을 계산
+        Vector3 positionOffset = portalAWorldPosition - portalBWorldPosition;
+        newRoom.transform.position += positionOffset;
+
+        // 새로운 포탈 B의 월드 포지션을 계산
+        portalBWorldPosition = newRoom.transform.TransformPoint(portalB.localPosition);
+
+        // 포탈 A와 포탈 B의 위치가 일치하는지 확인
+        if (Vector3.Distance(portalAWorldPosition, portalBWorldPosition) < 0.01f)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                newRoom.transform.rotation = Quaternion.Euler(0, i * 90, 0);
+
+                // 회전 후 포탈 B의 월드 포지션을 다시 계산
+                portalBWorldPosition = newRoom.transform.TransformPoint(portalB.localPosition);
+                positionOffset = portalAWorldPosition - portalBWorldPosition;
+
+                // 위치가 일치하지 않으면 다시 조정
+                if (Vector3.Distance(portalAWorldPosition, portalBWorldPosition) >= 0.01f)
+                {
+                    newRoom.transform.position += positionOffset;
+                    portalBWorldPosition = newRoom.transform.TransformPoint(portalB.localPosition);
+                }
+
+                // 최종 위치와 회전 후 충돌 확인
+                if (Vector3.Distance(portalAWorldPosition, portalBWorldPosition) < 0.01f && !CheckCollision(newRoom))
+                {
+                    return true; // 일치하고 충돌이 없으면 true 반환
+                }
+            }
+        }
+
+        return false; // 모든 회전에서 일치하지 않거나 충돌이 있으면 false 반환
+    }
+
+
     void GenerateRooms(GameObject initialRoom, List<Transform> initialRoomPortals)
     {
         Queue<(GameObject, List<Transform>)> roomsToProcess = new Queue<(GameObject, List<Transform>)>();
@@ -119,8 +154,8 @@ public class ProceduralRoomGenerator : MonoBehaviour
                     break;
                 }
 
-                GameObject newRoomPrefab = roomPrefabs[0];
-                //GameObject newRoomPrefab = roomPrefabs[Random.Range(0, roomPrefabs.Count)];
+                GameObject newRoomPrefab = roomPrefabs[Random.Range(0, roomPrefabs.Count)];
+                //GameObject newRoomPrefab = roomPrefabs[0];
                 GameObject newRoom = Instantiate(newRoomPrefab, Vector3.zero, Quaternion.identity);
                 newRoom.AddComponent<BoxCollider>().isTrigger = true; // 트리거 Collider 추가
 
@@ -131,32 +166,20 @@ public class ProceduralRoomGenerator : MonoBehaviour
                     //int randomIndex = Random.Range(0, newRoomPortalsParent.childCount);
                     Transform newRoomPortal = newRoomPortalsParent.GetChild(0);
 
-                    bool isCollision = true;
-                    for (int i = 0; i < 4 && isCollision; i++)
+                    if (MatchPortalPositionAndRotation(portal, newRoomPortal, currentRoom, newRoom))
                     {
-                        MatchPortalPositionAndRotation(portal, newRoomPortal, newRoom);
-                        isCollision = CheckCollision(newRoom);
+                        generatedRooms.Add(newRoom);
 
-                        if (isCollision)
-                        {
-                            newRoom.transform.rotation = Quaternion.Euler(0, (i + 1) * 90, 0);
-                        }
+                        List<Transform> newRoomPortals = roomPortals[newRoomPrefab];
+                        newRoomPortals.Remove(newRoomPortal);
+                        roomsToProcess.Enqueue((newRoom, newRoomPortals));
                     }
-
-                    if (isCollision)
+                    else
                     {
                         Destroy(newRoom);
-                        continue;
                     }
-
-                    generatedRooms.Add(newRoom);
-
-                    List<Transform> newRoomPortals = roomPortals[newRoomPrefab];
-                    newRoomPortals.Remove(newRoomPortal);
-                    roomsToProcess.Enqueue((newRoom, newRoomPortals));
                 }
             }
         }
     }
-
 }
