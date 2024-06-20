@@ -629,6 +629,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5225610500028340804, guid: f5ef8f8b12607f243afb1a206402e673, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1a735e0264827ad4a8a384813aa98e87, type: 2}
     - target: {fileID: 5406924162624167562, guid: f5ef8f8b12607f243afb1a206402e673, type: 3}
       propertyPath: m_Name
       value: Paladin
