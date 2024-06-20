@@ -2,22 +2,25 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SkillButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class MainButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     private Button _button;
-    private RectTransform _SkillImg;
+    private RectTransform _BtnImg;
+    private RectTransform _textPosition;
 
     private void Awake()
     {
         _button = GetComponent<Button>();
-        _SkillImg = transform.GetComponent<RectTransform>();
+        _BtnImg = transform.GetComponent<RectTransform>();
+        _textPosition = transform.GetChild(0).GetComponent<RectTransform>();
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         if (_button.interactable)
         {
-            _SkillImg.localScale = new Vector3(0.95f, 0.95f, 0);
+            _BtnImg.localScale = new Vector3(0.55f, 0.55f, 0);
+            _textPosition.Translate(new Vector3(-4, -4, 0));
             // Pressed 상태의 스프라이트는 Button 컴포넌트가 자동으로 변경
             // 버튼 클릭 소리 재생
             //AudioManager.instance.Play(SoundInfo.cursorButtonClick);
@@ -28,7 +31,8 @@ public class SkillButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (_button.interactable)
         {
-            _SkillImg.localScale = new Vector3(1f, 1f, 0);
+            _BtnImg.localScale = new Vector3(0.6f, 0.6f, 0);
+            _textPosition.Translate(new Vector3(4, 4, 0));
             // Normal 상태의 스프라이트는 Button 컴포넌트가 자동으로 변경
         }
     }
