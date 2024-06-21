@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MainButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class SpecUpButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     private Button _button;
     private RectTransform _BtnImg;
@@ -19,7 +19,7 @@ public class MainButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (_button.interactable)
         {
-            _BtnImg.localScale = new Vector3(0.75f, 0.75f, 0);
+            _BtnImg.localScale = new Vector3(0.98f, 0.98f, 0);
             _textPosition.Translate(new Vector3(-4, -4, 0));
             // Pressed 상태의 스프라이트는 Button 컴포넌트가 자동으로 변경
             // 버튼 클릭 소리 재생
@@ -31,7 +31,7 @@ public class MainButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (_button.interactable)
         {
-            _BtnImg.localScale = new Vector3(0.8f, 0.8f, 0);
+            _BtnImg.localScale = new Vector3(1, 1, 0);
             _textPosition.Translate(new Vector3(4, 4, 0));
             // Normal 상태의 스프라이트는 Button 컴포넌트가 자동으로 변경
         }
