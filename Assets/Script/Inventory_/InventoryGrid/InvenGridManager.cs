@@ -1,70 +1,70 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine; // Unity 엔진 기능을 사용
+using UnityEngine.UI; // UI 요소를 사용
 
-public class InvenGridManager : MonoBehaviour {
-
-    public GameObject[,] slotGrid;
-    public GameObject highlightedSlot;
-    public Transform dropParent;
+public class InvenGridManager : MonoBehaviour // InvenGridManager 클래스 정의, MonoBehaviour를 상속
+{
+    public GameObject[,] slotGrid; // 슬롯 그리드를 저장할 2차원 배열
+    public GameObject highlightedSlot; // 강조된 슬롯을 저장할 변수
+    public Transform dropParent; // 드롭 부모 트랜스폼을 저장할 변수
     [HideInInspector]
-    public IntVector2 gridSize;
+    public IntVector2 gridSize; // 그리드 크기를 저장할 변수, 인스펙터에서 숨김
 
-    public ItemListManager listManager;
-    public GameObject selectedButton;
+    public ItemListManager listManager; // 아이템 리스트 매니저를 저장할 변수
+    public GameObject selectedButton; // 선택된 버튼을 저장할 변수
 
-    private IntVector2 totalOffset, checkSize, checkStartPos;
-    private IntVector2 otherItemPos, otherItemSize; //*3
+    private IntVector2 totalOffset, checkSize, checkStartPos; // 슬롯 체크 및 오프셋을 저장할 변수
+    private IntVector2 otherItemPos, otherItemSize; // 다른 아이템의 위치 및 크기를 저장할 변수
 
-    private int checkState;
-    private bool isOverEdge = false;
+    private int checkState; // 체크 상태를 저장할 변수
+    private bool isOverEdge = false; // 그리드의 가장자리를 넘었는지 여부를 저장할 변수
 
-    public ItemOverlayScript overlayScript;
+    public ItemOverlayScript overlayScript; // 아이템 오버레이 스크립트를 저장할 변수
 
-    /* to do list
-     * make the ColorChangeLoop on swap items take arrguements fron the other item, not hte private variables *1
-     * transfer the CheckArea() and SlotCheck() into inside RefreshColor() *2
-     * have *3 be local variables of CheckArea(). SwapItem() uses the variable, may need to rewrite.
+    /* 할 일 목록
+     * 아이템을 교환할 때 ColorChangeLoop에 다른 아이템의 매개변수를 전달하도록 수정 *1
+     * CheckArea()와 SlotCheck()를 RefreshColor() 내부로 이동 *2
+     * *3을 CheckArea()의 로컬 변수로 변경. SwapItem()에서 변수를 사용하므로 재작성 필요.
      */
-    private void Start()
+    private void Start() // Unity에서 스크립트가 처음 실행될 때 호출되는 메서드
     {
-        ItemButtonScript.invenManager = this;
+        ItemButtonScript.invenManager = this; // ItemButtonScript의 invenManager를 현재 인스턴스로 설정
     }
 
-
-    private void Update()
+    private void Update() // Unity에서 매 프레임마다 호출되는 메서드
     {
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0)) // 왼쪽 마우스 버튼을 뗐을 때
         {
-            if (highlightedSlot != null && ItemScript.selectedItem != null && !isOverEdge)
+            if (highlightedSlot != null && ItemScript.selectedItem != null && !isOverEdge) // 강조된 슬롯과 선택된 아이템이 있고 가장자리를 넘지 않은 경우
             {
                 switch (checkState)
                 {
-                    case 0: //store on empty slots
-                        StoreItem(ItemScript.selectedItem);
-                        ColorChangeLoop(SlotColorHighlights.Blue, ItemScript.selectedItemSize, totalOffset);
-                        ItemScript.ResetSelectedItem();
-                        RemoveSelectedButton();
+                    case 0: // 빈 슬롯에 저장
+                        StoreItem(ItemScript.selectedItem); // 아이템 저장
+                        ColorChangeLoop(SlotColorHighlights.Blue, ItemScript.selectedItemSize, totalOffset); // 슬롯 색상 변경
+                        ItemScript.ResetSelectedItem(); // 선택된 아이템 초기화
+                        RemoveSelectedButton(); // 선택된 버튼 제거
                         break;
-                    case 1: //swap items
-                        ItemScript.SetSelectedItem(SwapItem(ItemScript.selectedItem));
-                        SlotSectorScript.sectorScript.PosOffset();
-                        ColorChangeLoop(SlotColorHighlights.Gray, otherItemSize, otherItemPos); //*1
-                        RefrechColor(true);
-                        RemoveSelectedButton();
+                    case 1: // 아이템 교환
+                        ItemScript.SetSelectedItem(SwapItem(ItemScript.selectedItem)); // 아이템 교환
+                        SlotSectorScript.sectorScript.PosOffset(); // 위치 오프셋 설정
+                        ColorChangeLoop(SlotColorHighlights.Gray, otherItemSize, otherItemPos); // 슬롯 색상 변경
+                        RefrechColor(true); // 색상 갱신
+                        RemoveSelectedButton(); // 선택된 버튼 제거
                         break;
                 }
-            }// retrieve items
+            }
+            // 아이템을 가져오기
             else if (highlightedSlot != null && ItemScript.selectedItem == null && highlightedSlot.GetComponent<SlotScript>().isOccupied == true)
             {
-                ColorChangeLoop(SlotColorHighlights.Gray, highlightedSlot.GetComponent<SlotScript>().storedItemSize, highlightedSlot.GetComponent<SlotScript>().storedItemStartPos);
-                ItemScript.SetSelectedItem(GetItem(highlightedSlot));
-                SlotSectorScript.sectorScript.PosOffset();
-                RefrechColor(true);
+                ColorChangeLoop(SlotColorHighlights.Gray, highlightedSlot.GetComponent<SlotScript>().storedItemSize, highlightedSlot.GetComponent<SlotScript>().storedItemStartPos); // 슬롯 색상 변경
+                ItemScript.SetSelectedItem(GetItem(highlightedSlot)); // 아이템 가져오기
+                SlotSectorScript.sectorScript.PosOffset(); // 위치 오프셋 설정
+                RefrechColor(true); // 색상 갱신
             }
         }
     }
 
-    private void CheckArea(IntVector2 itemSize) //*2
+    private void CheckArea(IntVector2 itemSize) // 아이템 크기를 체크하는 메서드
     {
         IntVector2 halfOffset;
         IntVector2 overCheck;
@@ -75,7 +75,7 @@ public class InvenGridManager : MonoBehaviour {
         checkSize = itemSize;
         overCheck = totalOffset + itemSize;
         isOverEdge = false;
-        //checks if item to stores is outside grid
+        // 저장할 아이템이 그리드 밖에 있는지 체크
         if (overCheck.x > gridSize.x)
         {
             checkSize.x = gridSize.x - totalOffset.x;
@@ -99,7 +99,8 @@ public class InvenGridManager : MonoBehaviour {
             isOverEdge = true;
         }
     }
-    private int SlotCheck(IntVector2 itemSize)//*2
+
+    private int SlotCheck(IntVector2 itemSize) // 슬롯을 체크하는 메서드
     {
         GameObject obj = null;
         SlotScript instanceScript;
@@ -119,38 +120,39 @@ public class InvenGridManager : MonoBehaviour {
                             otherItemSize = obj.GetComponent<ItemScript>().item.Size;
                         }
                         else if (obj != instanceScript.storedItemObject)
-                            return 2; // if cheack Area has 1+ item occupied
+                            return 2; // 체크 영역에 1개 이상의 아이템이 있는 경우
                     }
                 }
             }
             if (obj == null)
-                return 0; // if checkArea is not accupied
+                return 0; // 체크 영역이 비어있는 경우
             else
-                return 1; // if checkArea only has 1 item occupied
+                return 1; // 체크 영역에 1개의 아이템이 있는 경우
         }
-        return 2; // check areaArea is over the grid
+        return 2; // 체크 영역이 그리드를 넘은 경우
     }
-    public void RefrechColor(bool enter)
+
+    public void RefrechColor(bool enter) // 색상을 갱신하는 메서드
     {
         if (enter)
         {
-            CheckArea(ItemScript.selectedItemSize);
-            checkState = SlotCheck(checkSize);
+            CheckArea(ItemScript.selectedItemSize); // 아이템 크기 체크
+            checkState = SlotCheck(checkSize); // 슬롯 체크 상태 설정
             switch (checkState)
             {
-                case 0: ColorChangeLoop(SlotColorHighlights.Green, checkSize, checkStartPos); break; //no item in area
+                case 0: ColorChangeLoop(SlotColorHighlights.Green, checkSize, checkStartPos); break; // 영역에 아이템이 없는 경우
                 case 1:
-                    ColorChangeLoop(SlotColorHighlights.Yellow, otherItemSize, otherItemPos); //1 item on area and can swap
+                    ColorChangeLoop(SlotColorHighlights.Yellow, otherItemSize, otherItemPos); // 영역에 1개의 아이템이 있고 교환 가능한 경우
                     ColorChangeLoop(SlotColorHighlights.Green, checkSize, checkStartPos);
                     break;
-                case 2: ColorChangeLoop(SlotColorHighlights.Red, checkSize, checkStartPos); break; //invalid position (more then 2 items in area or area is outside grid)
+                case 2: ColorChangeLoop(SlotColorHighlights.Red, checkSize, checkStartPos); break; // 위치가 유효하지 않은 경우 (2개 이상의 아이템이 있거나 그리드를 넘은 경우)
             }
         }
-        else //on pointer exit. resets colors
+        else // 포인터가 슬롯을 떠날 때 색상 초기화
         {
             isOverEdge = false;
-            //checkArea(); //commented out for performance. may cause bugs if not included
-            
+            //checkArea(); // 성능 향상을 위해 주석 처리됨. 포함되지 않으면 버그 발생 가능
+
             ColorChangeLoop2(checkSize, checkStartPos);
             if (checkState == 1)
             {
@@ -158,7 +160,8 @@ public class InvenGridManager : MonoBehaviour {
             }
         }
     }
-    public void ColorChangeLoop(Color32 color, IntVector2 size, IntVector2 startPos)
+
+    public void ColorChangeLoop(Color32 color, IntVector2 size, IntVector2 startPos) // 색상 변경 루프
     {
         for (int y = 0; y < size.y; y++)
         {
@@ -168,7 +171,8 @@ public class InvenGridManager : MonoBehaviour {
             }
         }
     }
-    public void ColorChangeLoop2(IntVector2 size, IntVector2 startPos)
+
+    public void ColorChangeLoop2(IntVector2 size, IntVector2 startPos) // 색상 변경 루프 2
     {
         GameObject slot;
         for (int y = 0; y < size.y; y++)
@@ -187,7 +191,8 @@ public class InvenGridManager : MonoBehaviour {
             }
         }
     }
-    private void StoreItem(GameObject item)
+
+    private void StoreItem(GameObject item) // 아이템을 저장하는 메서드
     {
         SlotScript instanceScript;
         IntVector2 itemSizeL = item.GetComponent<ItemScript>().item.Size;
@@ -195,7 +200,7 @@ public class InvenGridManager : MonoBehaviour {
         {
             for (int x = 0; x < itemSizeL.x; x++)
             {
-                //set each slot parameters
+                // 각 슬롯의 매개변수 설정
                 instanceScript = slotGrid[totalOffset.x + x, totalOffset.y + y].GetComponent<SlotScript>();
                 instanceScript.storedItemObject = item;
                 instanceScript.storedItemClass = item.GetComponent<ItemScript>().item;
@@ -204,14 +209,16 @@ public class InvenGridManager : MonoBehaviour {
                 instanceScript.isOccupied = true;
                 slotGrid[totalOffset.x + x, totalOffset.y + y].GetComponent<Image>().color = SlotColorHighlights.Gray;
             }
-        }//set dropped parameters
+        }
+        // 드롭된 아이템 매개변수 설정
         item.transform.SetParent(dropParent);
         item.GetComponent<RectTransform>().pivot = Vector2.zero;
         item.transform.position = slotGrid[totalOffset.x, totalOffset.y].transform.position;
         item.GetComponent<CanvasGroup>().alpha = 1f;
         overlayScript.UpdateOverlay(highlightedSlot.GetComponent<SlotScript>().storedItemClass);
     }
-    private GameObject GetItem(GameObject slotObject)
+
+    private GameObject GetItem(GameObject slotObject) // 아이템을 가져오는 메서드
     {
         SlotScript slotObjectScript = slotObject.GetComponent<SlotScript>();
         GameObject retItem = slotObjectScript.storedItemObject;
@@ -223,7 +230,7 @@ public class InvenGridManager : MonoBehaviour {
         {
             for (int x = 0; x < itemSizeL.x; x++)
             {
-                //reset each slot parameters
+                // 각 슬롯의 매개변수 초기화
                 instanceScript = slotGrid[tempItemPos.x + x, tempItemPos.y + y].GetComponent<SlotScript>();
                 instanceScript.storedItemObject = null;
                 instanceScript.storedItemSize = IntVector2.Zero;
@@ -231,14 +238,16 @@ public class InvenGridManager : MonoBehaviour {
                 instanceScript.storedItemClass = null;
                 instanceScript.isOccupied = false;
             }
-        }//returned item set item parameters
+        }
+        // 반환된 아이템 매개변수 설정
         retItem.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
         retItem.GetComponent<CanvasGroup>().alpha = 0.5f;
         retItem.transform.position = Input.mousePosition;
         overlayScript.UpdateOverlay(null);
         return retItem;
     }
-    private GameObject SwapItem(GameObject item)
+
+    private GameObject SwapItem(GameObject item) // 아이템을 교환하는 메서드
     {
         GameObject tempItem;
         tempItem = GetItem(slotGrid[otherItemPos.x, otherItemPos.y]);
@@ -246,21 +255,19 @@ public class InvenGridManager : MonoBehaviour {
         return tempItem;
     }
 
-    public void RemoveSelectedButton()
+    public void RemoveSelectedButton() // 선택된 버튼을 제거하는 메서드
     {
         if (selectedButton != null)
         {
-            listManager.RevomeItemFromList(selectedButton.GetComponent<ItemButtonScript>().item);
-            listManager.RemoveButton(selectedButton);
-            listManager.sortManager.SortAndFilterList();
-            selectedButton = null;
-
+            listManager.RevomeItemFromList(selectedButton.GetComponent<ItemButtonScript>().item); // 리스트에서 아이템 제거
+            listManager.RemoveButton(selectedButton); // 버튼 제거
+            listManager.sortManager.SortAndFilterList(); // 리스트 정렬 및 필터링
+            selectedButton = null; // 선택된 버튼 초기화
         }
     }
-    
 }
 
-public struct SlotColorHighlights
+public struct SlotColorHighlights // 슬롯 색상 하이라이트를 정의하는 구조체
 {
     public static Color32 Green
     { get { return new Color32(127, 223, 127, 255); } }
