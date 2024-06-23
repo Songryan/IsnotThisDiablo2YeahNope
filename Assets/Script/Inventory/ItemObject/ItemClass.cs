@@ -9,7 +9,7 @@ public class ItemClass
     [HideInInspector] public int TypeID; // 타입 ID, 인스펙터에서 숨김
     public string TypeName; // 타입 이름
     public int Level; // 아이템 레벨
-    [Range(0, 2)] public int qualityInt; // 품질 값, 0에서 2 사이의 값
+    [Range(0, 3)] public int qualityInt; // 품질 값, 0에서 3 사이의 값
     [HideInInspector] public IntVector2 Size; // 아이템 크기, 인스펙터에서 숨김
     [HideInInspector] public Sprite Icon; // 아이템 아이콘, 인스펙터에서 숨김
     public string SerialID; // 아이템 시리얼 ID
@@ -32,9 +32,10 @@ public class ItemClass
         {
             switch (qualityInt)
             {
-                case 0: return "Normal";
-                case 1: return "Magic";
-                case 2: return "Rare";
+                case 0: return "Broken";
+                case 1: return "Normal";
+                case 2: return "Magic";
+                case 3: return "Rare";
                 default: return null;
             }
         }
