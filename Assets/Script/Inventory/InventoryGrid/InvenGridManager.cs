@@ -32,7 +32,8 @@ public class InvenGridManager : MonoBehaviour // InvenGridManager 클래스 정의, M
 
     private void Update() // Unity에서 매 프레임마다 호출되는 메서드
     {
-        if (Input.GetMouseButtonUp(0)) // 왼쪽 마우스 버튼을 뗐을 때
+        //if (Input.GetMouseButtonUp(0)) // 왼쪽 마우스 버튼을 뗐을 때
+        if (Input.GetMouseButtonDown(0)) // 왼쪽 마우스 버튼을 뗐을 때
         {
             if (highlightedSlot != null && ItemScript.selectedItem != null && !isOverEdge) // 강조된 슬롯과 선택된 아이템이 있고 가장자리를 넘지 않은 경우
             {

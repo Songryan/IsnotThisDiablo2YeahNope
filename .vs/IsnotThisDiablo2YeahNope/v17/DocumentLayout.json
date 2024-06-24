@@ -3,20 +3,36 @@
   "WorkspaceRootPath": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|d:\\gaeinproject\\isnotthisdiablo2yeahnope\\assets\\script\\inventory\\inventorygrid\\invengridmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|d:\\gaeinproject\\isnotthisdiablo2yeahnope\\assets\\script\\mousetotouch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\mousetotouch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\inventory\\inventorygrid\\invengridmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\inventory\\inventorygrid\\invengridmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\inventory\\itemlist\\itembuttonscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\inventory\\itemlist\\itembuttonscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\inventory\\misc\\itemoverlayscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\inventory\\misc\\itemoverlayscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\inventory\\itemobject\\itemclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\inventory\\itemobject\\itemclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\inventory\\inventorygrid\\invengridscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\inventory\\inventorygrid\\invengridscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\inventory\\misc\\objectpoolscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\inventory\\misc\\objectpoolscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\inventory\\createitem\\csvreadwrite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\inventory\\createitem\\csvreadwrite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\inventory\\itemobject\\itemclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\inventory\\itemobject\\itemclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\inventory\\createitem\\loadsaveitems.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,20 +47,12 @@
       "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\inventory\\sort\u0026filter\\sortandfiltermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\inventory\\itemlist\\itembuttonscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\inventory\\itemlist\\itembuttonscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\inventory\\inventorygrid\\slotscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\inventory\\inventorygrid\\slotscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\inventory\\misc\\trashbuttonscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\inventory\\misc\\trashbuttonscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\inventory\\misc\\objectpoolscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\inventory\\misc\\objectpoolscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\inventory\\createitem\\createitemmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -57,10 +65,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\inventory\\itemobject\\itemscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\inventory\\itemobject\\itemscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\inventory\\inventorygrid\\invengridscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\inventory\\inventorygrid\\invengridscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -70,7 +74,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -78,7 +82,44 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 0,
+              "Title": "MouseToTouch.cs",
+              "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\MouseToTouch.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\MouseToTouch.cs",
+              "ToolTip": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\MouseToTouch.cs",
+              "RelativeToolTip": "Assets\\Script\\MouseToTouch.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-24T10:31:09.544Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ItemButtonScript.cs",
+              "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Inventory\\ItemList\\ItemButtonScript.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Inventory\\ItemList\\ItemButtonScript.cs",
+              "ToolTip": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Inventory\\ItemList\\ItemButtonScript.cs",
+              "RelativeToolTip": "Assets\\Script\\Inventory\\ItemList\\ItemButtonScript.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAuwBsAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-24T06:34:15.3Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ObjectPoolScript.cs",
+              "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Inventory\\Misc\\ObjectPoolScript.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Inventory\\Misc\\ObjectPoolScript.cs",
+              "ToolTip": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Inventory\\Misc\\ObjectPoolScript.cs",
+              "RelativeToolTip": "Assets\\Script\\Inventory\\Misc\\ObjectPoolScript.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-24T07:29:24.548Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "CreateItemManager.cs",
               "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Inventory\\CreateItem\\CreateItemManager.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Inventory\\CreateItem\\CreateItemManager.cs",
@@ -90,19 +131,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ObjectPoolScript.cs",
-              "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Inventory\\Misc\\ObjectPoolScript.cs",
-              "RelativeDocumentMoniker": "Assets\\Script\\Inventory\\Misc\\ObjectPoolScript.cs",
-              "ToolTip": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Inventory\\Misc\\ObjectPoolScript.cs",
-              "RelativeToolTip": "Assets\\Script\\Inventory\\Misc\\ObjectPoolScript.cs",
-              "ViewState": "AQIAACEAAAAAAAAAAAAYwB8AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-24T07:29:24.548Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "TrashButtonScript.cs",
               "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Inventory\\Misc\\TrashButtonScript.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Inventory\\Misc\\TrashButtonScript.cs",
@@ -114,7 +143,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "SlotScript.cs",
               "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Inventory\\InventoryGrid\\SlotScript.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Inventory\\InventoryGrid\\SlotScript.cs",
@@ -126,19 +155,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ItemButtonScript.cs",
-              "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Inventory\\ItemList\\ItemButtonScript.cs",
-              "RelativeDocumentMoniker": "Assets\\Script\\Inventory\\ItemList\\ItemButtonScript.cs",
-              "ToolTip": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Inventory\\ItemList\\ItemButtonScript.cs",
-              "RelativeToolTip": "Assets\\Script\\Inventory\\ItemList\\ItemButtonScript.cs",
-              "ViewState": "AQIAADQAAAAAAAAAAAAuwFgAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-24T06:34:15.3Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
               "Title": "SortAndFilterManager.cs",
               "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Inventory\\Sort\u0026Filter\\SortAndFilterManager.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Inventory\\Sort\u0026Filter\\SortAndFilterManager.cs",
@@ -150,7 +167,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "LoadItemDatabase.cs",
               "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Inventory\\CreateItem\\LoadItemDatabase.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Inventory\\CreateItem\\LoadItemDatabase.cs",
@@ -162,7 +179,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "LoadSaveItems.cs",
               "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Inventory\\CreateItem\\LoadSaveItems.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Inventory\\CreateItem\\LoadSaveItems.cs",
@@ -174,19 +191,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "CsvReadWrite.cs",
               "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Inventory\\CreateItem\\CsvReadWrite.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Inventory\\CreateItem\\CsvReadWrite.cs",
               "ToolTip": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Inventory\\CreateItem\\CsvReadWrite.cs",
               "RelativeToolTip": "Assets\\Script\\Inventory\\CreateItem\\CsvReadWrite.cs",
-              "ViewState": "AQIAACQAAAAAAAAAAAAYwDIAAAAAAAAA",
+              "ViewState": "AQIAABAAAAAAAAAAAAAQwCgAAAAOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-24T01:38:30.047Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "ItemClass.cs",
               "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Inventory\\ItemObject\\ItemClass.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Inventory\\ItemObject\\ItemClass.cs",
@@ -198,7 +215,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "ItemOverlayScript.cs",
               "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Inventory\\Misc\\ItemOverlayScript.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Inventory\\Misc\\ItemOverlayScript.cs",
@@ -210,32 +227,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "InvenGridManager.cs",
               "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Inventory\\InventoryGrid\\InvenGridManager.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Inventory\\InventoryGrid\\InvenGridManager.cs",
               "ToolTip": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Inventory\\InventoryGrid\\InvenGridManager.cs",
               "RelativeToolTip": "Assets\\Script\\Inventory\\InventoryGrid\\InvenGridManager.cs",
-              "ViewState": "AQIAAAQBAAAAAAAAAAAAABABAAA3AAAA",
+              "ViewState": "AQIAAB8AAAAAAAAAAAAswCYAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-23T03:28:24.631Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-23T03:28:24.631Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 4,
               "Title": "InvenGridScript.cs",
               "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Inventory\\InventoryGrid\\InvenGridScript.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Inventory\\InventoryGrid\\InvenGridScript.cs",
               "ToolTip": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Inventory\\InventoryGrid\\InvenGridScript.cs",
               "RelativeToolTip": "Assets\\Script\\Inventory\\InventoryGrid\\InvenGridScript.cs",
-              "ViewState": "AQIAAEgAAAAAAAAAAAAYwFwAAABQAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFwAAABQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-23T03:27:04.41Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "ItemScript.cs",
               "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Inventory\\ItemObject\\ItemScript.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Inventory\\ItemObject\\ItemScript.cs",
@@ -247,7 +263,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "ItemDatabase.cs",
               "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Inventory\\CreateItem\\ItemDatabase.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Inventory\\CreateItem\\ItemDatabase.cs",
