@@ -278,7 +278,7 @@ public struct SlotColorHighlights // 슬롯 색상 하이라이트를 정의하는 구조체
     public static Color32 Blue
     { get { return new Color32(159, 159, 223, 255); } }
     public static Color32 Blue2
-    { get { return new Color32(191, 191, 223, 255); } }
+    { get { return new Color32(0, 0, 200, 60); } }
     public static Color32 Gray
-    { get { return new Color32(223, 223, 223, 255); } }
+    { get { return new Color32(0, 0, 200, 0); } }
 }

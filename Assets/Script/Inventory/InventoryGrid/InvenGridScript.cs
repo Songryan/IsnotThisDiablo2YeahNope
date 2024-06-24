@@ -96,6 +96,7 @@ public class InvenGridScript : MonoBehaviour // InvenGridScript 클래스 정의, Mon
         RectTransform rect = GetComponent<RectTransform>(); // 현재 트랜스폼의 RectTransform 컴포넌트를 가져옴
         rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width); // 패널의 가로 크기 설정
         rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height); // 패널의 세로 크기 설정
-        rect.localScale = Vector3.one; // 패널의 스케일 설정
+        //rect.localScale = Vector3.one; // 패널의 스케일 설정
+        rect.localScale = new Vector3(0.32f, 0.32f, 0.32f); // 패널의 스케일 설정
     }
 }
