@@ -38,7 +38,7 @@ public class CsvReadWrite : MonoBehaviour
                     lines[i] += strList[i][j];
                 }
             }
-            File.WriteAllLines(AssetDatabase.GetAssetPath(textFile), lines);
+            //File.WriteAllLines(AssetDatabase.GetAssetPath(textFile), lines);
         }
         else
         {
