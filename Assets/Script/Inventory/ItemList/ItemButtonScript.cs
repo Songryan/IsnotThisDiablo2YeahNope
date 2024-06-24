@@ -65,7 +65,7 @@ public class ItemButtonScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
         ItemClass.SetItemValues(passedItem); // 아이템 값 설정
         nameText.text = passedItem.TypeName; // 아이템 이름 텍스트 설정
         LvlText.text = "Lvl: " + passedItem.Level.ToString(); // 아이템 레벨 텍스트 설정
-        QualityText.text = passedItem.qualityStr; // 아이템 품질 텍스트 설정
+        QualityText.text = passedItem.GetQualityStr(); // 아이템 품질 텍스트 설정
         GetComponent<LayoutElement>().preferredHeight = transform.parent.GetComponent<RectTransform>().rect.width / 4; // 레이아웃 요소 높이 설정
         iconImage.sprite = passedItem.Icon; // 아이템 아이콘 설정
         itemEquipPool = passedListManager.itemEquipPool; // 아이템 장비 오브젝트 풀 설정

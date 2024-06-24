@@ -34,6 +34,12 @@ public class LoadItemDatabase : MonoBehaviour
         string[][] grid = CsvReadWrite.LoadTextFile(csvFile);
         for (int i = 1; i < grid.Length; i++)
         {
+            if (grid[i].Length == 0 || string.IsNullOrWhiteSpace(grid[i][0]))
+            {
+                // ºó ÁÙ ¶Ç´Â Ã¹ ¹øÂ° ¼¿ÀÌ ºó °æ¿ì ¹«½Ã
+                continue;
+            }
+
             ItemData row = new ItemData();
             row.GlobalID = Int32.Parse(grid[i][0]);
             row.CategoryID = Int32.Parse(grid[i][1]);

@@ -40,7 +40,7 @@ public class SortAndFilterManager : MonoBehaviour {
         listManager.PopulateList(filteredList);
     }
 
-    private void ClassFilterChange(int type)//used on classfilter buttons
+    public void ClassFilterChange(int type)//used on classfilter buttons
     {
         if (selectedCatButton != categoryButtons[type])
         {

@@ -24,7 +24,7 @@ public class ItemOverlayScript : MonoBehaviour
         {
             nameText.text = item.TypeName; // 아이템 이름 업데이트
             lvlText.text = "Lvl: " + item.Level; // 아이템 레벨 업데이트
-            qualityText.text = item.qualityStr; // 아이템 품질 업데이트
+            qualityText.text = item.GetQualityStr(); // 아이템 품질 업데이트
             switch (item.qualityInt) // 품질에 따라 텍스트 색상 변경
             {
                 case 0: qualityText.color = Color.gray; break; // 품질이 0이면 회색
@@ -57,7 +57,7 @@ public class ItemOverlayScript : MonoBehaviour
         {
             nameText.text = ID ? item.TypeName : "***"; // ID가 true이면 아이템 이름, 그렇지 않으면 "***"
             lvlText.text = lvl ? "Lvl: " + item.Level : "***"; // lvl이 true이면 아이템 레벨, 그렇지 않으면 "***"
-            qualityText.text = quality ? item.qualityStr : "***"; // quality가 true이면 아이템 품질, 그렇지 않으면 "***"
+            qualityText.text = quality ? item.GetQualityStr() : "***"; // quality가 true이면 아이템 품질, 그렇지 않으면 "***"
             Icon.color = new Color32(255, 255, 255, 255); // 아이콘 색상을 흰색으로 설정
             Icon.sprite = ID ? item.Icon : nullSprite; // ID가 true이면 아이콘, 그렇지 않으면 nullSprite
             switch (item.qualityInt) // 품질에 따라 텍스트 색상 변경

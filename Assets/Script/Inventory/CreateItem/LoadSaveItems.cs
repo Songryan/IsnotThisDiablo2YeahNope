@@ -27,6 +27,12 @@ public class LoadSaveItems : MonoBehaviour
         List<ItemClass> itemList = new List<ItemClass>();
         for (int i = 1; i < grid.Length; i++)
         {
+            if (grid[i].Length == 0 || string.IsNullOrWhiteSpace(grid[i][0]))
+            {
+                // ºó ÁÙ ¶Ç´Â Ã¹ ¹øÂ° ¼¿ÀÌ ºó °æ¿ì ¹«½Ã
+                continue;
+            }
+
             ItemClass item = new ItemClass();
             ItemClass.SetItemValues(item, Int32.Parse(grid[i][0]), Int32.Parse(grid[i][1]), Int32.Parse(grid[i][2]));
             itemList.Add(item);
