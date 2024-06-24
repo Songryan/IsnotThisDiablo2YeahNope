@@ -64,7 +64,7 @@ public class SortAndFilterManager : MonoBehaviour {
         else return list.FindAll(x => x.qualityInt >= qualityFilterInt);
     }
 
-    private void QualityButtonClick()//used on quality filter button
+    public void QualityButtonClick()//used on quality filter button
     {
         switch (qualityFilterInt)//change button text
         {
