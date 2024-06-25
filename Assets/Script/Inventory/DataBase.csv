@@ -1,2 +1,2 @@
-GlobalID,CategoryID,CategoryName,TypeID,TypeName,SizeX,SizeY,SerialID
-0,0,Weapon,0,Crystal Sword,2,3,0
+GlobalID,CategoryID,CategoryName,TypeID,TypeName,SizeX,SizeY,SerialID,EquipCategory
+0,0,Weapon,0,Crystal Sword,2,3,0,Weapon

@@ -6,6 +6,22 @@ using UnityEngine.EventSystems; // 이벤트 시스템을 사용
 
 public class SlotSectorScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler // SlotSectorScript 클래스 정의, MonoBehaviour와 인터페이스를 상속
 {
+    public enum SlotType
+    {
+        Weapon,
+        Shield,
+        Armor,
+        Glove,
+        Boot,
+        Helmet,
+        Amulet,
+        Ring,
+        Belt,
+        All
+    }
+
+    public SlotType slotType;
+
     public GameObject slotParent; // 슬롯의 부모 게임 오브젝트를 저장할 변수
     public int QuadNum; // 사분면 번호를 저장할 변수
     public static IntVector2 posOffset; // 위치 오프셋을 저장할 정적 변수

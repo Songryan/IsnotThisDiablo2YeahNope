@@ -1,4 +1,5 @@
 using UnityEngine; // Unity 엔진 기능을 사용
+using UnityEngine.EventSystems; // 이벤트 시스템을 사용
 
 public class InvenGridScript : MonoBehaviour // InvenGridScript 클래스 정의, MonoBehaviour를 상속
 {
@@ -57,6 +58,8 @@ public class InvenGridScript : MonoBehaviour // InvenGridScript 클래스 정의, Mon
     public float slotSize; // 슬롯 크기를 저장할 변수
     public float edgePadding; // 가장자리 여백을 저장할 변수
 
+    [SerializeField] string slotType;
+
     public void Awake() // Unity에서 스크립트가 깨어날 때 호출되는 메서드
     {
         slotGrid = new GameObject[gridSize.x, gridSize.y]; // 그리드 크기에 따라 슬롯 그리드 배열 초기화
@@ -72,7 +75,44 @@ public class InvenGridScript : MonoBehaviour // InvenGridScript 클래스 정의, Mon
             for (int x = 0; x < gridSize.x; x++) // 그리드의 x축을 순회하며
             {
                 GameObject obj = (GameObject)Instantiate(slotPrefab); // 슬롯 프리팹을 인스턴스화
-
+                // 슬롯타입 변경.
+                for (int i = 0; i < 4; i++)
+                {
+                    SlotSectorScript ess = obj.transform.GetChild(i).GetComponent<SlotSectorScript>();
+                    switch (slotType)
+                    {
+                        case "Weapon":
+                            ess.slotType = SlotSectorScript.SlotType.Weapon;
+                            break;
+                        case "Shield":
+                            ess.slotType = SlotSectorScript.SlotType.Shield;
+                            break;
+                        case "Armor":
+                            ess.slotType = SlotSectorScript.SlotType.Armor;
+                            break;
+                        case "Glove":
+                            ess.slotType = SlotSectorScript.SlotType.Glove;
+                            break;
+                        case "Boot":
+                            ess.slotType = SlotSectorScript.SlotType.Boot;
+                            break;
+                        case "Helmet":
+                            ess.slotType = SlotSectorScript.SlotType.Helmet;
+                            break;
+                        case "Amulet":
+                            ess.slotType = SlotSectorScript.SlotType.Amulet;
+                            break;
+                        case "Ring":
+                            ess.slotType = SlotSectorScript.SlotType.Ring;
+                            break;
+                        case "Belt":
+                            ess.slotType = SlotSectorScript.SlotType.Belt;
+                            break;
+                        case "All":
+                            ess.slotType = SlotSectorScript.SlotType.All;
+                            break;
+                    }
+                }
                 obj.transform.name = "slot[" + x + "," + y + "]"; // 슬롯 이름 설정
                 obj.transform.SetParent(this.transform); // 슬롯의 부모를 현재 트랜스폼으로 설정
                 RectTransform rect = obj.transform.GetComponent<RectTransform>(); // 슬롯의 RectTransform 컴포넌트를 가져옴
