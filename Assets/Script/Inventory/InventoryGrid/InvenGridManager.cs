@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine; // Unity 엔진 기능을 사용
 using UnityEngine.UI; // UI 요소를 사용
 
@@ -20,6 +21,9 @@ public class InvenGridManager : MonoBehaviour // InvenGridManager 클래스 정의, M
 
     public ItemOverlayScript overlayScript; // 아이템 오버레이 스크립트를 저장할 변수
 
+    //public bool checkCanEquip = false;
+    public bool checkCanEquip = false;
+
     /* 할 일 목록
      * 아이템을 교환할 때 ColorChangeLoop에 다른 아이템의 매개변수를 전달하도록 수정 *1
      * CheckArea()와 SlotCheck()를 RefreshColor() 내부로 이동 *2
@@ -33,7 +37,7 @@ public class InvenGridManager : MonoBehaviour // InvenGridManager 클래스 정의, M
     private void Update() // Unity에서 매 프레임마다 호출되는 메서드
     {
         //if (Input.GetMouseButtonUp(0)) // 왼쪽 마우스 버튼을 뗐을 때
-        if (Input.GetMouseButtonDown(0)) // 왼쪽 마우스 버튼을 눌렀을 때 (모바일 환경을위해 변경)
+        if (Input.GetMouseButtonDown(0) && checkCanEquip) // 왼쪽 마우스 버튼을 눌렀을 때 (모바일 환경을위해 변경)
         {
             // 누르자마자 오버레이 업데이트 (모바일 환경을위해 변경)
             if(highlightedSlot != null)

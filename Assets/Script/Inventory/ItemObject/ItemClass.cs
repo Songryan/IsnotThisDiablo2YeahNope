@@ -14,6 +14,7 @@ public class ItemClass
     [HideInInspector] public IntVector2 Size;
     [HideInInspector] public Sprite Icon;
     [HideInInspector] public string SerialID;
+    public string EquipCategory;
 
     // 아이템 스텟보너스 추가
     public int Str;

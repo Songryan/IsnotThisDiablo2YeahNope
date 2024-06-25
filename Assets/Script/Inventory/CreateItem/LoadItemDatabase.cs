@@ -23,6 +23,7 @@ public class LoadItemDatabase : MonoBehaviour
         public string CategoryName;
         public int TypeID;
         public string TypeName;
+        public string EquipCategory;
         public IntVector2 Size;
         public Sprite Icon;
     }
@@ -49,6 +50,7 @@ public class LoadItemDatabase : MonoBehaviour
             TypeNameList.Add(row.TypeName);
             row.Size = new IntVector2(Int32.Parse(grid[i][5]), Int32.Parse(grid[i][6]));
             row.Icon = Resources.Load<Sprite>("Images/Items/" + grid[i][2] + "/" + grid[i][4]); // 아이콘 로드
+            row.EquipCategory = grid[i][8];
             dbList.Add(row);
         }
     }
@@ -62,6 +64,7 @@ public class LoadItemDatabase : MonoBehaviour
         item.TypeName = dbList[ID].TypeName;
         item.Size = dbList[ID].Size;
         item.Icon = dbList[ID].Icon;
+        item.EquipCategory = dbList[ID].EquipCategory;
     }
 
 

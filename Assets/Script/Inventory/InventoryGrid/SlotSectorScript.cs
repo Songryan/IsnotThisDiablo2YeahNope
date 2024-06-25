@@ -1,6 +1,8 @@
 ﻿using System; // 기본 시스템 라이브러리를 사용
 using System.Collections; // 컬렉션 인터페이스를 사용
 using System.Collections.Generic; // 제네릭 컬렉션을 사용
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine; // Unity 엔진 기능을 사용
 using UnityEngine.EventSystems; // 이벤트 시스템을 사용
 
@@ -34,6 +36,11 @@ public class SlotSectorScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         invenGridManager = this.gameObject.transform.parent.parent.GetComponent<InvenGridManager>(); // 부모의 부모 오브젝트에서 InvenGridManager 컴포넌트를 가져옴
         parentSlotScript = slotParent.GetComponent<SlotScript>(); // 부모 슬롯 오브젝트에서 SlotScript 컴포넌트를 가져옴
+    }
+
+    private void Update()
+    {
+        //invenGridManager.checkCanEquip = CheckEquipType();
     }
 
     public void OnPointerEnter(PointerEventData eventData) // 마우스가 슬롯에 진입할 때 호출되는 메서드
@@ -103,5 +110,64 @@ public class SlotSectorScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
         {
             invenGridManager.ColorChangeLoop(SlotColorHighlights.Blue2, parentSlotScript.storedItemSize, parentSlotScript.storedItemStartPos); // 슬롯 색상 변경
         }
+    }
+
+    public bool CheckEquipType()
+    {
+        // 원래 슬롯타임이 All 체크 필요없음.
+        if (slotType == SlotType.All)
+            return true;
+
+        // 자식 없으면 걍 ture로 리턴.
+        if (invenGridManager.dropParent.childCount == 0)
+            return true;
+
+        string itemType = string.Empty;
+        foreach (Transform child in invenGridManager.dropParent.transform)
+        {
+            itemType = child.transform.GetComponent<ItemScript>().item.EquipCategory;
+            itemType = new string(itemType.Where(c => char.IsLetter(c)).ToArray());
+        }
+
+        SlotType childItemType;
+
+        switch (itemType)
+        {
+            case "Weapon":
+                childItemType = SlotType.Weapon;
+                break;
+            case "Shield":
+                childItemType = SlotType.Shield;
+                break;
+            case "Armor":
+                childItemType = SlotType.Armor;
+                break;
+            case "Glove":
+                childItemType = SlotType.Glove;
+                break;
+            case "Boot":
+                childItemType = SlotType.Boot;
+                break;
+            case "Helmet":
+                childItemType = SlotType.Helmet;
+                break;
+            case "Amulet":
+                childItemType = SlotType.Amulet;
+                break;
+            case "Ring":
+                childItemType = SlotType.Ring;
+                break;
+            case "Belt":
+                childItemType = SlotType.Belt;
+                break;
+            case "All":
+                childItemType = SlotType.All;
+                break;
+            default:
+                childItemType = SlotType.All;
+                break;
+        }
+        
+        return childItemType == slotType;
     }
 }
