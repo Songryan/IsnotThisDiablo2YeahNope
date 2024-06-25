@@ -3968,6 +3968,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7318675778218930514, guid: 3d6653c8fdfc33d4eacd73a664c939e4, type: 3}
+      propertyPath: m_Text
+      value: "\uCC3D\uACE0"
+      objectReference: {fileID: 0}
     - target: {fileID: 7954777139131389072, guid: 3d6653c8fdfc33d4eacd73a664c939e4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
