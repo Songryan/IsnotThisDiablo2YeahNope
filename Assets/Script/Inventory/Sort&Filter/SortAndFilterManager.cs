@@ -45,8 +45,8 @@ public class SortAndFilterManager : MonoBehaviour {
         if (selectedCatButton != categoryButtons[type])
         {
             catFilterInt = type;
-            categoryButtons[type].GetComponent<CanvasGroup>().alpha = 1f;
-            selectedCatButton.GetComponent<CanvasGroup>().alpha = 0.5f;
+            //categoryButtons[type].GetComponent<CanvasGroup>().alpha = 1f;
+            //selectedCatButton.GetComponent<CanvasGroup>().alpha = 0.5f;
             selectedCatButton = categoryButtons[type];
             FilterList(sortedList);
         }

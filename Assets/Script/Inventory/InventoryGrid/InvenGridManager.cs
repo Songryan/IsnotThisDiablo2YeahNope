@@ -33,8 +33,12 @@ public class InvenGridManager : MonoBehaviour // InvenGridManager 클래스 정의, M
     private void Update() // Unity에서 매 프레임마다 호출되는 메서드
     {
         //if (Input.GetMouseButtonUp(0)) // 왼쪽 마우스 버튼을 뗐을 때
-        if (Input.GetMouseButtonDown(0)) // 왼쪽 마우스 버튼을 뗐을 때
+        if (Input.GetMouseButtonDown(0)) // 왼쪽 마우스 버튼을 눌렀을 때 (모바일 환경을위해 변경)
         {
+            // 누르자마자 오버레이 업데이트 (모바일 환경을위해 변경)
+            if(highlightedSlot != null)
+                overlayScript.UpdateOverlay(highlightedSlot.GetComponent<SlotScript>().storedItemClass);
+
             if (highlightedSlot != null && ItemScript.selectedItem != null && !isOverEdge) // 강조된 슬롯과 선택된 아이템이 있고 가장자리를 넘지 않은 경우
             {
                 switch (checkState)
@@ -244,7 +248,7 @@ public class InvenGridManager : MonoBehaviour // InvenGridManager 클래스 정의, M
         retItem.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 0.5f);
         retItem.GetComponent<CanvasGroup>().alpha = 0.5f;
         retItem.transform.position = Input.mousePosition;
-        overlayScript.UpdateOverlay(null);
+        //overlayScript.UpdateOverlay(null);
         return retItem;
     }
 
@@ -279,7 +283,7 @@ public struct SlotColorHighlights // 슬롯 색상 하이라이트를 정의하는 구조체
     public static Color32 Blue
     { get { return new Color32(159, 159, 223, 255); } }
     public static Color32 Blue2
-    { get { return new Color32(0, 0, 200, 60); } }
+    { get { return new Color32(0, 0, 200, 50); } }
     public static Color32 Gray
     { get { return new Color32(0, 0, 200, 0); } }
 }

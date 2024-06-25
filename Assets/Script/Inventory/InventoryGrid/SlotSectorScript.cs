@@ -35,7 +35,7 @@ public class SlotSectorScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
         }
         if (parentSlotScript.storedItemObject != null) // 부모 슬롯에 아이템이 저장되어 있을 경우
         {
-            overlayScript.UpdateOverlay(parentSlotScript.storedItemClass); // 오버레이를 아이템 정보로 업데이트
+            //overlayScript.UpdateOverlay(parentSlotScript.storedItemClass); // 오버레이를 아이템 정보로 업데이트
         }
     }
 
@@ -77,7 +77,7 @@ public class SlotSectorScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         sectorScript = null; // 현재 섹터 스크립트를 초기화
         invenGridManager.highlightedSlot = null; // 강조된 슬롯을 초기화
-        overlayScript.UpdateOverlay(null); // 오버레이를 초기화
+        //overlayScript.UpdateOverlay(null); // 오버레이를 초기화
         if (ItemScript.selectedItem != null) // 선택된 아이템이 있을 경우
         {
             invenGridManager.RefrechColor(false); // 색상 갱신

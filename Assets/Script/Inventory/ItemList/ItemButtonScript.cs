@@ -34,17 +34,18 @@ public class ItemButtonScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
                 listManager.itemEquipPool.ReturnObject(ItemScript.selectedItem);
                 SpawnStoredItem();
             }
+            overlayScript.UpdateOverlay(item);
         }
     }
 
     public void OnPointerEnter(PointerEventData eventData) // 마우스가 버튼 위에 있을 때 호출되는 메서드
     {
-        overlayScript.UpdateOverlay(item); // 오버레이를 아이템 정보로 업데이트
+        //overlayScript.UpdateOverlay(item); // 오버레이를 아이템 정보로 업데이트
     }
 
     public void OnPointerExit(PointerEventData eventData) // 마우스가 버튼을 떠났을 때 호출되는 메서드
     {
-        overlayScript.UpdateOverlay(null); // 오버레이를 초기화
+        //overlayScript.UpdateOverlay(null); // 오버레이를 초기화
     }
 
     private void SpawnStoredItem() // 저장된 아이템을 생성하는 메서드
