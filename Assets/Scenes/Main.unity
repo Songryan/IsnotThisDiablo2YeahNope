@@ -193,7 +193,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: BaseStat4
+  m_Text: 
 --- !u!222 &5933735
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1200,7 +1200,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: BaseStat2
+  m_Text: 
 --- !u!222 &1186516579
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1279,7 +1279,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: BaseStat1
+  m_Text: 
 --- !u!222 &1242002382
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1363,7 +1363,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: BaseStat3
+  m_Text: 
 --- !u!222 &1287613013
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1782,6 +1782,10 @@ MonoBehaviour:
   size: {fileID: 1772166259}
   Icon: {fileID: 2036248989}
   nullSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  Str: {fileID: 1242002381}
+  Dex: {fileID: 1186516578}
+  Vital: {fileID: 1287613012}
+  Mana: {fileID: 5933734}
 --- !u!1 &1730324802
 GameObject:
   m_ObjectHideFlags: 0
@@ -3983,6 +3987,10 @@ PrefabInstance:
     - target: {fileID: 7954777139131389072, guid: 3d6653c8fdfc33d4eacd73a664c939e4, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8030768002222399917, guid: 3d6653c8fdfc33d4eacd73a664c939e4, type: 3}
+      propertyPath: m_Text
+      value: Category (Asc)
       objectReference: {fileID: 0}
     - target: {fileID: 8767127230325384284, guid: 3d6653c8fdfc33d4eacd73a664c939e4, type: 3}
       propertyPath: itemDB

@@ -64,7 +64,8 @@ public class ItemButtonScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
         listManager = passedListManager; // 리스트 매니저 설정
         item = passedItem; // 아이템 설정
         ItemClass.SetItemValues(passedItem); // 아이템 값 설정
-        nameText.text = passedItem.TypeName; // 아이템 이름 텍스트 설정
+        //nameText.text = passedItem.TypeName; // 아이템 이름 텍스트 설정
+        nameText.text = $"{passedItem.TypeName}\n+Str:{passedItem.Str} +Dex:{passedItem.Dex} +Vit:{passedItem.Vital} +Mana:{passedItem.Mana}"; // 아이템 이름 텍스트 설정
         LvlText.text = "Lvl: " + passedItem.Level.ToString(); // 아이템 레벨 텍스트 설정
         QualityText.text = passedItem.GetQualityStr(); // 아이템 품질 텍스트 설정
         GetComponent<LayoutElement>().preferredHeight = transform.parent.GetComponent<RectTransform>().rect.width / 4; // 레이아웃 요소 높이 설정

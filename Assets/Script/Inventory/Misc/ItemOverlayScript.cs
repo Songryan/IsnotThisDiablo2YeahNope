@@ -8,6 +8,11 @@ public class ItemOverlayScript : MonoBehaviour
     public Image Icon; // 아이템 아이콘을 표시할 이미지 UI
     public Sprite nullSprite; // 아이템이 없을 때 표시할 스프라이트
 
+    public Text Str;
+    public Text Dex;
+    public Text Vital;
+    public Text Mana;
+
     private float slotSize; // 슬롯 크기
 
     private void Start() // Unity에서 스크립트가 처음 실행될 때 호출되는 메서드
@@ -25,6 +30,12 @@ public class ItemOverlayScript : MonoBehaviour
             nameText.text = item.TypeName; // 아이템 이름 업데이트
             lvlText.text = "Lvl: " + item.Level; // 아이템 레벨 업데이트
             qualityText.text = item.GetQualityStr(); // 아이템 품질 업데이트
+
+            Str.text = $"Str : +{item.Str.ToString()}";
+            Dex.text = $"Dex : +{item.Dex.ToString()}";
+            Vital.text = $"Vital : +{item.Vital.ToString()}";
+            Mana.text = $"Mana : +{item.Mana.ToString()}";
+
             switch (item.qualityInt) // 품질에 따라 텍스트 색상 변경
             {
                 case 0: qualityText.color = Color.gray; break; // 품질이 0이면 회색

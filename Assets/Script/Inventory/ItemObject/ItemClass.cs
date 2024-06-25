@@ -15,6 +15,12 @@ public class ItemClass
     [HideInInspector] public Sprite Icon;
     [HideInInspector] public string SerialID;
 
+    // 아이템 스텟보너스 추가
+    public int Str;
+    public int Dex;
+    public int Vital;
+    public int Mana;
+
     private enum QualityEnum { Broken, Normal, Magic, Rare }
     public string GetQualityStr()
     {
@@ -28,11 +34,20 @@ public class ItemClass
         item.qualityInt = quality;
         GameObject.FindGameObjectWithTag("ItemDatabase").GetComponent<LoadItemDatabase>().PassItemData(ref item);
     }
+
     public static void SetItemValues(ItemClass item)
     {
         GameObject.FindGameObjectWithTag("ItemDatabase").GetComponent<LoadItemDatabase>().PassItemData(ref item);
     }
 
+    public static void SetItemValues(ItemClass item, string statBouns)
+    {
+        string[] statsArr = statBouns.Split('/');
+        item.Str = Int32.Parse(statsArr[0]);
+        item.Dex = Int32.Parse(statsArr[1]);
+        item.Vital = Int32.Parse(statsArr[2]);
+        item.Mana = Int32.Parse(statsArr[3]);
+    }
 
     public ItemClass(ItemClass passedItem)//create new item by copying passedITem properties
     {
