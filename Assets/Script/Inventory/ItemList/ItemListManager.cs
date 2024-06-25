@@ -16,7 +16,7 @@ public class ItemListManager : MonoBehaviour
     public List<GameObject> currentButtonList; // 현재 버튼 리스트
     public List<ItemClass> currentItemList; // 현재 아이템 리스트
 
-    public Transform contentPanel; // 콘텐츠 패널
+    [SerializeField] private Transform contentPanel; // 콘텐츠 패널
 
     private void Start() // Unity에서 스크립트가 처음 실행될 때 호출되는 메서드
     {
