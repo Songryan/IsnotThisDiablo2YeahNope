@@ -1,9 +1,16 @@
+using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
 public class JsonDataManager : MonoBehaviour
 {
-    [SerializeField] private string jsonFileName = "gamedata.json";
+    [SerializeField] private LoadItemDatabase itemDB;
+    [SerializeField] private ItemListManager listManager;
+
+    private List<ItemClass> startItemList = new List<ItemClass>();
+
+    private string jsonFileName = "gamedata.json";
     private string jsonFilePath;
 
     private static JsonDataManager _instance;
@@ -50,7 +57,11 @@ public class JsonDataManager : MonoBehaviour
             // 불러온 데이터 출력 (확인용)
             foreach (var entry in loadedData.Entries)
             {
-                Debug.Log($"GlobalID: {entry.GlobalID}, Level: {entry.Level}, Quality: {entry.Quality}, StatBonus: {entry.StatBonus}");
+                LoadItems(entry);
+                //for (int i = 0; i < entry.GlobalIDs.Count; i++)
+                //{
+                //    Debug.Log($"GlobalID: {entry.GlobalIDs[i]}, Level: {entry.Levels[i]}, Quality: {entry.Qualities[i]}, StatBonus: {entry.StatBonuses[i]}");
+                //}
             }
         }
         else
@@ -58,54 +69,19 @@ public class JsonDataManager : MonoBehaviour
             Debug.LogWarning("JSON file not found in Resources");
         }
 
-        // JSON 파일 경로 설정 (안드로이드에서는 persistentDataPath 사용)
-        jsonFilePath = Path.Combine(Application.persistentDataPath, jsonFileName);
-
-        // 예제 데이터 생성
-        GameData gameData = CreateSampleData();
-
-        // JSON으로 저장
-        SaveToJson(gameData, jsonFilePath);
-
-        // JSON에서 불러오기
-        GameData loadedJsonData = LoadFromJson(jsonFilePath);
-
-        // 불러온 데이터 출력 (확인용)
-        foreach (var entry in loadedJsonData.Entries)
-        {
-            Debug.Log($"GlobalID: {entry.GlobalID}, Level: {entry.Level}, Quality: {entry.Quality}, StatBonus: {entry.StatBonus}");
-        }
+        listManager.startItemList = this.startItemList;
+        //Start 후 자료배치했으면 Clear.
+        //startItemList.Clear();
     }
 
-    public GameData CreateSampleData()
+    public void LoadItems(GameDataEntry entry)
     {
-        GameData gameData = new GameData();
-        gameData.Entries.Add(new GameDataEntry(0, 1, 0, "0/0/0/0"));
-        gameData.Entries.Add(new GameDataEntry(0, 1, 1, "1/0/0/0"));
-        gameData.Entries.Add(new GameDataEntry(0, 1, 2, "0/1/1/0"));
-        gameData.Entries.Add(new GameDataEntry(0, 1, 3, "1/1/0/1"));
-
-        return gameData;
-    }
-
-    public void SaveToJson(GameData gameData, string filePath)
-    {
-        string json = JsonUtility.ToJson(gameData, true);
-        File.WriteAllText(filePath, json);
-    }
-
-    public GameData LoadFromJson(string filePath)
-    {
-        if (File.Exists(filePath))
+        for (int i = 1; i < entry.GlobalIDs.Count; i++)
         {
-            string json = File.ReadAllText(filePath);
-            GameData data = JsonUtility.FromJson<GameData>(json);
-            return data;
-        }
-        else
-        {
-            Debug.LogWarning("Save file not found");
-            return null;
+            ItemClass item = new ItemClass();
+            ItemClass.SetItemValues(item, entry.GlobalIDs[i], entry.Levels[i], entry.Qualities[i]);
+            ItemClass.SetItemValues(item, entry.StatBonuses[i]);
+            startItemList.Add(item);
         }
     }
 }
