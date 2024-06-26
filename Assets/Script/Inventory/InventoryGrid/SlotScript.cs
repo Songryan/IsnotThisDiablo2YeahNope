@@ -25,9 +25,28 @@ public class SlotScript : MonoBehaviour // SlotScript 클래스 정의, MonoBeha
 
     public void EquipInvenColorChanger()
     {
+        if (invenType.Equals("All") == true)
+            return;
+
         if(invenType.Equals("All") == false)
         {
             transform.GetComponent<Image>().color = new Color32(0,0,0,0);
+        }
+
+        if (invenType.Equals("All") == false && isOccupied)
+        {
+            //bool placeholderBool = transform.parent.GetComponent<InvenGridManager>().placeholder.gameObject.activeSelf;
+            //bool highlighterBool = transform.parent.GetComponent<InvenGridManager>().highlighter.gameObject.activeSelf;
+            
+            transform.parent.GetComponent<InvenGridManager>().placeholder.SetActive(false);
+
+            transform.parent.GetComponent<InvenGridManager>().highlighter.SetActive(true);
+        }
+        else
+        {
+            transform.parent.GetComponent<InvenGridManager>().placeholder.SetActive(true);
+
+            transform.parent.GetComponent<InvenGridManager>().highlighter.SetActive(false);
         }
     }
 }

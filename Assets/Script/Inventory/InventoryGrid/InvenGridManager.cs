@@ -27,6 +27,9 @@ public class InvenGridManager : MonoBehaviour // InvenGridManager 클래스 정의, M
     public bool checkCanEquip = true;
     public string pSlotType;
 
+    public GameObject placeholder;
+    public GameObject highlighter;
+
     /* 할 일 목록
      * 아이템을 교환할 때 ColorChangeLoop에 다른 아이템의 매개변수를 전달하도록 수정 *1
      * CheckArea()와 SlotCheck()를 RefreshColor() 내부로 이동 *2
