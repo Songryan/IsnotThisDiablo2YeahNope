@@ -1482,6 +1482,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 621736583}
+  - {fileID: 1736724510}
   - {fileID: 1605923139}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1942,11 +1943,11 @@ Transform:
   m_GameObject: {fileID: 1736724509}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1591.7992, y: 693.8112, z: 0.20796454}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1319979914}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1736724511
 MonoBehaviour:
@@ -4337,6 +4338,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 6431189467996128628, guid: 3d6653c8fdfc33d4eacd73a664c939e4, type: 3}
+      propertyPath: m_Text
+      value: Shield
+      objectReference: {fileID: 0}
     - target: {fileID: 6762933928150583340, guid: 3d6653c8fdfc33d4eacd73a664c939e4, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -4541,4 +4546,3 @@ SceneRoots:
   - {fileID: 2084785216}
   - {fileID: 1703071176}
   - {fileID: 1319979914}
-  - {fileID: 1736724510}

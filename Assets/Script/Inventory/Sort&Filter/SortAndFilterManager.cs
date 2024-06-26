@@ -23,6 +23,16 @@ public class SortAndFilterManager : MonoBehaviour {
 
     private void Start()
     {
+        StartCoroutine(Initialize());
+    }
+    private IEnumerator Initialize()
+    {
+        // listManager가 정상적으로 초기화될 때까지 대기
+        while (listManager.startItemList == null || listManager.startItemList.Count == 0)
+        {
+            yield return null;
+        }
+
         selectedCatButton = categoryButtons[0];
         qualityButtonImage.color = Color.gray;
         sortedList = SortList(listManager.startItemList);

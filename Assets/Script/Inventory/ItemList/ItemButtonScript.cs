@@ -2,7 +2,7 @@
 using UnityEngine.UI; // UI 요소를 사용
 using UnityEngine.EventSystems; // 이벤트 시스템을 사용
 
-public class ItemButtonScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler // ItemButtonScript 클래스 정의, MonoBehaviour와 인터페이스를 상속
+public class ItemButtonScript : MonoBehaviour, IPointerDownHandler // ItemButtonScript 클래스 정의, MonoBehaviour와 인터페이스를 상속
 {
     public Button buttonComponent; // 버튼 컴포넌트를 저장할 변수
     public Text nameText; // 아이템 이름 텍스트를 저장할 변수
@@ -36,16 +36,6 @@ public class ItemButtonScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
             }
             overlayScript.UpdateOverlay(item);
         }
-    }
-
-    public void OnPointerEnter(PointerEventData eventData) // 마우스가 버튼 위에 있을 때 호출되는 메서드
-    {
-        //overlayScript.UpdateOverlay(item); // 오버레이를 아이템 정보로 업데이트
-    }
-
-    public void OnPointerExit(PointerEventData eventData) // 마우스가 버튼을 떠났을 때 호출되는 메서드
-    {
-        //overlayScript.UpdateOverlay(null); // 오버레이를 초기화
     }
 
     private void SpawnStoredItem() // 저장된 아이템을 생성하는 메서드
