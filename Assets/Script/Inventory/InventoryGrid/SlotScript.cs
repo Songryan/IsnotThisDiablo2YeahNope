@@ -17,10 +17,13 @@ public class SlotScript : MonoBehaviour // SlotScript 클래스 정의, MonoBeha
 
     public string invenType;
 
+    public InvenGridManager gridManager;
+
     private void Start() // Unity에서 스크립트가 처음 실행될 때 호출되는 메서드
     {
         text.text = gridPos.x + "," + gridPos.y; // 슬롯의 텍스트를 그리드 위치로 설정
         invenType = transform.parent.GetComponent<InvenGridScript>().slotType;
+        gridManager = GameObject.Find("InvenPanel").transform.GetComponent<InvenGridManager>();
     }
 
     public void EquipInvenColorChanger()
@@ -38,14 +41,15 @@ public class SlotScript : MonoBehaviour // SlotScript 클래스 정의, MonoBeha
             //bool placeholderBool = transform.parent.GetComponent<InvenGridManager>().placeholder.gameObject.activeSelf;
             //bool highlighterBool = transform.parent.GetComponent<InvenGridManager>().highlighter.gameObject.activeSelf;
             
+            // 장비 장착
             transform.parent.GetComponent<InvenGridManager>().placeholder.SetActive(false);
-
             transform.parent.GetComponent<InvenGridManager>().highlighter.SetActive(true);
+            gridManager.RemoveSelectedButton();
         }
         else
         {
+            // 장비 탈착
             transform.parent.GetComponent<InvenGridManager>().placeholder.SetActive(true);
-
             transform.parent.GetComponent<InvenGridManager>().highlighter.SetActive(false);
         }
     }

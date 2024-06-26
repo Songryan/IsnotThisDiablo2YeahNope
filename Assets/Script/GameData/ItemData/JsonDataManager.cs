@@ -13,37 +13,37 @@ public class JsonDataManager : MonoBehaviour
     private string jsonFileName = "gamedata.json";
     private string jsonFilePath;
 
-    private static JsonDataManager _instance;
-    public static JsonDataManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = FindObjectOfType<JsonDataManager>();
-                if (_instance == null)
-                {
-                    GameObject singletonObject = new GameObject(typeof(JsonDataManager).ToString());
-                    _instance = singletonObject.AddComponent<JsonDataManager>();
-                    DontDestroyOnLoad(singletonObject);
-                }
-            }
-            return _instance;
-        }
-    }
-
-    void Awake()
-    {
-        if (_instance == null)
-        {
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (_instance != this)
-        {
-            Destroy(gameObject);
-        }
-    }
+    //private static JsonDataManager _instance;
+    //public static JsonDataManager Instance
+    //{
+    //    get
+    //    {
+    //        if (_instance == null)
+    //        {
+    //            _instance = FindObjectOfType<JsonDataManager>();
+    //            if (_instance == null)
+    //            {
+    //                GameObject singletonObject = new GameObject(typeof(JsonDataManager).ToString());
+    //                _instance = singletonObject.AddComponent<JsonDataManager>();
+    //                DontDestroyOnLoad(singletonObject);
+    //            }
+    //        }
+    //        return _instance;
+    //    }
+    //}
+    //
+    //void Awake()
+    //{
+    //    if (_instance == null)
+    //    {
+    //        _instance = this;
+    //        DontDestroyOnLoad(gameObject);
+    //    }
+    //    else if (_instance != this)
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
 
     void Start()
     {
@@ -76,7 +76,7 @@ public class JsonDataManager : MonoBehaviour
 
     public void LoadItems(GameDataEntry entry)
     {
-        for (int i = 1; i < entry.GlobalIDs.Count; i++)
+        for (int i = 0; i < entry.GlobalIDs.Count; i++)
         {
             ItemClass item = new ItemClass();
             ItemClass.SetItemValues(item, entry.GlobalIDs[i], entry.Levels[i], entry.Qualities[i]);

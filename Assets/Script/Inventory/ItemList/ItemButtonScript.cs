@@ -22,7 +22,7 @@ public class ItemButtonScript : MonoBehaviour, IPointerDownHandler // ItemButton
     {
         if (Input.GetMouseButtonDown(0)) // 왼쪽 마우스 버튼을 눌렀을 경우
         {
-            if (ItemScript.selectedItem == null)
+            if (ItemScript.selectedItem == null || Input.touchCount >= 1)
             {
                 SpawnStoredItem(); // 선택된 아이템이 없으면 저장된 아이템을 생성
             }
