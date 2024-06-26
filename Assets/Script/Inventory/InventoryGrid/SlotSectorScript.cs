@@ -32,34 +32,56 @@ public class SlotSectorScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
     private InvenGridManager invenGridManager; // 인벤토리 그리드 매니저를 저장할 변수
     private SlotScript parentSlotScript; // 부모 슬롯 스크립트를 저장할 변수
 
+    public bool equipInven = false;
+
     private void Start() // Unity에서 스크립트가 처음 실행될 때 호출되는 메서드
     {
         invenGridManager = this.gameObject.transform.parent.parent.GetComponent<InvenGridManager>(); // 부모의 부모 오브젝트에서 InvenGridManager 컴포넌트를 가져옴
         parentSlotScript = slotParent.GetComponent<SlotScript>(); // 부모 슬롯 오브젝트에서 SlotScript 컴포넌트를 가져옴
+        EquipInvenCheck();
     }
 
-    private void Update()
+    public void EquipInvenCheck()
     {
-        //invenGridManager.checkCanEquip = CheckEquipType();
+        if (slotType != SlotType.All)
+            equipInven = true;
     }
 
     public void OnPointerEnter(PointerEventData eventData) // 마우스가 슬롯에 진입할 때 호출되는 메서드
     {
-        sectorScript = this; // 현재 섹터 스크립트를 설정
-        invenGridManager.highlightedSlot = slotParent; // 강조된 슬롯을 부모 슬롯으로 설정
-        PosOffset(); // 위치 오프셋 설정
-        if (ItemScript.selectedItem != null) // 선택된 아이템이 있을 경우
+        if (equipInven == true)
         {
-            invenGridManager.RefrechColor(true); // 색상 갱신
+            sectorScript = this; // 현재 섹터 스크립트를 설정
+            invenGridManager.highlightedSlot = slotParent; // 강조된 슬롯을 부모 슬롯으로 설정
+            PosOffset(); // 위치 오프셋 설정
+            if (ItemScript.selectedItem != null) // 선택된 아이템이 있을 경우
+            {
+                invenGridManager.RefrechColor_Equip(true); // 색상 갱신
+            }
+            if (parentSlotScript.storedItemObject != null && ItemScript.selectedItem == null) // 부모 슬롯에 아이템이 저장되어 있고 선택된 아이템이 없을 경우
+            {
+                //invenGridManager.ColorChangeLoop(SlotColorHighlights.Blue, parentSlotScript.storedItemSize, parentSlotScript.storedItemStartPos); // 슬롯 색상 변경
+            }
         }
-        if (parentSlotScript.storedItemObject != null && ItemScript.selectedItem == null) // 부모 슬롯에 아이템이 저장되어 있고 선택된 아이템이 없을 경우
+        else
         {
-            invenGridManager.ColorChangeLoop(SlotColorHighlights.Blue, parentSlotScript.storedItemSize, parentSlotScript.storedItemStartPos); // 슬롯 색상 변경
+            sectorScript = this; // 현재 섹터 스크립트를 설정
+            invenGridManager.highlightedSlot = slotParent; // 강조된 슬롯을 부모 슬롯으로 설정
+            PosOffset(); // 위치 오프셋 설정
+            if (ItemScript.selectedItem != null) // 선택된 아이템이 있을 경우
+            {
+                invenGridManager.RefrechColor(true); // 색상 갱신
+            }
+            if (parentSlotScript.storedItemObject != null && ItemScript.selectedItem == null) // 부모 슬롯에 아이템이 저장되어 있고 선택된 아이템이 없을 경우
+            {
+                invenGridManager.ColorChangeLoop(SlotColorHighlights.Blue, parentSlotScript.storedItemSize, parentSlotScript.storedItemStartPos); // 슬롯 색상 변경
+            }
+            if (parentSlotScript.storedItemObject != null) // 부모 슬롯에 아이템이 저장되어 있을 경우
+            {
+                //overlayScript.UpdateOverlay(parentSlotScript.storedItemClass); // 오버레이를 아이템 정보로 업데이트
+            }
         }
-        if (parentSlotScript.storedItemObject != null) // 부모 슬롯에 아이템이 저장되어 있을 경우
-        {
-            //overlayScript.UpdateOverlay(parentSlotScript.storedItemClass); // 오버레이를 아이템 정보로 업데이트
-        }
+
     }
 
     public void PosOffset() // 위치 오프셋을 설정하는 메서드
@@ -98,76 +120,35 @@ public class SlotSectorScript : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void OnPointerExit(PointerEventData eventData) // 마우스가 슬롯에서 나갈 때 호출되는 메서드
     {
-        sectorScript = null; // 현재 섹터 스크립트를 초기화
-        invenGridManager.highlightedSlot = null; // 강조된 슬롯을 초기화
-        //overlayScript.UpdateOverlay(null); // 오버레이를 초기화
-        if (ItemScript.selectedItem != null) // 선택된 아이템이 있을 경우
+        if (equipInven == true)
         {
-            invenGridManager.RefrechColor(false); // 색상 갱신
+            sectorScript = null; // 현재 섹터 스크립트를 초기화
+            invenGridManager.highlightedSlot = null; // 강조된 슬롯을 초기화
+            if (ItemScript.selectedItem != null) // 선택된 아이템이 있을 경우
+            {
+                invenGridManager.RefrechColor_Equip(false); // 색상 갱신
+            }
+            posOffset = IntVector2.Zero; // 위치 오프셋 초기화
+            if (parentSlotScript.storedItemObject != null && ItemScript.selectedItem == null) // 부모 슬롯에 아이템이 저장되어 있고 선택된 아이템이 없을 경우
+            {
+                //invenGridManager.ColorChangeLoop(SlotColorHighlights.Blue2, parentSlotScript.storedItemSize, parentSlotScript.storedItemStartPos); // 슬롯 색상 변경
+            }
         }
-        posOffset = IntVector2.Zero; // 위치 오프셋 초기화
-        if (parentSlotScript.storedItemObject != null && ItemScript.selectedItem == null) // 부모 슬롯에 아이템이 저장되어 있고 선택된 아이템이 없을 경우
+        else
         {
-            invenGridManager.ColorChangeLoop(SlotColorHighlights.Blue2, parentSlotScript.storedItemSize, parentSlotScript.storedItemStartPos); // 슬롯 색상 변경
+            sectorScript = null; // 현재 섹터 스크립트를 초기화
+            invenGridManager.highlightedSlot = null; // 강조된 슬롯을 초기화
+            if (ItemScript.selectedItem != null) // 선택된 아이템이 있을 경우
+            {
+                invenGridManager.RefrechColor(false); // 색상 갱신
+            }
+            posOffset = IntVector2.Zero; // 위치 오프셋 초기화
+            if (parentSlotScript.storedItemObject != null && ItemScript.selectedItem == null) // 부모 슬롯에 아이템이 저장되어 있고 선택된 아이템이 없을 경우
+            {
+                invenGridManager.ColorChangeLoop(SlotColorHighlights.Blue2, parentSlotScript.storedItemSize, parentSlotScript.storedItemStartPos); // 슬롯 색상 변경
+            }
         }
+
     }
 
-    public bool CheckEquipType()
-    {
-        // 원래 슬롯타임이 All 체크 필요없음.
-        if (slotType == SlotType.All)
-            return true;
-
-        // 자식 없으면 걍 ture로 리턴.
-        if (invenGridManager.dropParent.childCount == 0)
-            return true;
-
-        string itemType = string.Empty;
-        foreach (Transform child in invenGridManager.dropParent.transform)
-        {
-            itemType = child.transform.GetComponent<ItemScript>().item.EquipCategory;
-            itemType = new string(itemType.Where(c => char.IsLetter(c)).ToArray());
-        }
-
-        SlotType childItemType;
-
-        switch (itemType)
-        {
-            case "Weapon":
-                childItemType = SlotType.Weapon;
-                break;
-            case "Shield":
-                childItemType = SlotType.Shield;
-                break;
-            case "Armor":
-                childItemType = SlotType.Armor;
-                break;
-            case "Glove":
-                childItemType = SlotType.Glove;
-                break;
-            case "Boot":
-                childItemType = SlotType.Boot;
-                break;
-            case "Helmet":
-                childItemType = SlotType.Helmet;
-                break;
-            case "Amulet":
-                childItemType = SlotType.Amulet;
-                break;
-            case "Ring":
-                childItemType = SlotType.Ring;
-                break;
-            case "Belt":
-                childItemType = SlotType.Belt;
-                break;
-            case "All":
-                childItemType = SlotType.All;
-                break;
-            default:
-                childItemType = SlotType.All;
-                break;
-        }
-        
-        return childItemType == slotType;
-    }
 }

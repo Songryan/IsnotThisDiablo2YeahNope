@@ -3362,6 +3362,10 @@ PrefabInstance:
       propertyPath: overlayScript
       value: 
       objectReference: {fileID: 1726498333}
+    - target: {fileID: 1176726915966257124, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
+      propertyPath: dropParent_Hover
+      value: 
+      objectReference: {fileID: 1730324803}
     - target: {fileID: 1533919729447729152, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3406,6 +3410,10 @@ PrefabInstance:
       propertyPath: overlayScript
       value: 
       objectReference: {fileID: 1726498333}
+    - target: {fileID: 1943172855029190310, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
+      propertyPath: dropParent_Hover
+      value: 
+      objectReference: {fileID: 1730324803}
     - target: {fileID: 2055939199463068550, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
       propertyPath: dropParent
       value: 
@@ -3418,6 +3426,10 @@ PrefabInstance:
       propertyPath: overlayScript
       value: 
       objectReference: {fileID: 1726498333}
+    - target: {fileID: 2055939199463068550, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
+      propertyPath: dropParent_Hover
+      value: 
+      objectReference: {fileID: 1730324803}
     - target: {fileID: 2093041804543442854, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3441,6 +3453,10 @@ PrefabInstance:
     - target: {fileID: 2093041804543442854, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2213979076623897691, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2300255241598511708, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
       propertyPath: slotType
@@ -3490,6 +3506,10 @@ PrefabInstance:
       propertyPath: overlayScript
       value: 
       objectReference: {fileID: 1726498333}
+    - target: {fileID: 2769471284026029403, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
+      propertyPath: dropParent_Hover
+      value: 
+      objectReference: {fileID: 1730324803}
     - target: {fileID: 3665628576558819112, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
       propertyPath: slotType
       value: Boot
@@ -3518,6 +3538,10 @@ PrefabInstance:
       propertyPath: overlayScript
       value: 
       objectReference: {fileID: 1726498333}
+    - target: {fileID: 4152826637258420653, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
+      propertyPath: dropParent_Hover
+      value: 
+      objectReference: {fileID: 1730324803}
     - target: {fileID: 4195934063119065198, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
       propertyPath: slotType
       value: Shield
@@ -3538,6 +3562,10 @@ PrefabInstance:
       propertyPath: overlayScript
       value: 
       objectReference: {fileID: 1726498333}
+    - target: {fileID: 4604021184270401685, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
+      propertyPath: dropParent_Hover
+      value: 
+      objectReference: {fileID: 1730324803}
     - target: {fileID: 4879260235600259338, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -3562,6 +3590,10 @@ PrefabInstance:
       propertyPath: overlayScript
       value: 
       objectReference: {fileID: 1726498333}
+    - target: {fileID: 5563726974965857847, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
+      propertyPath: dropParent_Hover
+      value: 
+      objectReference: {fileID: 1730324803}
     - target: {fileID: 5714284893042977672, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
       propertyPath: dropParent
       value: 
@@ -3574,6 +3606,10 @@ PrefabInstance:
       propertyPath: overlayScript
       value: 
       objectReference: {fileID: 1726498333}
+    - target: {fileID: 5714284893042977672, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
+      propertyPath: dropParent_Hover
+      value: 
+      objectReference: {fileID: 1730324803}
     - target: {fileID: 6069496040167194800, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3686,6 +3722,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7914977284643833752, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8154287988270586504, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
       propertyPath: dropParent
       value: 
@@ -3698,9 +3738,17 @@ PrefabInstance:
       propertyPath: overlayScript
       value: 
       objectReference: {fileID: 1726498333}
+    - target: {fileID: 8154287988270586504, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
+      propertyPath: dropParent_Hover
+      value: 
+      objectReference: {fileID: 1730324803}
     - target: {fileID: 8580259402157970454, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
       propertyPath: slotType
       value: All
+      objectReference: {fileID: 0}
+    - target: {fileID: 8619556677436036474, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8798235369101000070, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
       propertyPath: dropParent
@@ -3714,6 +3762,10 @@ PrefabInstance:
       propertyPath: overlayScript
       value: 
       objectReference: {fileID: 1726498333}
+    - target: {fileID: 8798235369101000070, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
+      propertyPath: dropParent_Hover
+      value: 
+      objectReference: {fileID: 1730324803}
     - target: {fileID: 8876570646326411018, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
       propertyPath: slotType
       value: Glove
@@ -3742,6 +3794,10 @@ PrefabInstance:
       propertyPath: overlayScript
       value: 
       objectReference: {fileID: 1726498333}
+    - target: {fileID: 9191308440507771416, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
+      propertyPath: dropParent_Hover
+      value: 
+      objectReference: {fileID: 1730324803}
     - target: {fileID: 9203926924178879613, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
       propertyPath: slotType
       value: Belt
@@ -4123,6 +4179,10 @@ PrefabInstance:
     - target: {fileID: 6869786292990153689, guid: 3d6653c8fdfc33d4eacd73a664c939e4, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7318675778218930514, guid: 3d6653c8fdfc33d4eacd73a664c939e4, type: 3}
+      propertyPath: m_Text
+      value: "\uCC3D\uACE0"
       objectReference: {fileID: 0}
     - target: {fileID: 7954777139131389072, guid: 3d6653c8fdfc33d4eacd73a664c939e4, type: 3}
       propertyPath: m_AnchorMax.y

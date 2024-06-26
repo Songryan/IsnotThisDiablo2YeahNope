@@ -58,7 +58,7 @@ public class InvenGridScript : MonoBehaviour // InvenGridScript 클래스 정의, Mon
     public float slotSize; // 슬롯 크기를 저장할 변수
     public float edgePadding; // 가장자리 여백을 저장할 변수
 
-    [SerializeField] string slotType;
+    public string slotType;
 
     public void Awake() // Unity에서 스크립트가 깨어날 때 호출되는 메서드
     {

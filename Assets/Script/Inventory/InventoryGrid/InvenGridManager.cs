@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine; // Unity 엔진 기능을 사용
 using UnityEngine.UI; // UI 요소를 사용
@@ -7,6 +9,7 @@ public class InvenGridManager : MonoBehaviour // InvenGridManager 클래스 정의, M
     public GameObject[,] slotGrid; // 슬롯 그리드를 저장할 2차원 배열
     public GameObject highlightedSlot; // 강조된 슬롯을 저장할 변수
     public Transform dropParent; // 드롭 부모 트랜스폼을 저장할 변수
+    public Transform dropParent_Hover; // 드롭 부모 트랜스폼을 저장할 변수
     [HideInInspector]
     public IntVector2 gridSize; // 그리드 크기를 저장할 변수, 인스펙터에서 숨김
 
@@ -21,8 +24,8 @@ public class InvenGridManager : MonoBehaviour // InvenGridManager 클래스 정의, M
 
     public ItemOverlayScript overlayScript; // 아이템 오버레이 스크립트를 저장할 변수
 
-    //public bool checkCanEquip = false;
-    public bool checkCanEquip = false;
+    public bool checkCanEquip = true;
+    public string pSlotType;
 
     /* 할 일 목록
      * 아이템을 교환할 때 ColorChangeLoop에 다른 아이템의 매개변수를 전달하도록 수정 *1
@@ -31,11 +34,17 @@ public class InvenGridManager : MonoBehaviour // InvenGridManager 클래스 정의, M
      */
     private void Start() // Unity에서 스크립트가 처음 실행될 때 호출되는 메서드
     {
+        pSlotType = transform.GetComponent<InvenGridScript>().slotType;
         ItemButtonScript.invenManager = this; // ItemButtonScript의 invenManager를 현재 인스턴스로 설정
     }
 
     private void Update() // Unity에서 매 프레임마다 호출되는 메서드
     {
+        CheckEquipType();
+
+        if (pSlotType.Equals("All"))
+            checkCanEquip = true;
+
         //if (Input.GetMouseButtonUp(0)) // 왼쪽 마우스 버튼을 뗐을 때
         if (Input.GetMouseButtonDown(0) && checkCanEquip) // 왼쪽 마우스 버튼을 눌렀을 때 (모바일 환경을위해 변경)
         {
@@ -52,6 +61,7 @@ public class InvenGridManager : MonoBehaviour // InvenGridManager 클래스 정의, M
                         ColorChangeLoop(SlotColorHighlights.Blue, ItemScript.selectedItemSize, totalOffset); // 슬롯 색상 변경
                         ItemScript.ResetSelectedItem(); // 선택된 아이템 초기화
                         RemoveSelectedButton(); // 선택된 버튼 제거
+                        ColorReChanger(); // 색상 재갱신
                         break;
                     case 1: // 아이템 교환
                         ItemScript.SetSelectedItem(SwapItem(ItemScript.selectedItem)); // 아이템 교환
@@ -59,6 +69,7 @@ public class InvenGridManager : MonoBehaviour // InvenGridManager 클래스 정의, M
                         ColorChangeLoop(SlotColorHighlights.Gray, otherItemSize, otherItemPos); // 슬롯 색상 변경
                         RefrechColor(true); // 색상 갱신
                         RemoveSelectedButton(); // 선택된 버튼 제거
+                        ColorReChanger(); // 색상 재갱신
                         break;
                 }
             }
@@ -69,7 +80,16 @@ public class InvenGridManager : MonoBehaviour // InvenGridManager 클래스 정의, M
                 ItemScript.SetSelectedItem(GetItem(highlightedSlot)); // 아이템 가져오기
                 SlotSectorScript.sectorScript.PosOffset(); // 위치 오프셋 설정
                 RefrechColor(true); // 색상 갱신
+                ColorReChanger(); // 색상 재갱신
             }
+        }
+    }
+
+    public void ColorReChanger()
+    {
+        foreach (Transform child in transform)
+        {
+            child.transform.GetComponent<SlotScript>().EquipInvenColorChanger();
         }
     }
 
@@ -167,6 +187,35 @@ public class InvenGridManager : MonoBehaviour // InvenGridManager 클래스 정의, M
             {
                 ColorChangeLoop(SlotColorHighlights.Blue2, otherItemSize, otherItemPos);
             }
+        }
+    }
+
+    public void RefrechColor_Equip(bool enter) // 색상을 갱신하는 메서드
+    {
+        if (enter)
+        {
+            CheckArea(ItemScript.selectedItemSize); // 아이템 크기 체크
+            checkState = SlotCheck(checkSize); // 슬롯 체크 상태 설정
+            //switch (checkState)
+            //{
+            //    case 0: ColorChangeLoop(SlotColorHighlights.Green, checkSize, checkStartPos); break; // 영역에 아이템이 없는 경우
+            //    case 1:
+            //        ColorChangeLoop(SlotColorHighlights.Yellow, otherItemSize, otherItemPos); // 영역에 1개의 아이템이 있고 교환 가능한 경우
+            //        ColorChangeLoop(SlotColorHighlights.Green, checkSize, checkStartPos);
+            //        break;
+            //    case 2: ColorChangeLoop(SlotColorHighlights.Red, checkSize, checkStartPos); break; // 위치가 유효하지 않은 경우 (2개 이상의 아이템이 있거나 그리드를 넘은 경우)
+            //}
+        }
+        else // 포인터가 슬롯을 떠날 때 색상 초기화
+        {
+            isOverEdge = false;
+            //checkArea(); // 성능 향상을 위해 주석 처리됨. 포함되지 않으면 버그 발생 가능
+
+            //ColorChangeLoop2(checkSize, checkStartPos);
+            //if (checkState == 1)
+            //{
+            //    ColorChangeLoop(SlotColorHighlights.Blue2, otherItemSize, otherItemPos);
+            //}
         }
     }
 
@@ -273,6 +322,68 @@ public class InvenGridManager : MonoBehaviour // InvenGridManager 클래스 정의, M
             listManager.sortManager.SortAndFilterList(); // 리스트 정렬 및 필터링
             selectedButton = null; // 선택된 버튼 초기화
         }
+    }
+
+    public bool CheckEquipType()
+    {
+        // 자식 없으면 걍 ture로 리턴.
+        if (dropParent_Hover.childCount == 0)
+            return true;
+
+        string itemType = string.Empty;
+        
+        foreach (Transform child in dropParent_Hover.transform)
+        {
+            itemType = child.transform.GetComponent<ItemScript>().item.EquipCategory;
+            itemType = new string(itemType.Where(c => char.IsLetter(c)).ToArray());
+        }
+
+        checkCanEquip = stringToEnum(itemType) == stringToEnum(pSlotType);
+        return stringToEnum(itemType) == stringToEnum(pSlotType);
+    }
+
+    public SlotSectorScript.SlotType stringToEnum(string str)
+    {
+        SlotSectorScript.SlotType childItemType;
+
+        switch (str)
+        {
+            case "Weapon":
+                childItemType = SlotSectorScript.SlotType.Weapon;
+                break;
+            case "Shield":
+                childItemType = SlotSectorScript.SlotType.Shield;
+                break;
+            case "Armor":
+                childItemType = SlotSectorScript.SlotType.Armor;
+                break;
+            case "Glove":
+                childItemType = SlotSectorScript.SlotType.Glove;
+                break;
+            case "Boot":
+                childItemType = SlotSectorScript.SlotType.Boot;
+                break;
+            case "Helmet":
+                childItemType = SlotSectorScript.SlotType.Helmet;
+                break;
+            case "Amulet":
+                childItemType = SlotSectorScript.SlotType.Amulet;
+                break;
+            case "Ring":
+                childItemType = SlotSectorScript.SlotType.Ring;
+                break;
+            case "Belt":
+                childItemType = SlotSectorScript.SlotType.Belt;
+                break;
+            case "All":
+                childItemType = SlotSectorScript.SlotType.All;
+                break;
+            default:
+                childItemType = SlotSectorScript.SlotType.All;
+                break;
+        }
+
+        return childItemType;
     }
 }
 

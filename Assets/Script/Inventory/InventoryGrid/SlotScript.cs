@@ -1,5 +1,6 @@
 ﻿using System.Collections; // 컬렉션 인터페이스를 사용
 using System.Collections.Generic; // 제네릭 컬렉션을 사용
+using Unity.VisualScripting;
 using UnityEngine; // Unity 엔진 기능을 사용
 using UnityEngine.UI; // UI 요소를 사용
 
@@ -14,8 +15,19 @@ public class SlotScript : MonoBehaviour // SlotScript 클래스 정의, MonoBeha
     public ItemClass storedItemClass; // 저장된 아이템 클래스를 저장할 변수
     public bool isOccupied; // 슬롯이 점유되었는지 여부를 저장할 변수
 
+    public string invenType;
+
     private void Start() // Unity에서 스크립트가 처음 실행될 때 호출되는 메서드
     {
         text.text = gridPos.x + "," + gridPos.y; // 슬롯의 텍스트를 그리드 위치로 설정
+        invenType = transform.parent.GetComponent<InvenGridScript>().slotType;
+    }
+
+    public void EquipInvenColorChanger()
+    {
+        if(invenType.Equals("All") == false)
+        {
+            transform.GetComponent<Image>().color = new Color32(0,0,0,0);
+        }
     }
 }
