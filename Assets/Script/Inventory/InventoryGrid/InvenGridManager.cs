@@ -16,8 +16,8 @@ public class InvenGridManager : MonoBehaviour // InvenGridManager 클래스 정의, M
     public ItemListManager listManager; // 아이템 리스트 매니저를 저장할 변수
     public GameObject selectedButton; // 선택된 버튼을 저장할 변수
 
-    private IntVector2 totalOffset, checkSize, checkStartPos; // 슬롯 체크 및 오프셋을 저장할 변수
-    private IntVector2 otherItemPos, otherItemSize; // 다른 아이템의 위치 및 크기를 저장할 변수
+    public IntVector2 totalOffset, checkSize, checkStartPos; // 슬롯 체크 및 오프셋을 저장할 변수
+    public IntVector2 otherItemPos, otherItemSize; // 다른 아이템의 위치 및 크기를 저장할 변수
 
     private int checkState; // 체크 상태를 저장할 변수
     private bool isOverEdge = false; // 그리드의 가장자리를 넘었는지 여부를 저장할 변수
@@ -88,6 +88,15 @@ public class InvenGridManager : MonoBehaviour // InvenGridManager 클래스 정의, M
                 ColorReChanger(); // 색상 재갱신
             }
         }
+    }
+
+    public void InvenDataPostioning(int x, int y)
+    {
+        ToInvenDataStoreItem(ItemScript.selectedItem, x, y); // 아이템 저장
+        ColorChangeLoop(SlotColorHighlights.Blue2, ItemScript.selectedItemSize, totalOffset); // 슬롯 색상 변경
+        ItemScript.ResetSelectedItem(); // 선택된 아이템 초기화
+        RemoveSelectedButton(); // 선택된 버튼 제거
+        ColorReChanger(); // 색상 재갱신
     }
 
     public void ColorReChanger()
@@ -279,6 +288,32 @@ public class InvenGridManager : MonoBehaviour // InvenGridManager 클래스 정의, M
         item.transform.position = slotGrid[totalOffset.x, totalOffset.y].transform.position;
         item.GetComponent<CanvasGroup>().alpha = 1f;
         overlayScript.UpdateOverlay(highlightedSlot.GetComponent<SlotScript>().storedItemClass);
+    }
+
+    private void ToInvenDataStoreItem(GameObject item, int offsetX, int offsetY) // 아이템을 저장하는 메서드
+    {
+        SlotScript instanceScript;
+        IntVector2 itemSizeL = item.GetComponent<ItemScript>().item.Size;
+        for (int y = 0; y < itemSizeL.y; y++)
+        {
+            for (int x = 0; x < itemSizeL.x; x++)
+            {
+                // 각 슬롯의 매개변수 설정
+                instanceScript = slotGrid[offsetX + x, offsetY + y].GetComponent<SlotScript>();
+                instanceScript.storedItemObject = item;
+                instanceScript.storedItemClass = item.GetComponent<ItemScript>().item;
+                instanceScript.storedItemSize = itemSizeL;
+                instanceScript.storedItemStartPos = new IntVector2(offsetX, offsetY);
+                instanceScript.isOccupied = true;
+                slotGrid[offsetX + x, offsetY + y].GetComponent<Image>().color = SlotColorHighlights.Gray;
+            }
+        }
+        // 드롭된 아이템 매개변수 설정
+        item.transform.SetParent(dropParent);
+        item.GetComponent<RectTransform>().pivot = Vector2.zero;
+        item.transform.position = slotGrid[offsetX, offsetY].transform.position;
+        item.GetComponent<CanvasGroup>().alpha = 1f;
+        //overlayScript.UpdateOverlay(highlightedSlot.GetComponent<SlotScript>().storedItemClass);
     }
 
     private GameObject GetItem(GameObject slotObject) // 아이템을 가져오는 메서드

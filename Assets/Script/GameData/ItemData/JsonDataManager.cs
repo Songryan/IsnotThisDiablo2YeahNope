@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class JsonDataManager : MonoBehaviour
@@ -12,15 +13,24 @@ public class JsonDataManager : MonoBehaviour
     private List<ItemClass> startItemList = new List<ItemClass>();
 
     private string jsonFileName = "gamedata.json";
-    private string invenJsonFileName = "invendata.json";
     private string jsonFilePath;
 
     // Json에서 변환된 데이터
     private Dictionary<string, ItemClass> toJsonData = new Dictionary<string, ItemClass>();
+
+    #region Inven 관련 프로퍼티
     // Json에서 변환된 데이터
     private Dictionary<string, ItemClass> toInvenItemDatas = new Dictionary<string, ItemClass>();
     // ItemListManager에서 만들어진 Button GameObject 저장 리스트
-    public List<GameObject> InvenButtonList;
+    public List<GameObject> InvenButtonList = new List<GameObject>();
+    private string invenJsonFileName = "invendata.json";
+    // 각 인벤의 슬롯 그리드를 저장할 2차원 배열 (InvenGridManager 가져와서 필요없음)
+    // public GameObject[,] slotGrid;
+    // 각 인벤토리 매니저 저장.
+    // List는 Inspector창에 나타나서 담기위해 사용.
+    public List<InvenGridManager> list_IGMs = new List<InvenGridManager>();
+    public Dictionary<string,InvenGridManager> IGMs = new Dictionary<string,InvenGridManager>();
+    #endregion
 
     private static JsonDataManager _instance;
     public static JsonDataManager Instance
@@ -166,7 +176,6 @@ public class JsonDataManager : MonoBehaviour
     #endregion
 
     #region Inven 및 EquipInven 추가 / 삭제 / 수정 관련 기능
-
     // "invendata.json"에서 저장된 아이템 데이터 불러오기.
     public IEnumerator LoadToInvenData()
     {
@@ -207,19 +216,49 @@ public class JsonDataManager : MonoBehaviour
         }
     }
 
-    // 받아온 인벤 정보로 버튼(Object) 만들기
+    // 받아온 인벤 정보로 버튼(Object) 만들고.
     public void MakeInvenObjects()
     {
         foreach (var itemData in toInvenItemDatas)
         {
-            // ItemListManager에서 public void AddButton(ItemClass addItem) 가져와서 쓰기.
-            // AddButton(itemData); 로 일단 버튼 만들기.
+            // InvenButtonList에 Btn목록 저장하기.
             listManager.ForInvenAddButton(itemData.Value);
         }
+
+        // InvenGridManager별로 slotGrid 가져오고,
+        foreach (var IGM in list_IGMs)
+        {
+            string key = string.Empty;
+
+            if (IGM.gameObject.name.Equals("item"))
+            {
+                key = IGM.transform.parent.name;
+            }
+            else
+            {
+                key = "Inven";
+            }
+            IGMs.Add(key, IGM);
+        }
+
+        
+        foreach(var btnObject in InvenButtonList)
+        {
+            // 저장한 Btn 목록 생성하기
+            ItemButtonScript ibs = btnObject.transform.GetComponent<ItemButtonScript>();
+            // Spawn해서 동동 떠다니는 상태
+            ibs.SpawnStoredItem();
+
+            //받아온 Grid 인벤 string 정보
+            // 예 : 인벤
+            string gridTypeKey = "Inven";
+            // 저장된 Start Grid Position 정보.
+            int gridX = 0;
+            int gridY = 0;
+
+            // InvenDataPostioning(int x, int y) 실행시켜서 배치시키기.
+            IGMs[gridTypeKey].InvenDataPostioning(gridX, gridY);
+        }
     }
-
-
-
-
     #endregion
 }

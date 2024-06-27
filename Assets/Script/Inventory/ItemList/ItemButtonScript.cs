@@ -38,13 +38,12 @@ public class ItemButtonScript : MonoBehaviour, IPointerDownHandler // ItemButton
         }
     }
 
-    private void SpawnStoredItem() // 저장된 아이템을 생성하는 메서드
+    public void SpawnStoredItem() // 저장된 아이템을 생성하는 메서드
     {
         GameObject newItem = itemEquipPool.GetObject(); // 오브젝트 풀에서 새 아이템을 가져옴
         newItem.GetComponent<ItemScript>().SetItemObject(item); // 아이템 객체 설정
         ItemScript.SetSelectedItem(newItem); // 선택된 아이템 설정
         invenManager.selectedButton = this.gameObject; // 선택된 버튼 설정
-
         GetComponent<CanvasGroup>().alpha = 0.5f; // 투명도 설정
     }
 
