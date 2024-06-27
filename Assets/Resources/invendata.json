@@ -2,16 +2,16 @@
     "Entries": [
         {
             "GlobalIDs": [
-                0
+                0,0
             ],
             "Levels": [
-                1
+                66,77
             ],
             "Qualities": [
-                3
+                3,2
             ],
             "StatBonuses": [
-                "1/1/1/1"
+                "1/1/1/1","1/1/1/1"
             ]
         }
     ]

@@ -30,6 +30,10 @@ public class JsonDataManager : MonoBehaviour
     // List는 Inspector창에 나타나서 담기위해 사용.
     public List<InvenGridManager> list_IGMs = new List<InvenGridManager>();
     public Dictionary<string,InvenGridManager> IGMs = new Dictionary<string,InvenGridManager>();
+
+    // *************** 포지션 저장 Json 관련 프로퍼티 ***************
+    private string invenPositionJsonFileName = "invenpositiondata.json";
+    public List<string> invenPosData = new List<string>();
     #endregion
 
     private static JsonDataManager _instance;
@@ -242,22 +246,52 @@ public class JsonDataManager : MonoBehaviour
         }
 
         
-        foreach(var btnObject in InvenButtonList)
+        for(int i = 0; i < InvenButtonList.Count; i++)
         {
             // 저장한 Btn 목록 생성하기
-            ItemButtonScript ibs = btnObject.transform.GetComponent<ItemButtonScript>();
+            ItemButtonScript ibs = InvenButtonList[i].transform.GetComponent<ItemButtonScript>();
             // Spawn해서 동동 떠다니는 상태
             ibs.SpawnStoredItem();
 
             //받아온 Grid 인벤 string 정보
             // 예 : 인벤
-            string gridTypeKey = "Inven";
+            //string gridTypeKey = "Inven";
             // 저장된 Start Grid Position 정보.
-            int gridX = 0;
-            int gridY = 0;
+            //int gridX = 0;
+            //int gridY = 0;
+
+            // 포지션 정보 가져오기.
+            // public List<string> invenPosData에 저장.
+            InvenItemsPositionDataToJson();
+
+            string[] arr = invenPosData[i].Split("/");
 
             // InvenDataPostioning(int x, int y) 실행시켜서 배치시키기.
-            IGMs[gridTypeKey].InvenDataPostioning(gridX, gridY);
+            IGMs[arr[0]].InvenDataPostioning(int.Parse(arr[1]), int.Parse(arr[2]));
+        }
+    }
+
+    public void InvenItemsPositionDataToJson()
+    {
+        // JSON 파일을 Resources 폴더에서 읽기
+        TextAsset jsonTextAsset = Resources.Load<TextAsset>(Path.GetFileNameWithoutExtension(invenPositionJsonFileName));
+        if (jsonTextAsset != null)
+        {
+            // JSON 데이터를 GameData 객체로 변환
+            GameInvenData loadedData = JsonUtility.FromJson<GameInvenData>(jsonTextAsset.text);
+
+            // 불러온 데이터 출력
+            foreach (var entry in loadedData.Entries)
+            {
+                for (int i = 0; i < entry.GridTypeKeys.Count; i++)
+                {
+                    invenPosData.Add($"{entry.GridTypeKeys[i]}/{entry.GridXs[i]}/{entry.GridYs[i]}");
+                }
+            }
+        }
+        else
+        {
+            Debug.LogWarning("JSON file not found in Resources");
         }
     }
     #endregion
