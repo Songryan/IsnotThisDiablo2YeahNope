@@ -22,6 +22,9 @@ public class ItemClass
     public int Vital;
     public int Mana;
 
+    // 추가, 삭제시 식별할 수 있는 Unique 값.
+    public string UniqueKey;
+
     private enum QualityEnum { Broken, Normal, Magic, Rare }
     public string GetQualityStr()
     {

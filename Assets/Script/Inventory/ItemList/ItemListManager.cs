@@ -47,6 +47,8 @@ public class ItemListManager : MonoBehaviour
     {
         if (invenManager.selectedButton == null && ItemScript.selectedItem != null) // 선택된 버튼이 없고 선택된 아이템이 있을 경우
         {
+            // Json에 데이터추가
+            JsonDataManager.Instance.AddItemJsonData(ItemScript.selectedItem.transform.GetComponent<ItemScript>().item);
             ItemClass item = ItemScript.selectedItem.GetComponent<ItemScript>().item; // 선택된 아이템을 가져옴
             sortManager.AddItemToList(item); // 아이템을 리스트에 추가
             itemEquipPool.ReturnObject(ItemScript.selectedItem); // 선택된 아이템을 오브젝트 풀에 반환

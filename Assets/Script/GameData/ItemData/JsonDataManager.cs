@@ -13,37 +13,39 @@ public class JsonDataManager : MonoBehaviour
     private string jsonFileName = "gamedata.json";
     private string jsonFilePath;
 
-    //private static JsonDataManager _instance;
-    //public static JsonDataManager Instance
-    //{
-    //    get
-    //    {
-    //        if (_instance == null)
-    //        {
-    //            _instance = FindObjectOfType<JsonDataManager>();
-    //            if (_instance == null)
-    //            {
-    //                GameObject singletonObject = new GameObject(typeof(JsonDataManager).ToString());
-    //                _instance = singletonObject.AddComponent<JsonDataManager>();
-    //                DontDestroyOnLoad(singletonObject);
-    //            }
-    //        }
-    //        return _instance;
-    //    }
-    //}
-    //
-    //void Awake()
-    //{
-    //    if (_instance == null)
-    //    {
-    //        _instance = this;
-    //        DontDestroyOnLoad(gameObject);
-    //    }
-    //    else if (_instance != this)
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
+    private Dictionary<string, ItemClass> toJsonData = new Dictionary<string, ItemClass>();
+
+    private static JsonDataManager _instance;
+    public static JsonDataManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<JsonDataManager>();
+                if (_instance == null)
+                {
+                    GameObject singletonObject = new GameObject(typeof(JsonDataManager).ToString());
+                    _instance = singletonObject.AddComponent<JsonDataManager>();
+                    DontDestroyOnLoad(singletonObject);
+                }
+            }
+            return _instance;
+        }
+    }
+    
+    void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (_instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
@@ -58,10 +60,6 @@ public class JsonDataManager : MonoBehaviour
             foreach (var entry in loadedData.Entries)
             {
                 LoadItems(entry);
-                //for (int i = 0; i < entry.GlobalIDs.Count; i++)
-                //{
-                //    Debug.Log($"GlobalID: {entry.GlobalIDs[i]}, Level: {entry.Levels[i]}, Quality: {entry.Qualities[i]}, StatBonus: {entry.StatBonuses[i]}");
-                //}
             }
         }
         else
@@ -81,7 +79,78 @@ public class JsonDataManager : MonoBehaviour
             ItemClass item = new ItemClass();
             ItemClass.SetItemValues(item, entry.GlobalIDs[i], entry.Levels[i], entry.Qualities[i]);
             ItemClass.SetItemValues(item, entry.StatBonuses[i]);
+            Guid uniqueId = Guid.NewGuid();
+            item.UniqueKey = uniqueId.ToString();
             startItemList.Add(item);
+            //Json 추가 삭제를 위한 Dictionary 자료형 추가.
+            toJsonData.Add(uniqueId.ToString(), item);
         }
+    }
+
+    public void DeleteAndModifyJsonData(string uniqueKey)
+    {
+        // Dictionary에서 항목 제거
+        toJsonData.Remove(uniqueKey);
+
+        // Dictionary 데이터를 GameData 형식으로 변환
+        GameData newGameData = ConvertToGameData(toJsonData);
+
+        // JSON 파일 경로 설정 (Resources 폴더 내의 경로로 설정)
+        jsonFilePath = Path.Combine(Application.dataPath, "Resources", jsonFileName);
+
+        // JSON 파일로 저장
+        SaveToJson(newGameData, jsonFilePath);
+    }
+
+    public void AddItemJsonData(ItemClass item)
+    {
+        // Dictionary에 항목 추가
+        Guid uniqueId = Guid.NewGuid();
+        toJsonData.Add(uniqueId.ToString(), item);
+
+        // Dictionary 데이터를 GameData 형식으로 변환
+        GameData newGameData = ConvertToGameData(toJsonData);
+
+        // JSON 파일 경로 설정 (Resources 폴더 내의 경로로 설정)
+        jsonFilePath = Path.Combine(Application.dataPath, "Resources", jsonFileName);
+
+        // JSON 파일로 저장
+        SaveToJson(newGameData, jsonFilePath);
+    }
+
+    private GameData ConvertToGameData(Dictionary<string, ItemClass> data)
+    {
+        GameData gameData = new GameData();
+        GameDataEntry currentEntry = new GameDataEntry();
+
+        foreach (var item in data.Values)
+        {
+            // 현재 Entry에 5개 이상의 항목이 있는 경우 새로운 Entry를 생성
+            if (currentEntry.GlobalIDs.Count >= 5)
+            {
+                gameData.Entries.Add(currentEntry);
+                currentEntry = new GameDataEntry();
+            }
+
+            currentEntry.GlobalIDs.Add(item.GlobalID);
+            currentEntry.Levels.Add(item.Level);
+            currentEntry.Qualities.Add(item.qualityInt);
+            currentEntry.StatBonuses.Add($"{item.Str}/{item.Dex}/{item.Vital}/{item.Mana}");
+        }
+
+        // 마지막 Entry 추가
+        if (currentEntry.GlobalIDs.Count > 0)
+        {
+            gameData.Entries.Add(currentEntry);
+        }
+
+        return gameData;
+    }
+
+
+    private void SaveToJson(GameData gameData, string filePath)
+    {
+        string json = JsonUtility.ToJson(gameData, true);
+        File.WriteAllText(filePath, json);
     }
 }

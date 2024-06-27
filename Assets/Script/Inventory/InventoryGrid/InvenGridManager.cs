@@ -60,6 +60,8 @@ public class InvenGridManager : MonoBehaviour // InvenGridManager 클래스 정의, M
                 switch (checkState)
                 {
                     case 0: // 빈 슬롯에 저장
+                        // 인벤에 놓아 저장하는 순간 Json 다시 저장.
+                        JsonDataManager.Instance.DeleteAndModifyJsonData(ItemScript.selectedItem.transform.GetComponent<ItemScript>().item.UniqueKey);
                         StoreItem(ItemScript.selectedItem); // 아이템 저장
                         ColorChangeLoop(SlotColorHighlights.Blue, ItemScript.selectedItemSize, totalOffset); // 슬롯 색상 변경
                         ItemScript.ResetSelectedItem(); // 선택된 아이템 초기화
