@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -11,9 +12,15 @@ public class JsonDataManager : MonoBehaviour
     private List<ItemClass> startItemList = new List<ItemClass>();
 
     private string jsonFileName = "gamedata.json";
+    private string invenJsonFileName = "invendata.json";
     private string jsonFilePath;
 
+    // Json에서 변환된 데이터
     private Dictionary<string, ItemClass> toJsonData = new Dictionary<string, ItemClass>();
+    // Json에서 변환된 데이터
+    private Dictionary<string, ItemClass> toInvenItemDatas = new Dictionary<string, ItemClass>();
+    // ItemListManager에서 만들어진 Button GameObject 저장 리스트
+    public List<GameObject> InvenButtonList;
 
     private static JsonDataManager _instance;
     public static JsonDataManager Instance
@@ -56,7 +63,7 @@ public class JsonDataManager : MonoBehaviour
             // JSON 데이터를 GameData 객체로 변환
             GameData loadedData = JsonUtility.FromJson<GameData>(jsonTextAsset.text);
 
-            // 불러온 데이터 출력 (확인용)
+            // 불러온 데이터 출력
             foreach (var entry in loadedData.Entries)
             {
                 LoadItems(entry);
@@ -70,8 +77,12 @@ public class JsonDataManager : MonoBehaviour
         listManager.startItemList = this.startItemList;
         //Start 후 자료배치했으면 Clear.
         //startItemList.Clear();
+
+        // 테스트를 위한 메서드 실행.
+        StartCoroutine(LoadToInvenData());
     }
 
+    #region List 추가 / 삭제 / 수정 관련 기능
     public void LoadItems(GameDataEntry entry)
     {
         for (int i = 0; i < entry.GlobalIDs.Count; i++)
@@ -147,10 +158,68 @@ public class JsonDataManager : MonoBehaviour
         return gameData;
     }
 
-
     private void SaveToJson(GameData gameData, string filePath)
     {
         string json = JsonUtility.ToJson(gameData, true);
         File.WriteAllText(filePath, json);
     }
+    #endregion
+
+    #region Inven 및 EquipInven 추가 / 삭제 / 수정 관련 기능
+
+    // "invendata.json"에서 저장된 아이템 데이터 불러오기.
+    public IEnumerator LoadToInvenData()
+    {
+        yield return new WaitForSecondsRealtime(1.0f);
+
+        TextAsset jsonTextAsset = Resources.Load<TextAsset>(Path.GetFileNameWithoutExtension(invenJsonFileName));
+        if (jsonTextAsset != null)
+        {
+            // JSON 데이터를 GameData 객체로 변환
+            GameData loadedData = JsonUtility.FromJson<GameData>(jsonTextAsset.text);
+
+            // 불러온 데이터 출력
+            foreach (var entry in loadedData.Entries)
+            {
+                CrateInvenItemDatas(entry);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("JSON file not found in Resources");
+        }
+
+        MakeInvenObjects();
+    }
+
+    // 불러온 데이터 toInvenItemDatas Dictionary에 저장
+    public void CrateInvenItemDatas(GameDataEntry entry)
+    {
+        for (int i = 0; i < entry.GlobalIDs.Count; i++)
+        {
+            ItemClass item = new ItemClass();
+            ItemClass.SetItemValues(item, entry.GlobalIDs[i], entry.Levels[i], entry.Qualities[i]);
+            ItemClass.SetItemValues(item, entry.StatBonuses[i]);
+            Guid uniqueId = Guid.NewGuid();
+            item.UniqueKey = uniqueId.ToString();
+            //Json 추가 삭제를 위한 Dictionary 자료형 추가.
+            toInvenItemDatas.Add(uniqueId.ToString(), item);
+        }
+    }
+
+    // 받아온 인벤 정보로 버튼(Object) 만들기
+    public void MakeInvenObjects()
+    {
+        foreach (var itemData in toInvenItemDatas)
+        {
+            // ItemListManager에서 public void AddButton(ItemClass addItem) 가져와서 쓰기.
+            // AddButton(itemData); 로 일단 버튼 만들기.
+            listManager.ForInvenAddButton(itemData.Value);
+        }
+    }
+
+
+
+
+    #endregion
 }

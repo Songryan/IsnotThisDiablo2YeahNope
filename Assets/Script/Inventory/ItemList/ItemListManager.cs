@@ -80,6 +80,15 @@ public class ItemListManager : MonoBehaviour
         currentButtonList.Add(newButton); // 현재 버튼 리스트에 추가
     }
 
+    public void ForInvenAddButton(ItemClass addItem) // 버튼을 추가하는 메서드
+    {
+        GameObject newButton = itemButtonPool.GetObject(); // 오브젝트 풀에서 새 버튼을 가져옴
+        newButton.transform.SetParent(contentPanel); // 버튼의 부모를 콘텐츠 패널로 설정
+        newButton.GetComponent<RectTransform>().localScale = Vector3.one; // 버튼의 크기 설정
+        newButton.GetComponent<ItemButtonScript>().SetUpButton(addItem, this); // 버튼을 설정
+        JsonDataManager.Instance.InvenButtonList.Add(newButton); // 현재 버튼 리스트에 추가
+    }
+
     public void RemoveButton(GameObject buttonObj) // 버튼을 제거하는 메서드
     {
         buttonObj.GetComponent<CanvasGroup>().alpha = 1f; // 버튼의 투명도 설정
