@@ -19,6 +19,7 @@ public class TrashButtonScript : MonoBehaviour {
     {
         if (ItemScript.selectedItem != null)
         {
+            JsonDataManager.Instance.DeleteAndModifyJsonData(ItemScript.selectedItem.transform.GetComponent<ItemScript>().item.UniqueKey);
             invenManager.RemoveSelectedButton();
             listManager.itemEquipPool.ReturnObject(ItemScript.selectedItem);
             ItemScript.ResetSelectedItem();
