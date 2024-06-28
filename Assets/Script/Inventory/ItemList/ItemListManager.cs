@@ -49,10 +49,17 @@ public class ItemListManager : MonoBehaviour
         {
             // Json에 데이터추가
             ItemClass iC = ItemScript.selectedItem.GetComponent<ItemScript>().item;
+
             // List에 추가
-            JsonDataManager.Instance.AddItemJsonData(iC);
+            if(JsonDataManager.Instance.toJsonData.ContainsKey(iC.UniqueKey) == false)
+            {
+                JsonDataManager.Instance.AddItemJsonData(iC);
+            }
+
             // Inven에서 삭제
-            JsonDataManager.Instance.DeleteItemFromJson(iC.UniqueKey);
+            if (JsonDataManager.Instance.totalInvenData.ContainsKey(iC.UniqueKey))
+                JsonDataManager.Instance.DeleteItemFromJson(iC.UniqueKey);
+
             sortManager.AddItemToList(iC); // 아이템을 리스트에 추가
             itemEquipPool.ReturnObject(ItemScript.selectedItem); // 선택된 아이템을 오브젝트 풀에 반환
             ItemScript.ResetSelectedItem(); // 선택된 아이템 초기화

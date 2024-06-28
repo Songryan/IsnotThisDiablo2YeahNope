@@ -28,6 +28,8 @@ public class SlotScript : MonoBehaviour // SlotScript 클래스 정의, MonoBeha
 
     public void EquipInvenColorChanger()
     {
+        invenType = transform.parent.GetComponent<InvenGridScript>().slotType;
+
         if (invenType.Equals("All") == true)
             return;
 
@@ -44,7 +46,8 @@ public class SlotScript : MonoBehaviour // SlotScript 클래스 정의, MonoBeha
             // 장비 장착
             transform.parent.GetComponent<InvenGridManager>().placeholder.SetActive(false);
             transform.parent.GetComponent<InvenGridManager>().highlighter.SetActive(true);
-            gridManager.RemoveSelectedButton();
+            //gridManager.RemoveSelectedButton();
+            GameObject.Find("InvenPanel").transform.GetComponent<InvenGridManager>().RemoveSelectedButton();
         }
         else
         {

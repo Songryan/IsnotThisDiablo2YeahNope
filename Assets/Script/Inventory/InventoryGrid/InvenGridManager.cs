@@ -38,7 +38,8 @@ public class InvenGridManager : MonoBehaviour // InvenGridManager 클래스 정의, M
     private void Start() // Unity에서 스크립트가 처음 실행될 때 호출되는 메서드
     {
         pSlotType = transform.GetComponent<InvenGridScript>().slotType;
-        ItemButtonScript.invenManager = this; // ItemButtonScript의 invenManager를 현재 인스턴스로 설정
+        //ItemButtonScript.invenManager = this; // ItemButtonScript의 invenManager를 현재 인스턴스로 설정
+        ItemButtonScript.invenManager = GameObject.FindGameObjectWithTag("InvenPanel").GetComponent<InvenGridManager>();
     }
 
     private void Update() // Unity에서 매 프레임마다 호출되는 메서드
@@ -97,7 +98,7 @@ public class InvenGridManager : MonoBehaviour // InvenGridManager 클래스 정의, M
     public void InvenDataPostioning(int x, int y)
     {
         ToInvenDataStoreItem(ItemScript.selectedItem, x, y); // 아이템 저장
-        ColorChangeLoop(SlotColorHighlights.Blue2, ItemScript.selectedItemSize, totalOffset); // 슬롯 색상 변경
+        ColorChangeLoop(SlotColorHighlights.Blue2, ItemScript.selectedItemSize, new IntVector2(x,y)); // 슬롯 색상 변경
         ItemScript.ResetSelectedItem(); // 선택된 아이템 초기화
         RemoveSelectedButton(); // 선택된 버튼 제거
         ColorReChanger(); // 색상 재갱신

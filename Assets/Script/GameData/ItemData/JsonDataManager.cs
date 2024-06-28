@@ -70,7 +70,7 @@ public class JsonDataManager : MonoBehaviour
         }
     }
 
-    void Start()
+    public void LoadToGameData()
     {
         // JSON 파일을 Resources 폴더에서 읽기
         TextAsset jsonTextAsset = Resources.Load<TextAsset>(Path.GetFileNameWithoutExtension(jsonFileName));
@@ -95,7 +95,7 @@ public class JsonDataManager : MonoBehaviour
         //startItemList.Clear();
 
         // 테스트를 위한 메서드 실행.
-        StartCoroutine(LoadToInvenData());
+        //StartCoroutine(LoadToInvenData());
     }
 
     #region List 추가 / 삭제 / 수정 관련 기능
@@ -182,11 +182,14 @@ public class JsonDataManager : MonoBehaviour
 
     #region Inven 및 EquipInven 추가 / 삭제 / 수정 관련 기능
     // "invendata.json"에서 저장된 아이템 데이터 불러오기.
-    public IEnumerator LoadToInvenData()
+    public void LoadToInvenData()
     {
-        yield return new WaitForSecondsRealtime(1.0f);
+        //yield return new WaitForSecondsRealtime(1.0f);
 
         // InvenGridManager별로 slotGrid 가져와서 Dictionary로 저장.
+        if (IGMs.Count > 0)
+            return;
+
         foreach (var IGM in list_IGMs)
         {
             string key = string.Empty;
@@ -199,6 +202,7 @@ public class JsonDataManager : MonoBehaviour
             {
                 key = "Inven";
             }
+
             IGMs.Add(key, IGM);
         }
 
