@@ -504,4 +504,10 @@ public class JsonDataManager : MonoBehaviour
         }
     }
     #endregion
+
+    #region 케릭터 스텟 및 스킬 관련 기능
+
+
+
+    #endregion
 }
