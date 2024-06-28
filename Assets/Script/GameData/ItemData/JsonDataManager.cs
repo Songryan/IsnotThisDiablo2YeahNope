@@ -34,6 +34,8 @@ public class JsonDataManager : MonoBehaviour
     // *************** 포지션 저장 Json 관련 프로퍼티 ***************
     private string invenPositionJsonFileName = "invenpositiondata.json";
     public List<string> invenPosData = new List<string>();
+    // 버튼 오브젝트와 위치 string을 가지는 Dictionary.
+    public Dictionary<string, (GameObject, string)> totalInvenData;
     #endregion
 
     private static JsonDataManager _instance;
@@ -185,6 +187,22 @@ public class JsonDataManager : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(1.0f);
 
+        // InvenGridManager별로 slotGrid 가져와서 Dictionary로 저장.
+        foreach (var IGM in list_IGMs)
+        {
+            string key = string.Empty;
+
+            if (IGM.gameObject.name.Equals("item"))
+            {
+                key = IGM.transform.parent.name;
+            }
+            else
+            {
+                key = "Inven";
+            }
+            IGMs.Add(key, IGM);
+        }
+
         TextAsset jsonTextAsset = Resources.Load<TextAsset>(Path.GetFileNameWithoutExtension(invenJsonFileName));
         if (jsonTextAsset != null)
         {
@@ -223,54 +241,55 @@ public class JsonDataManager : MonoBehaviour
     // 받아온 인벤 정보로 버튼(Object) 만들고.
     public void MakeInvenObjects()
     {
+        // 데이터 없으면 돌필요 없음.
+        if(toInvenItemDatas.Count <= 0)
+            return;
+
         foreach (var itemData in toInvenItemDatas)
         {
             // InvenButtonList에 Btn목록 저장하기.
             listManager.ForInvenAddButton(itemData.Value);
         }
 
-        // InvenGridManager별로 slotGrid 가져오고,
-        foreach (var IGM in list_IGMs)
-        {
-            string key = string.Empty;
+        // invenPosData생성.
+        InvenItemsPositionDataToJson();
 
-            if (IGM.gameObject.name.Equals("item"))
-            {
-                key = IGM.transform.parent.name;
-            }
-            else
-            {
-                key = "Inven";
-            }
-            IGMs.Add(key, IGM);
+        // InvenButtonList랑 invenPosData랑 합쳐서 관리하는
+        // UniqueKey를 키로하는 Dictionary (totalInvenData) 만들기.
+        // GameObject랑 string을 튜플로 만들어서 관리.
+        for (int i = 0; i < InvenButtonList.Count; i++)
+        {
+            string key = InvenButtonList[i].transform.GetComponent<ItemButtonScript>().item.UniqueKey;
+            totalInvenData.Add(key, (InvenButtonList[i], invenPosData[i]));
         }
 
-        
-        for(int i = 0; i < InvenButtonList.Count; i++)
-        {
-            // 저장한 Btn 목록 생성하기
-            ItemButtonScript ibs = InvenButtonList[i].transform.GetComponent<ItemButtonScript>();
-            // Spawn해서 동동 떠다니는 상태
-            ibs.SpawnStoredItem();
 
-            //받아온 Grid 인벤 string 정보
-            // 예 : 인벤
-            //string gridTypeKey = "Inven";
-            // 저장된 Start Grid Position 정보.
-            //int gridX = 0;
-            //int gridY = 0;
-
-            // 포지션 정보 가져오기.
-            // public List<string> invenPosData에 저장.
-            InvenItemsPositionDataToJson();
-
-            string[] arr = invenPosData[i].Split("/");
-
-            // InvenDataPostioning(int x, int y) 실행시켜서 배치시키기.
-            IGMs[arr[0]].InvenDataPostioning(int.Parse(arr[1]), int.Parse(arr[2]));
-        }
+        //for(int i = 0; i < InvenButtonList.Count; i++)
+        //{
+        //    // 저장한 Btn 목록 생성하기
+        //    ItemButtonScript ibs = InvenButtonList[i].transform.GetComponent<ItemButtonScript>();
+        //    // Spawn해서 동동 떠다니는 상태
+        //    ibs.SpawnStoredItem();
+        //
+        //    //받아온 Grid 인벤 string 정보
+        //    // 예 : 인벤
+        //    //string gridTypeKey = "Inven";
+        //    // 저장된 Start Grid Position 정보.
+        //    //int gridX = 0;
+        //    //int gridY = 0;
+        //
+        //    // 포지션 정보 가져오기.
+        //    // public List<string> invenPosData에 저장.
+        //    InvenItemsPositionDataToJson();
+        //
+        //    string[] arr = invenPosData[i].Split("/");
+        //
+        //    // InvenDataPostioning(int x, int y) 실행시켜서 배치시키기.
+        //    IGMs[arr[0]].InvenDataPostioning(int.Parse(arr[1]), int.Parse(arr[2]));
+        //}
     }
 
+    // invenPositionJsonFileName에서 위치값 가져오는 메소드
     public void InvenItemsPositionDataToJson()
     {
         // JSON 파일을 Resources 폴더에서 읽기
@@ -292,6 +311,23 @@ public class JsonDataManager : MonoBehaviour
         else
         {
             Debug.LogWarning("JSON file not found in Resources");
+        }
+    }
+
+    // totalInvenData 컨테이너 순회하면서 인벤과 장비에 아이템 위치시키는 메소드
+    public void InvenAndEquipMakePosions()
+    {
+        foreach(var data in totalInvenData)
+        {
+            GameObject invenButton = data.Value.Item1;
+            string[] invenArr = data.Value.Item2.Split("/");
+
+            // 저장한 Btn 목록 생성하기
+            ItemButtonScript ibs = invenButton.transform.GetComponent<ItemButtonScript>();
+            // Spawn해서 동동 떠다니는 상태
+            ibs.SpawnStoredItem();
+
+            IGMs[invenArr[0]].InvenDataPostioning(int.Parse(invenArr[1]), int.Parse(invenArr[2]));
         }
     }
     #endregion

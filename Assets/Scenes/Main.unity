@@ -2029,6 +2029,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemDB: {fileID: 1720385138}
   listManager: {fileID: 327913123}
+  InvenButtonList: []
+  list_IGMs:
+  - {fileID: 477445051}
+  - {fileID: 2136795910}
+  - {fileID: 1547645238}
+  - {fileID: 2002948656}
+  - {fileID: 464669914}
+  - {fileID: 2136924284}
+  - {fileID: 1189590240}
+  - {fileID: 1208527165}
+  - {fileID: 2063606078}
+  - {fileID: 1216194916}
+  - {fileID: 3187624240431725235}
+  invenPosData: []
 --- !u!1 &1772166257
 GameObject:
   m_ObjectHideFlags: 0
