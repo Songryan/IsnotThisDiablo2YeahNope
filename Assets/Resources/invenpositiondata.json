@@ -3,16 +3,13 @@
         {
             "GridTypeKeys": [
                 "Inven",
-                "Inven",
                 "rarm"
             ],
             "GridXs": [
-                0,
-                4,
+                8,
                 0
             ],
             "GridYs": [
-                1,
                 1,
                 0
             ]
