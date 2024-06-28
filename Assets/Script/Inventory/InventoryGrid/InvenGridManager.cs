@@ -61,7 +61,11 @@ public class InvenGridManager : MonoBehaviour // InvenGridManager 클래스 정의, M
                 {
                     case 0: // 빈 슬롯에 저장
                         // 인벤에 놓아 저장하는 순간 Json 다시 저장.
-                        JsonDataManager.Instance.DeleteAndModifyJsonData(ItemScript.selectedItem.transform.GetComponent<ItemScript>().item.UniqueKey);
+                        string uniqueKey = ItemScript.selectedItem.transform.GetComponent<ItemScript>().item.UniqueKey;
+                        // 리스트 아이템 삭제하면서 StoreItem에서 UniqueKet가 없으면 InvenData에 추가.
+                        if (JsonDataManager.Instance.toJsonData.ContainsKey(uniqueKey))
+                            JsonDataManager.Instance.DeleteAndModifyJsonData(uniqueKey);
+
                         StoreItem(ItemScript.selectedItem); // 아이템 저장
                         ColorChangeLoop(SlotColorHighlights.Blue, ItemScript.selectedItemSize, totalOffset); // 슬롯 색상 변경
                         ItemScript.ResetSelectedItem(); // 선택된 아이템 초기화
@@ -266,6 +270,15 @@ public class InvenGridManager : MonoBehaviour // InvenGridManager 클래스 정의, M
 
     private void StoreItem(GameObject item) // 아이템을 저장하는 메서드
     {
+        string uniqueKey = item.GetComponent<ItemScript>().item.UniqueKey;
+        string pPositionData = $"{GetInvenType()}/{totalOffset.x}/{totalOffset.y}";
+
+        // Key가 있으면 업데이트, 없으면 추가.
+        if(JsonDataManager.Instance.totalInvenData.ContainsKey(uniqueKey))
+            JsonDataManager.Instance.UpdateInvenItemPositionJson(uniqueKey, pPositionData);
+        else
+            JsonDataManager.Instance.AddInvenItemPositionJson(uniqueKey, pPositionData, item);
+
         SlotScript instanceScript;
         IntVector2 itemSizeL = item.GetComponent<ItemScript>().item.Size;
         for (int y = 0; y < itemSizeL.y; y++)
@@ -288,6 +301,22 @@ public class InvenGridManager : MonoBehaviour // InvenGridManager 클래스 정의, M
         item.transform.position = slotGrid[totalOffset.x, totalOffset.y].transform.position;
         item.GetComponent<CanvasGroup>().alpha = 1f;
         overlayScript.UpdateOverlay(highlightedSlot.GetComponent<SlotScript>().storedItemClass);
+    }
+
+    public string GetInvenType()
+    {
+        string invenName = gameObject.name;
+
+        if (invenName.Equals("item"))
+        {
+            invenName = transform.parent.name;
+        }
+        else
+        {
+            invenName = "Inven";
+        }
+
+        return invenName;
     }
 
     private void ToInvenDataStoreItem(GameObject item, int offsetX, int offsetY) // 아이템을 저장하는 메서드

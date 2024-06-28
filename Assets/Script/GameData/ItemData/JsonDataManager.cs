@@ -16,7 +16,7 @@ public class JsonDataManager : MonoBehaviour
     private string jsonFilePath;
 
     // Json에서 변환된 데이터
-    private Dictionary<string, ItemClass> toJsonData = new Dictionary<string, ItemClass>();
+    public Dictionary<string, ItemClass> toJsonData = new Dictionary<string, ItemClass>();
 
     #region Inven 관련 프로퍼티
     // Json에서 변환된 데이터
@@ -29,7 +29,7 @@ public class JsonDataManager : MonoBehaviour
     // 각 인벤토리 매니저 저장.
     // List는 Inspector창에 나타나서 담기위해 사용.
     public List<InvenGridManager> list_IGMs = new List<InvenGridManager>();
-    public Dictionary<string,InvenGridManager> IGMs = new Dictionary<string,InvenGridManager>();
+    public Dictionary<string, InvenGridManager> IGMs = new Dictionary<string, InvenGridManager>();
 
     // *************** 포지션 저장 Json 관련 프로퍼티 ***************
     private string invenPositionJsonFileName = "invenpositiondata.json";
@@ -56,7 +56,7 @@ public class JsonDataManager : MonoBehaviour
             return _instance;
         }
     }
-    
+
     void Awake()
     {
         if (_instance == null)
@@ -116,7 +116,6 @@ public class JsonDataManager : MonoBehaviour
 
     public void DeleteAndModifyJsonData(string uniqueKey)
     {
-        // Dictionary에서 항목 제거
         toJsonData.Remove(uniqueKey);
 
         // Dictionary 데이터를 GameData 형식으로 변환
@@ -209,10 +208,18 @@ public class JsonDataManager : MonoBehaviour
             // JSON 데이터를 GameData 객체로 변환
             GameData loadedData = JsonUtility.FromJson<GameData>(jsonTextAsset.text);
 
-            // 불러온 데이터 출력
-            foreach (var entry in loadedData.Entries)
+            // 불러온 데이터가 null인지 확인하고 처리
+            if (loadedData != null && loadedData.Entries != null)
             {
-                CrateInvenItemDatas(entry);
+                // 불러온 데이터 출력
+                foreach (var entry in loadedData.Entries)
+                {
+                    CrateInvenItemDatas(entry);
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Loaded data or Entries is null");
             }
         }
         else
@@ -242,7 +249,7 @@ public class JsonDataManager : MonoBehaviour
     public void MakeInvenObjects()
     {
         // 데이터 없으면 돌필요 없음.
-        if(toInvenItemDatas.Count <= 0)
+        if (toInvenItemDatas.Count <= 0)
             return;
 
         foreach (var itemData in toInvenItemDatas)
@@ -273,7 +280,7 @@ public class JsonDataManager : MonoBehaviour
         TextAsset jsonTextAsset = Resources.Load<TextAsset>(Path.GetFileNameWithoutExtension(invenPositionJsonFileName));
         if (jsonTextAsset != null)
         {
-            // JSON 데이터를 GameData 객체로 변환
+            // JSON 데이터를 GameInvenData 객체로 변환
             GameInvenData loadedData = JsonUtility.FromJson<GameInvenData>(jsonTextAsset.text);
 
             // 불러온 데이터 출력
@@ -294,7 +301,7 @@ public class JsonDataManager : MonoBehaviour
     // totalInvenData 컨테이너 순회하면서 인벤과 장비에 아이템 위치시키는 메소드
     public void InvenAndEquipMakePosions()
     {
-        foreach(var data in totalInvenData)
+        foreach (var data in totalInvenData)
         {
             GameObject invenButton = data.Value.Item1;
             string[] invenArr = data.Value.Item2.Split("/");
@@ -316,7 +323,12 @@ public class JsonDataManager : MonoBehaviour
 
         foreach (var item in totalInvenData.Values)
         {
-            ItemClass itemClass = item.Item1.GetComponent<ItemButtonScript>().item;
+            ItemClass itemClass = null;
+
+            if (item.Item1.TryGetComponent<ItemButtonScript>(out ItemButtonScript itemButtonScript))
+                itemClass = item.Item1.GetComponent<ItemButtonScript>().item;
+            else
+                itemClass = item.Item1.transform.GetComponent<ItemScript>().item;
 
             if (currentEntry.GlobalIDs.Count >= 5)
             {
@@ -352,12 +364,21 @@ public class JsonDataManager : MonoBehaviour
             int gridX = int.Parse(positionData[1]);
             int gridY = int.Parse(positionData[2]);
 
+            if (currentEntry.GridTypeKeys.Count >= 5)
+            {
+                newInvenData.Entries.Add(currentEntry);
+                currentEntry = new GameInvenDataEntry();
+            }
+
             currentEntry.GridTypeKeys.Add(gridTypeKey);
             currentEntry.GridXs.Add(gridX);
             currentEntry.GridYs.Add(gridY);
         }
 
-        newInvenData.Entries.Add(currentEntry);
+        if (currentEntry.GridTypeKeys.Count > 0)
+        {
+            newInvenData.Entries.Add(currentEntry);
+        }
 
         string filePath = Path.Combine(Application.dataPath, "Resources", invenPositionJsonFileName);
         SaveToJson(newInvenData, filePath);
@@ -390,18 +411,76 @@ public class JsonDataManager : MonoBehaviour
             int gridX = int.Parse(posDataParts[1]);
             int gridY = int.Parse(posDataParts[2]);
 
+            if (currentEntry.GridTypeKeys.Count >= 5)
+            {
+                newInvenData.Entries.Add(currentEntry);
+                currentEntry = new GameInvenDataEntry();
+            }
+
             currentEntry.GridTypeKeys.Add(gridTypeKey);
             currentEntry.GridXs.Add(gridX);
             currentEntry.GridYs.Add(gridY);
         }
 
-        newInvenData.Entries.Add(currentEntry);
+        if (currentEntry.GridTypeKeys.Count > 0)
+        {
+            newInvenData.Entries.Add(currentEntry);
+        }
 
         // JSON 파일 경로 설정
         string filePath = Path.Combine(Application.dataPath, "Resources", invenPositionJsonFileName);
 
         // JSON 파일로 저장
         SaveToJson(newInvenData, filePath);
+    }
+
+    // uniqueKey를 사용하여 totalInvenData에서 해당 아이템 정보를 저장한 후, 다시 JSON 파일에 저장
+    public void AddInvenItemPositionJson(string uniqueKey, string pPositionData, GameObject btnObj)
+    {
+        // 새로운 위치 정보를 적용한 항목을 totalInvenData에 추가
+
+        //ItemClass itc = btnObj.transform.GetComponent<ItemScript>().item;
+
+        //btnObj = listManager.ForInvenDataBtnObjMaker(itc);
+
+        totalInvenData.Add(uniqueKey, (btnObj, pPositionData));
+
+        // Update the JSON files
+        UpdateInvenDataJson();
+        UpdateInvenPositionJson();
+
+        // GameInvenData 객체 생성 및 업데이트된 데이터 추가
+        //GameInvenData newInvenData = new GameInvenData();
+        //GameInvenDataEntry currentEntry = new GameInvenDataEntry();
+        //
+        //foreach (var item in totalInvenData.Values)
+        //{
+        //    string[] posDataParts = item.Item2.Split('/');
+        //    string gridTypeKey = posDataParts[0];
+        //    int gridX = int.Parse(posDataParts[1]);
+        //    int gridY = int.Parse(posDataParts[2]);
+        //
+        //    if (currentEntry.GridTypeKeys.Count >= 5)
+        //    {
+        //        newInvenData.Entries.Add(currentEntry);
+        //        currentEntry = new GameInvenDataEntry();
+        //    }
+        //
+        //    currentEntry.GridTypeKeys.Add(gridTypeKey);
+        //    currentEntry.GridXs.Add(gridX);
+        //    currentEntry.GridYs.Add(gridY);
+        //}
+        //
+        //if (currentEntry.GridTypeKeys.Count > 0)
+        //{
+        //    newInvenData.Entries.Add(currentEntry);
+        //}
+        //
+        //// JSON 파일 경로 설정
+        //string filePath = Path.Combine(Application.dataPath, "Resources", invenPositionJsonFileName);
+        //
+        //// JSON 파일로 저장
+        //SaveToJson(newInvenData, filePath);
     }
 
     // 특정 항목을 totalInvenData에서 제거하고 JSON 파일을 업데이트하는 메서드입니다.

@@ -2,13 +2,19 @@
     "Entries": [
         {
             "GridTypeKeys": [
-                "Inven","rarm"
+                "Inven",
+                "Inven",
+                "rarm"
             ],
             "GridXs": [
-                0,0
+                0,
+                4,
+                0
             ],
             "GridYs": [
-                0,0
+                1,
+                1,
+                0
             ]
         }
     ]
