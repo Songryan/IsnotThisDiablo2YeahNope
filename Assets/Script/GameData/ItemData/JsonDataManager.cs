@@ -35,7 +35,7 @@ public class JsonDataManager : MonoBehaviour
     private string invenPositionJsonFileName = "invenpositiondata.json";
     public List<string> invenPosData = new List<string>();
     // 버튼 오브젝트와 위치 string을 가지는 Dictionary.
-    public Dictionary<string, (GameObject, string)> totalInvenData;
+    public Dictionary<string, (GameObject, string)> totalInvenData = new Dictionary<string, (GameObject, string)>();
     #endregion
 
     private static JsonDataManager _instance;
@@ -174,9 +174,9 @@ public class JsonDataManager : MonoBehaviour
         return gameData;
     }
 
-    private void SaveToJson(GameData gameData, string filePath)
+    private void SaveToJson<T>(T data, string filePath)
     {
-        string json = JsonUtility.ToJson(gameData, true);
+        string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(filePath, json);
     }
     #endregion
@@ -263,30 +263,7 @@ public class JsonDataManager : MonoBehaviour
             totalInvenData.Add(key, (InvenButtonList[i], invenPosData[i]));
         }
 
-
-        //for(int i = 0; i < InvenButtonList.Count; i++)
-        //{
-        //    // 저장한 Btn 목록 생성하기
-        //    ItemButtonScript ibs = InvenButtonList[i].transform.GetComponent<ItemButtonScript>();
-        //    // Spawn해서 동동 떠다니는 상태
-        //    ibs.SpawnStoredItem();
-        //
-        //    //받아온 Grid 인벤 string 정보
-        //    // 예 : 인벤
-        //    //string gridTypeKey = "Inven";
-        //    // 저장된 Start Grid Position 정보.
-        //    //int gridX = 0;
-        //    //int gridY = 0;
-        //
-        //    // 포지션 정보 가져오기.
-        //    // public List<string> invenPosData에 저장.
-        //    InvenItemsPositionDataToJson();
-        //
-        //    string[] arr = invenPosData[i].Split("/");
-        //
-        //    // InvenDataPostioning(int x, int y) 실행시켜서 배치시키기.
-        //    IGMs[arr[0]].InvenDataPostioning(int.Parse(arr[1]), int.Parse(arr[2]));
-        //}
+        InvenAndEquipMakePosions();
     }
 
     // invenPositionJsonFileName에서 위치값 가져오는 메소드
@@ -328,6 +305,119 @@ public class JsonDataManager : MonoBehaviour
             ibs.SpawnStoredItem();
 
             IGMs[invenArr[0]].InvenDataPostioning(int.Parse(invenArr[1]), int.Parse(invenArr[2]));
+        }
+    }
+
+    // totalInvenData 딕셔너리의 데이터를 기반으로 invendata.json 파일을 업데이트하는 메서드입니다.
+    private void UpdateInvenDataJson()
+    {
+        GameData newGameData = new GameData();
+        GameDataEntry currentEntry = new GameDataEntry();
+
+        foreach (var item in totalInvenData.Values)
+        {
+            ItemClass itemClass = item.Item1.GetComponent<ItemButtonScript>().item;
+
+            if (currentEntry.GlobalIDs.Count >= 5)
+            {
+                newGameData.Entries.Add(currentEntry);
+                currentEntry = new GameDataEntry();
+            }
+
+            currentEntry.GlobalIDs.Add(itemClass.GlobalID);
+            currentEntry.Levels.Add(itemClass.Level);
+            currentEntry.Qualities.Add(itemClass.qualityInt);
+            currentEntry.StatBonuses.Add($"{itemClass.Str}/{itemClass.Dex}/{itemClass.Vital}/{itemClass.Mana}");
+        }
+
+        if (currentEntry.GlobalIDs.Count > 0)
+        {
+            newGameData.Entries.Add(currentEntry);
+        }
+
+        string filePath = Path.Combine(Application.dataPath, "Resources", invenJsonFileName);
+        SaveToJson(newGameData, filePath);
+    }
+
+    // totalInvenData 딕셔너리의 데이터를 기반으로 invenpositiondata.json 파일을 업데이트하는 메서드입니다.
+    private void UpdateInvenPositionJson()
+    {
+        GameInvenData newInvenData = new GameInvenData();
+        GameInvenDataEntry currentEntry = new GameInvenDataEntry();
+
+        foreach (var item in totalInvenData.Values)
+        {
+            string[] positionData = item.Item2.Split('/');
+            string gridTypeKey = positionData[0];
+            int gridX = int.Parse(positionData[1]);
+            int gridY = int.Parse(positionData[2]);
+
+            currentEntry.GridTypeKeys.Add(gridTypeKey);
+            currentEntry.GridXs.Add(gridX);
+            currentEntry.GridYs.Add(gridY);
+        }
+
+        newInvenData.Entries.Add(currentEntry);
+
+        string filePath = Path.Combine(Application.dataPath, "Resources", invenPositionJsonFileName);
+        SaveToJson(newInvenData, filePath);
+    }
+
+    // uniqueKey를 사용하여 totalInvenData에서 해당 항목을 삭제하고, 새로운 위치 정보를 적용한 후, 다시 JSON 파일에 저장
+    public void UpdateInvenItemPositionJson(string uniqueKey, string pPositionData)
+    {
+        if (!totalInvenData.ContainsKey(uniqueKey))
+        {
+            Debug.LogWarning($"Item with UniqueKey {uniqueKey} not found in totalInvenData.");
+            return;
+        }
+
+        // 해당 항목을 totalInvenData에서 가져온 후 삭제
+        var (gameObject, _) = totalInvenData[uniqueKey];
+        totalInvenData.Remove(uniqueKey);
+
+        // 새로운 위치 정보를 적용한 항목을 totalInvenData에 추가
+        totalInvenData.Add(uniqueKey, (gameObject, pPositionData));
+
+        // GameInvenData 객체 생성 및 업데이트된 데이터 추가
+        GameInvenData newInvenData = new GameInvenData();
+        GameInvenDataEntry currentEntry = new GameInvenDataEntry();
+
+        foreach (var item in totalInvenData.Values)
+        {
+            string[] posDataParts = item.Item2.Split('/');
+            string gridTypeKey = posDataParts[0];
+            int gridX = int.Parse(posDataParts[1]);
+            int gridY = int.Parse(posDataParts[2]);
+
+            currentEntry.GridTypeKeys.Add(gridTypeKey);
+            currentEntry.GridXs.Add(gridX);
+            currentEntry.GridYs.Add(gridY);
+        }
+
+        newInvenData.Entries.Add(currentEntry);
+
+        // JSON 파일 경로 설정
+        string filePath = Path.Combine(Application.dataPath, "Resources", invenPositionJsonFileName);
+
+        // JSON 파일로 저장
+        SaveToJson(newInvenData, filePath);
+    }
+
+    // 특정 항목을 totalInvenData에서 제거하고 JSON 파일을 업데이트하는 메서드입니다.
+    public void DeleteItemFromJson(string uniqueKey)
+    {
+        if (totalInvenData.ContainsKey(uniqueKey))
+        {
+            totalInvenData.Remove(uniqueKey);
+
+            // Update the JSON files
+            UpdateInvenDataJson();
+            UpdateInvenPositionJson();
+        }
+        else
+        {
+            Debug.LogWarning($"Item with UniqueKey {uniqueKey} not found in totalInvenData.");
         }
     }
     #endregion
