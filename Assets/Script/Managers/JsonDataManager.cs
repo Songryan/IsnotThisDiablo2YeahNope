@@ -38,6 +38,28 @@ public class JsonDataManager : MonoBehaviour
     public Dictionary<string, (GameObject, string)> totalInvenData = new Dictionary<string, (GameObject, string)>();
     #endregion
 
+    #region 케릭터 스텟 관련 Property
+    
+    private string CharSaveStatJsonFile = "CharStat.json";
+
+    //Json에서 불러온 Data 저장을 위한 Dictionary Container
+
+    // UserID와 Name 저장
+    public Dictionary<string, string> CharStrProp = new Dictionary<string, string>();
+
+    // 나머지 스탯 저장
+    public Dictionary<string, int> CharIntProp = new Dictionary<string, int>();
+
+    #endregion
+
+    #region 케릭터 스킬 관련 Property
+
+    private string CharSaveSkillJsonFile = "Skill.json";
+
+    //
+
+    #endregion
+
     private static JsonDataManager _instance;
     public static JsonDataManager Instance
     {
@@ -59,6 +81,8 @@ public class JsonDataManager : MonoBehaviour
 
     void Awake()
     {
+        CharacterStatLoad();
+
         if (_instance == null)
         {
             _instance = this;
@@ -505,8 +529,73 @@ public class JsonDataManager : MonoBehaviour
     }
     #endregion
 
-    #region 케릭터 스텟 및 스킬 관련 기능
+    #region 케릭터 스텟 및 스킬 추가 / 수정 관련 기능
 
+    public void CharacterStatLoad()
+    {
+        string filePath = Path.Combine(Application.dataPath, "Resources", CharSaveStatJsonFile);
+
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            CharacterData characterData = JsonUtility.FromJson<CharacterData>(json);
+
+            if (characterData != null && characterData.Characters != null)
+            {
+                foreach (var character in characterData.Characters)
+                {
+                    // CharacterClassString을 CharacterClass로 변환
+                    character.ConvertStringToEnum();
+
+                    // 기본 스탯 초기화
+                    InitializeStats(character);
+
+                    // JSON에서 로드된 데이터 적용
+                    CharStrProp[character.UserId] = character.Name;
+                    CharIntProp[$"{character.UserId}_Strength"] += character.Strength;
+                    CharIntProp[$"{character.UserId}_Dexterity"] += character.Dexterity;
+                    CharIntProp[$"{character.UserId}_Vitality"] += character.Vitality;
+                    CharIntProp[$"{character.UserId}_Energy"] += character.Energy;
+                    CharIntProp[$"{character.UserId}_Level"] = character.Level;
+                    CharIntProp[$"{character.UserId}_StatPoints"] = character.StatPoints;
+                    CharIntProp[$"{character.UserId}_CharacterClass"] = (int)character.CharacterClass;
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Character data or Characters list is null");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Character stats JSON file not found");
+        }
+    }
+
+    private void InitializeStats(CharacterStats character)
+    {
+        switch (character.CharacterClass)
+        {
+            case CharacterClass.Barbarian:
+                CharIntProp[$"{character.UserId}_Strength"] = 30;
+                CharIntProp[$"{character.UserId}_Dexterity"] = 20;
+                CharIntProp[$"{character.UserId}_Vitality"] = 25;
+                CharIntProp[$"{character.UserId}_Energy"] = 10;
+                break;
+            case CharacterClass.Amazon:
+                CharIntProp[$"{character.UserId}_Strength"] = 20;
+                CharIntProp[$"{character.UserId}_Dexterity"] = 25;
+                CharIntProp[$"{character.UserId}_Vitality"] = 20;
+                CharIntProp[$"{character.UserId}_Energy"] = 15;
+                break;
+            case CharacterClass.Paladin:
+                CharIntProp[$"{character.UserId}_Strength"] = 25;
+                CharIntProp[$"{character.UserId}_Dexterity"] = 20;
+                CharIntProp[$"{character.UserId}_Vitality"] = 25;
+                CharIntProp[$"{character.UserId}_Energy"] = 10;
+                break;
+        }
+    }
 
 
     #endregion

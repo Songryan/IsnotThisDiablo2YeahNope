@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 public enum CharacterClass
 {
@@ -11,74 +13,53 @@ public enum CharacterClass
     Paladin
 }
 
+[Serializable]
 public class CharacterStats
 {
-    private int _strength;
-    private int _dexterity;
-    private int _vitality;
-    private int _energy;
+    public string UserId;
+    public string Name;
+    public int Strength;
+    public int Dexterity;
+    public int Vitality;
+    public int Energy;
+    public int Level;
+    public int StatPoints;
+    public string CharacterClassString;
 
-    public int Level { get; set; } = 1;
-    public int StatPoints { get; set; } = 0;
-    public CharacterClass CharacterClass { get; set; }
+    [NonSerialized]
+    public CharacterClass CharacterClass;
 
-    public int Strength
+    public int CurrentExp;
+    public int LevelUpExp;
+
+    public int Life { get; set; }
+    public int Stamina { get; set; }
+    public int Mana { get; set; }
+    public int Damage { get; set; }
+    public int AttackRating { get; set; }
+    public int Defense { get; set; }
+    public int ChanceToBlock { get; set; }
+
+    public void ConvertStringToEnum()
     {
-        get => _strength;
-        set
+        if (Enum.TryParse(CharacterClassString, out CharacterClass characterClass))
         {
-            _strength = value;
-            CalculateDerivedStats();
+            CharacterClass = characterClass;
+        }
+        else
+        {
+            Debug.LogWarning($"Invalid CharacterClass string: {CharacterClassString}");
         }
     }
 
-    public int Dexterity
+    public void ConvertEnumToString()
     {
-        get => _dexterity;
-        set
-        {
-            _dexterity = value;
-            CalculateDerivedStats();
-        }
+        CharacterClassString = CharacterClass.ToString();
     }
+}
 
-    public int Vitality
-    {
-        get => _vitality;
-        set
-        {
-            _vitality = value;
-            CalculateDerivedStats();
-        }
-    }
-
-    public int Energy
-    {
-        get => _energy;
-        set
-        {
-            _energy = value;
-            CalculateDerivedStats();
-        }
-    }
-
-    public int Life { get; private set; }
-    public int Stamina { get; private set; }
-    public int Mana { get; private set; }
-
-    public int Damage { get; private set; }
-    public int AttackRating { get; private set; }
-    public int Defense { get; private set; }
-    public int ChanceToBlock { get; private set; }
-
-    private void CalculateDerivedStats()
-    {
-        Life = Vitality * 3;
-        Stamina = Vitality * 2;
-        Mana = Energy * 2;
-        Damage = Strength;
-        AttackRating = Dexterity * 5;
-        Defense = Dexterity / 4;
-        ChanceToBlock = Dexterity;
-    }
+[Serializable]
+public class CharacterData
+{
+    public List<CharacterStats> Characters;
 }

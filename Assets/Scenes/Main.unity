@@ -1539,6 +1539,7 @@ Transform:
   - {fileID: 621736583}
   - {fileID: 1736724510}
   - {fileID: 1605923139}
+  - {fileID: 1396845972}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1344066096 stripped
@@ -1588,6 +1589,50 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9128463471642256002, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
   m_PrefabInstance: {fileID: 3187624240431725232}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1396845971
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1396845972}
+  - component: {fileID: 1396845973}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1396845972
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396845971}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1319979914}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1396845973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396845971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03acebcf196fd3d4d96e1f0f44c697f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1438835824 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1815165592698666371, guid: 8f3968a2aeb152e4bbc354fe20d2c661, type: 3}
@@ -2689,7 +2734,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8275310951723650162, guid: 8e9661a322e90c142a8c428f1aeef433, type: 3}
       propertyPath: m_Name
-      value: Main_Status_Panel
+      value: Main_Profile_Panel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4997,8 +5042,8 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1319979914}
   - {fileID: 287644381}
   - {fileID: 1013589400}
   - {fileID: 2084785216}
   - {fileID: 1703071176}
-  - {fileID: 1319979914}

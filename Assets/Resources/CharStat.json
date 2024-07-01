@@ -1,0 +1,15 @@
+{
+    "Characters": [
+        {
+            "UserId": "user123",
+            "Name": "팔라딘",
+            "Strength": 1,
+            "Dexterity": 2,
+            "Vitality": 3,
+            "Energy": 4,
+            "Level": 1,
+            "StatPoints": 5,
+            "CharacterClassString": "Paladin"
+        }
+    ]
+}

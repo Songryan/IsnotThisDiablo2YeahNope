@@ -1,3 +1,4 @@
+using System;
 using ViewModel;
 
 public class PlayerViewModel : ViewModelBase
@@ -10,6 +11,32 @@ public class PlayerViewModel : ViewModelBase
         InitializeStats();
     }
 
+    public string UserId
+    {
+        get => _characterStats.UserId;
+        set
+        {
+            if (_characterStats.UserId != value)
+            {
+                _characterStats.UserId = value;
+                OnPropertyChanged(nameof(UserId));
+            }
+        }
+    }
+
+    public string Name
+    {
+        get => _characterStats.Name;
+        set
+        {
+            if (_characterStats.Name != value)
+            {
+                _characterStats.Name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
+    }
+
     public int Level
     {
         get => _characterStats.Level;
@@ -19,6 +46,8 @@ public class PlayerViewModel : ViewModelBase
             {
                 _characterStats.Level = value;
                 OnPropertyChanged(nameof(Level));
+                OnPropertyChanged(nameof(LevelUpExp)); // Level이 변경될 때 LevelUpExp도 변경됨
+                CalculateLevelUpExp();
             }
         }
     }
@@ -36,6 +65,21 @@ public class PlayerViewModel : ViewModelBase
         }
     }
 
+    public int CurrentExp
+    {
+        get => _characterStats.CurrentExp;
+        set
+        {
+            if (_characterStats.CurrentExp != value)
+            {
+                _characterStats.CurrentExp = value;
+                OnPropertyChanged(nameof(CurrentExp));
+            }
+        }
+    }
+
+    public int LevelUpExp => _characterStats.LevelUpExp;
+
     public CharacterClass CharacterClass => _characterStats.CharacterClass;
 
     public int Strength
@@ -47,7 +91,7 @@ public class PlayerViewModel : ViewModelBase
             {
                 _characterStats.Strength = value;
                 OnPropertyChanged(nameof(Strength));
-                UpdateDerivedStats();
+                CalculateDerivedStats();
             }
         }
     }
@@ -61,7 +105,7 @@ public class PlayerViewModel : ViewModelBase
             {
                 _characterStats.Dexterity = value;
                 OnPropertyChanged(nameof(Dexterity));
-                UpdateDerivedStats();
+                CalculateDerivedStats();
             }
         }
     }
@@ -75,7 +119,7 @@ public class PlayerViewModel : ViewModelBase
             {
                 _characterStats.Vitality = value;
                 OnPropertyChanged(nameof(Vitality));
-                UpdateDerivedStats();
+                CalculateDerivedStats();
             }
         }
     }
@@ -89,7 +133,7 @@ public class PlayerViewModel : ViewModelBase
             {
                 _characterStats.Energy = value;
                 OnPropertyChanged(nameof(Energy));
-                UpdateDerivedStats();
+                CalculateDerivedStats();
             }
         }
     }
@@ -136,6 +180,7 @@ public class PlayerViewModel : ViewModelBase
                 _characterStats.Energy = 10;
                 break;
         }
+        CalculateDerivedStats();
     }
 
     public void LevelUp()
@@ -144,6 +189,7 @@ public class PlayerViewModel : ViewModelBase
         _characterStats.StatPoints += 5;
         OnPropertyChanged(nameof(Level));
         OnPropertyChanged(nameof(StatPoints));
+        OnPropertyChanged(nameof(LevelUpExp)); // LevelUpExp도 변경됨
     }
 
     public void InvestStat(string stat)
@@ -168,5 +214,30 @@ public class PlayerViewModel : ViewModelBase
             _characterStats.StatPoints--;
             OnPropertyChanged(nameof(StatPoints));
         }
+    }
+
+    private void CalculateDerivedStats()
+    {
+        _characterStats.Life = _characterStats.Vitality * 3;
+        _characterStats.Stamina = _characterStats.Vitality * 2;
+        _characterStats.Mana = _characterStats.Energy * 2;
+        _characterStats.Damage = _characterStats.Strength;
+        _characterStats.AttackRating = _characterStats.Dexterity * 5;
+        _characterStats.Defense = _characterStats.Dexterity / 4;
+        _characterStats.ChanceToBlock = _characterStats.Dexterity;
+        UpdateDerivedStats();
+    }
+
+    private void CalculateLevelUpExp()
+    {
+        if (_characterStats.Level == 1)
+        {
+            _characterStats.LevelUpExp = 100;
+        }
+        else
+        {
+            _characterStats.LevelUpExp = (int)(100 * Math.Pow(1.5, _characterStats.Level - 1));
+        }
+        OnPropertyChanged(nameof(LevelUpExp));
     }
 }
