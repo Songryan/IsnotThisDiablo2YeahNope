@@ -81,8 +81,6 @@ public class JsonDataManager : MonoBehaviour
 
     void Awake()
     {
-        CharacterStatLoad();
-
         if (_instance == null)
         {
             _instance = this;
@@ -531,7 +529,7 @@ public class JsonDataManager : MonoBehaviour
 
     #region 케릭터 스텟 및 스킬 추가 / 수정 관련 기능
 
-    public void CharacterStatLoad()
+    public IEnumerator CharacterStatLoadCoroutine(Action onComplete)
     {
         string filePath = Path.Combine(Application.dataPath, "Resources", CharSaveStatJsonFile);
 
@@ -559,6 +557,9 @@ public class JsonDataManager : MonoBehaviour
                     CharIntProp[$"{character.UserId}_Level"] = character.Level;
                     CharIntProp[$"{character.UserId}_StatPoints"] = character.StatPoints;
                     CharIntProp[$"{character.UserId}_CharacterClass"] = (int)character.CharacterClass;
+
+                    // 파생되는 스탯 계산
+                    CalculateAndStoreDerivedStats(character);
                 }
             }
             else
@@ -570,6 +571,14 @@ public class JsonDataManager : MonoBehaviour
         {
             Debug.LogWarning("Character stats JSON file not found");
         }
+
+        onComplete?.Invoke();
+        yield return null;  // 코루틴이 정상적으로 종료
+    }
+
+    public void LoadCharacterStats(Action onComplete)
+    {
+        StartCoroutine(CharacterStatLoadCoroutine(onComplete));
     }
 
     private void InitializeStats(CharacterStats character)
@@ -597,6 +606,65 @@ public class JsonDataManager : MonoBehaviour
         }
     }
 
+    private void CalculateAndStoreDerivedStats(CharacterStats character)
+    {
+        int life = character.Vitality * 3;
+        int stamina = character.Vitality * 2;
+        int mana = character.Energy * 2;
+        int damage = character.Strength;
+        int attackRating = character.Dexterity * 5;
+        int defense = character.Dexterity / 4;
+        int chanceToBlock = character.Dexterity;
+
+        CharIntProp[$"{character.UserId}_Life"] = life;
+        CharIntProp[$"{character.UserId}_Stamina"] = stamina;
+        CharIntProp[$"{character.UserId}_Mana"] = mana;
+        CharIntProp[$"{character.UserId}_Damage"] = damage;
+        CharIntProp[$"{character.UserId}_AttackRating"] = attackRating;
+        CharIntProp[$"{character.UserId}_Defense"] = defense;
+        CharIntProp[$"{character.UserId}_ChanceToBlock"] = chanceToBlock;
+    }
+
 
     #endregion
+}
+
+
+namespace UIData
+{
+    public static class UIDataExtension
+    {
+        public static void RefreshCharacterInfo(this JsonDataManager manager, Action<string, string, int> callback)
+        {
+            manager.StartCoroutine(manager.WaitForCharacterStats(callback));
+        }
+
+        public static IEnumerator WaitForCharacterStats(this JsonDataManager manager, Action<string, string, int> callback)
+        {
+            bool isLoaded = false;
+
+            // 데이터 로드가 완료되었을 때 실행될 콜백
+            Action onComplete = () => { isLoaded = true; };
+
+            // 캐릭터 스탯 로드 시작
+            JsonDataManager.Instance.LoadCharacterStats(onComplete);
+
+            // 데이터 로드가 완료될 때까지 기다림
+            while (!isLoaded)
+            {
+                yield return null;
+            }
+
+            // 데이터 로드가 완료된 후 실행
+            string userID = string.Empty;
+            string userName = string.Empty;
+            foreach (var value in JsonDataManager.Instance.CharStrProp)
+            {
+                userID = value.Key;
+                userName = value.Value;
+            }
+
+            callback.Invoke(userID, userName, JsonDataManager.Instance.CharIntProp[$"{userID}_Level"]);
+        }
+    }
 }

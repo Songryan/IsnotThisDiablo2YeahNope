@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UIData;
 
 namespace ViewModel.Extensions
 {
@@ -8,7 +9,9 @@ namespace ViewModel.Extensions
     {
         public static void RefreshViewModel(this MainCharacterProfileViewModel vm)
         {
-            UIManager.Instance.RefreshCharacterInfo(vm.OnRefreshViewModel);
+            JsonDataManager.Instance.RefreshCharacterInfo(vm.OnRefreshViewModel);
+
+            // UIManager.Instance.RefreshCharacterInfo(vm.OnRefreshViewModel);
         }
 
         public static void OnRefreshViewModel(this MainCharacterProfileViewModel vm, string userId, string name, int level)
