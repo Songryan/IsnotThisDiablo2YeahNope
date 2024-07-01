@@ -1,33 +1,25 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\",
+  "WorkspaceRootPath": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\player\\player_ui_mvvm\\viewmodelextionsion\\maincharacterviewmodelextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\player_ui_mvvm\\viewmodelextionsion\\maincharacterviewmodelextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|g:\\gaeinproject\\isnotthisdiablo2yeahnope\\assets\\script\\player\\player_ui_mvvm\\view\\statpopupview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\player_ui_mvvm\\view\\statpopupview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|d:\\gaeinproject\\isnotthisdiablo2yeahnope\\assets\\script\\player\\player_ui_mvvm\\viewmodel\\maincharacterprofileviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\player_ui_mvvm\\viewmodel\\maincharacterprofileviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\player\\player_ui_mvvm\\view\\maincharacterprofileview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\player_ui_mvvm\\view\\maincharacterprofileview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\managers\\jsondatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|g:\\gaeinproject\\isnotthisdiablo2yeahnope\\assets\\script\\managers\\jsondatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\managers\\jsondatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\managers\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\managers\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|g:\\gaeinproject\\isnotthisdiablo2yeahnope\\assets\\script\\player\\player_ui_mvvm\\viewmodelextionsion\\statpopupviewmodelextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\player_ui_mvvm\\viewmodelextionsion\\statpopupviewmodelextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\player\\player_ui_mvvm\\model\\characterstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\player_ui_mvvm\\model\\characterstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|g:\\gaeinproject\\isnotthisdiablo2yeahnope\\assets\\script\\player\\player_ui_mvvm\\viewmodel\\statpopupviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\player_ui_mvvm\\viewmodel\\statpopupviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\player\\player_ui_mvvm\\viewmodel\\playerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|g:\\gaeinproject\\isnotthisdiablo2yeahnope\\assets\\script\\player\\player_ui_mvvm\\viewmodel\\playerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\player\\player_ui_mvvm\\viewmodel\\playerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -38,100 +30,76 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "JsonDataManager.cs",
-              "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Managers\\JsonDataManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Script\\Managers\\JsonDataManager.cs",
-              "ToolTip": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Managers\\JsonDataManager.cs",
-              "RelativeToolTip": "Assets\\Script\\Managers\\JsonDataManager.cs",
-              "ViewState": "AQIAAH4CAAAAAAAAAAAMwIsCAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-01T04:50:33.86Z",
-              "EditorCaption": ""
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "UIManager.cs",
-              "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Managers\\UIManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Script\\Managers\\UIManager.cs",
-              "ToolTip": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Managers\\UIManager.cs",
-              "RelativeToolTip": "Assets\\Script\\Managers\\UIManager.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADMAAAAFAAAA",
+              "Title": "PlayerViewModel.cs",
+              "DocumentMoniker": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Player\\Player_UI_MVVM\\ViewModel\\PlayerViewModel.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Player\\Player_UI_MVVM\\ViewModel\\PlayerViewModel.cs",
+              "ToolTip": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Player\\Player_UI_MVVM\\ViewModel\\PlayerViewModel.cs",
+              "RelativeToolTip": "Assets\\Script\\Player\\Player_UI_MVVM\\ViewModel\\PlayerViewModel.cs",
+              "ViewState": "AQIAAJAAAAAAAAAAAAA7wOAAAABFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-01T04:49:46.425Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MainCharacterViewModelExtension.cs",
-              "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Player\\Player_UI_MVVM\\ViewModelExtionsion\\MainCharacterViewModelExtension.cs",
-              "RelativeDocumentMoniker": "Assets\\Script\\Player\\Player_UI_MVVM\\ViewModelExtionsion\\MainCharacterViewModelExtension.cs",
-              "ToolTip": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Player\\Player_UI_MVVM\\ViewModelExtionsion\\MainCharacterViewModelExtension.cs",
-              "RelativeToolTip": "Assets\\Script\\Player\\Player_UI_MVVM\\ViewModelExtionsion\\MainCharacterViewModelExtension.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABIAAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-01T01:08:24.164Z",
+              "WhenOpened": "2024-07-01T12:52:28.744Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MainCharacterProfileViewModel.cs",
-              "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Player\\Player_UI_MVVM\\ViewModel\\MainCharacterProfileViewModel.cs",
-              "RelativeDocumentMoniker": "Assets\\Script\\Player\\Player_UI_MVVM\\ViewModel\\MainCharacterProfileViewModel.cs",
-              "ToolTip": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Player\\Player_UI_MVVM\\ViewModel\\MainCharacterProfileViewModel.cs",
-              "RelativeToolTip": "Assets\\Script\\Player\\Player_UI_MVVM\\ViewModel\\MainCharacterProfileViewModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAhAAAA",
+              "Title": "JsonDataManager.cs",
+              "DocumentMoniker": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Managers\\JsonDataManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Managers\\JsonDataManager.cs",
+              "ToolTip": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Managers\\JsonDataManager.cs",
+              "RelativeToolTip": "Assets\\Script\\Managers\\JsonDataManager.cs",
+              "ViewState": "AQIAAI0CAAAAAAAAAAAMwKgCAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-01T01:06:04.907Z",
+              "WhenOpened": "2024-07-01T12:40:07.278Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StatPopupVIew.cs",
+              "DocumentMoniker": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Player\\Player_UI_MVVM\\View\\StatPopupVIew.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Player\\Player_UI_MVVM\\View\\StatPopupVIew.cs",
+              "ToolTip": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Player\\Player_UI_MVVM\\View\\StatPopupVIew.cs",
+              "RelativeToolTip": "Assets\\Script\\Player\\Player_UI_MVVM\\View\\StatPopupVIew.cs",
+              "ViewState": "AQIAACMAAAAAAAAAAIAywDUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-01T12:40:04.315Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "StatPopupVIewModel.cs",
+              "DocumentMoniker": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Player\\Player_UI_MVVM\\ViewModel\\StatPopupVIewModel.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Player\\Player_UI_MVVM\\ViewModel\\StatPopupVIewModel.cs",
+              "ToolTip": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Player\\Player_UI_MVVM\\ViewModel\\StatPopupVIewModel.cs",
+              "RelativeToolTip": "Assets\\Script\\Player\\Player_UI_MVVM\\ViewModel\\StatPopupVIewModel.cs",
+              "ViewState": "AQIAADEAAAAAAAAAAAAMwAkAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-01T12:40:02.775Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "MainCharacterProfileView.cs",
-              "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Player\\Player_UI_MVVM\\View\\MainCharacterProfileView.cs",
-              "RelativeDocumentMoniker": "Assets\\Script\\Player\\Player_UI_MVVM\\View\\MainCharacterProfileView.cs",
-              "ToolTip": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Player\\Player_UI_MVVM\\View\\MainCharacterProfileView.cs",
-              "RelativeToolTip": "Assets\\Script\\Player\\Player_UI_MVVM\\View\\MainCharacterProfileView.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAzwBoAAAAYAAAA",
+              "Title": "StatPopupVIewModelExtension.cs",
+              "DocumentMoniker": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Player\\Player_UI_MVVM\\ViewModelExtionsion\\StatPopupVIewModelExtension.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Player\\Player_UI_MVVM\\ViewModelExtionsion\\StatPopupVIewModelExtension.cs",
+              "ToolTip": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Player\\Player_UI_MVVM\\ViewModelExtionsion\\StatPopupVIewModelExtension.cs",
+              "RelativeToolTip": "Assets\\Script\\Player\\Player_UI_MVVM\\ViewModelExtionsion\\StatPopupVIewModelExtension.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAuwCEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-01T00:47:20.842Z",
+              "WhenOpened": "2024-07-01T12:40:01.152Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CharacterStats.cs",
-              "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Player\\Player_UI_MVVM\\Model\\CharacterStats.cs",
-              "RelativeDocumentMoniker": "Assets\\Script\\Player\\Player_UI_MVVM\\Model\\CharacterStats.cs",
-              "ToolTip": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Player\\Player_UI_MVVM\\Model\\CharacterStats.cs",
-              "RelativeToolTip": "Assets\\Script\\Player\\Player_UI_MVVM\\Model\\CharacterStats.cs",
-              "ViewState": "AQIAACMAAAAAAAAAAAAWwBQAAAAYAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-30T14:19:49.684Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "PlayerViewModel.cs",
-              "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Player\\Player_UI_MVVM\\ViewModel\\PlayerViewModel.cs",
-              "RelativeDocumentMoniker": "Assets\\Script\\Player\\Player_UI_MVVM\\ViewModel\\PlayerViewModel.cs",
-              "ToolTip": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Player\\Player_UI_MVVM\\ViewModel\\PlayerViewModel.cs",
-              "RelativeToolTip": "Assets\\Script\\Player\\Player_UI_MVVM\\ViewModel\\PlayerViewModel.cs",
-              "ViewState": "AQIAAG8AAAAAAAAAAADgv3kAAAAoAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-30T14:15:55.104Z"
             }
           ]
         }

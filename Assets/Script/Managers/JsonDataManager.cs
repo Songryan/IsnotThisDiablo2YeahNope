@@ -555,6 +555,7 @@ public class JsonDataManager : MonoBehaviour
                     CharIntProp[$"{character.UserId}_Vitality"] += character.Vitality;
                     CharIntProp[$"{character.UserId}_Energy"] += character.Energy;
                     CharIntProp[$"{character.UserId}_Level"] = character.Level;
+                    CharIntProp[$"{character.UserId}_CurrentExp"] = character.CurrentExp;
                     CharIntProp[$"{character.UserId}_StatPoints"] = character.StatPoints;
                     CharIntProp[$"{character.UserId}_CharacterClass"] = (int)character.CharacterClass;
 
@@ -608,13 +609,14 @@ public class JsonDataManager : MonoBehaviour
 
     private void CalculateAndStoreDerivedStats(CharacterStats character)
     {
-        int life = character.Vitality * 3;
-        int stamina = character.Vitality * 2;
-        int mana = character.Energy * 2;
-        int damage = character.Strength;
-        int attackRating = character.Dexterity * 5;
-        int defense = character.Dexterity / 4;
-        int chanceToBlock = character.Dexterity;
+        int life = CharIntProp[$"{character.UserId}_Vitality"] * 3;
+        int stamina = CharIntProp[$"{character.UserId}_Vitality"] * 2;
+        int mana = CharIntProp[$"{character.UserId}_Energy"] * 2;
+        int damage = CharIntProp[$"{character.UserId}_Strength"];
+        int attackRating = CharIntProp[$"{character.UserId}_Dexterity"] * 5;
+        int defense = (int)(CharIntProp[$"{character.UserId}_Dexterity"] / 4);
+        int chanceToBlock = CharIntProp[$"{character.UserId}_Dexterity"];
+        int characterExp = CalculateLevelUpExp(character.Level);
 
         CharIntProp[$"{character.UserId}_Life"] = life;
         CharIntProp[$"{character.UserId}_Stamina"] = stamina;
@@ -623,9 +625,20 @@ public class JsonDataManager : MonoBehaviour
         CharIntProp[$"{character.UserId}_AttackRating"] = attackRating;
         CharIntProp[$"{character.UserId}_Defense"] = defense;
         CharIntProp[$"{character.UserId}_ChanceToBlock"] = chanceToBlock;
+        CharIntProp[$"{character.UserId}_CharacterExp"] = characterExp;
     }
 
-
+    private int CalculateLevelUpExp(int Level)
+    {
+        if (Level == 1)
+        {
+            return 100;
+        }
+        else
+        {
+            return (int)(100 * Math.Pow(1.5, Level - 1));
+        }
+    }
     #endregion
 }
 

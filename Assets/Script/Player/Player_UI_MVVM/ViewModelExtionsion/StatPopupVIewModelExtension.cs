@@ -29,6 +29,8 @@ namespace ViewModel.Extensions
             vm.Defense = JsonDataManager.Instance.CharIntProp[$"{userId}_Defense"];
             vm.ChanceToBlock = JsonDataManager.Instance.CharIntProp[$"{userId}_ChanceToBlock"];
             vm.NewStatPoint = JsonDataManager.Instance.CharIntProp[$"{userId}_StatPoints"];
+            vm.CharacterExp = JsonDataManager.Instance.CharIntProp[$"{userId}_CharacterExp"];
+            vm.CurrentExp = JsonDataManager.Instance.CharIntProp[$"{userId}_CurrentExp"];
         }
     }
 }

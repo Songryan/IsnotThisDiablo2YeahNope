@@ -7,7 +7,7 @@ public class StatPopupViewModel : ViewModelBase
     private string _characterName;
     private int _characterLevel;
     private int _characterExp;
-    private int _characterCurrentExp;
+    private int _currentExp;
 
     private int _strength;
     private int _dexterity;
@@ -66,15 +66,15 @@ public class StatPopupViewModel : ViewModelBase
         }
     }
 
-    public int CharacterCurrentExp
+    public int CurrentExp
     {
-        get => _characterCurrentExp;
+        get => _currentExp;
         set
         {
-            if (_characterCurrentExp != value)
+            if (_currentExp != value)
             {
-                _characterCurrentExp = value;
-                OnPropertyChanged(nameof(CharacterCurrentExp));
+                _currentExp = value;
+                OnPropertyChanged(nameof(CurrentExp));
             }
         }
     }

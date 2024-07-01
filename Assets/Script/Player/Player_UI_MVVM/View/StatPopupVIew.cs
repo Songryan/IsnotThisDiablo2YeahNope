@@ -62,8 +62,8 @@ public class StatPopupView : MonoBehaviour
             case nameof(_vm.CharacterExp):
                 Text_CharacterExp.text = $"{_vm.CharacterExp}";
                 break;
-            case nameof(_vm.CharacterCurrentExp):
-                Text_CharacterCurrentExp.text = $"{_vm.CharacterCurrentExp}";
+            case nameof(_vm.CurrentExp):
+                Text_CharacterCurrentExp.text = $"{_vm.CurrentExp}";
                 break;
             case nameof(_vm.Strength):
                 Text_Str.text = $"{_vm.Strength}";

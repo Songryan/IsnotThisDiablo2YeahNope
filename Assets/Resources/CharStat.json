@@ -8,6 +8,7 @@
             "Vitality": 3,
             "Energy": 4,
             "Level": 1,
+			"CurrentExp": 0,
             "StatPoints": 5,
             "CharacterClassString": "Paladin"
         }
