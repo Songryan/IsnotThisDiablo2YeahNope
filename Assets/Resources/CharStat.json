@@ -2,15 +2,16 @@
     "Characters": [
         {
             "UserId": "user123",
-            "Name": "팔라딘",
-            "Strength": 1,
-            "Dexterity": 2,
-            "Vitality": 3,
-            "Energy": 4,
+            "Name": "인간성기사 뿌뿌뿡",
+            "Strength": 0,
+            "Dexterity": 0,
+            "Vitality": 0,
+            "Energy": 0,
             "Level": 1,
-			"CurrentExp": 0,
             "StatPoints": 5,
-            "CharacterClassString": "Paladin"
+            "CharacterClassString": "Paladin",
+            "CurrentExp": 0,
+            "LevelUpExp": 0
         }
     ]
 }

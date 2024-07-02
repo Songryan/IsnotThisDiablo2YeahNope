@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
+using static UnityEngine.EventSystems.EventTrigger;
+using TextAsset = UnityEngine.TextAsset;
 
 public class JsonDataManager : MonoBehaviour
 {
@@ -56,7 +59,7 @@ public class JsonDataManager : MonoBehaviour
 
     private string CharSaveSkillJsonFile = "Skill.json";
 
-    //
+    private string current_UserID = string.Empty;
 
     #endregion
 
@@ -529,6 +532,7 @@ public class JsonDataManager : MonoBehaviour
 
     #region 케릭터 스텟 및 스킬 추가 / 수정 관련 기능
 
+    // Json File Read해오기.
     public IEnumerator CharacterStatLoadCoroutine(Action onComplete)
     {
         string filePath = Path.Combine(Application.dataPath, "Resources", CharSaveStatJsonFile);
@@ -542,6 +546,9 @@ public class JsonDataManager : MonoBehaviour
             {
                 foreach (var character in characterData.Characters)
                 {
+                    // Key를 꺼내기 위해 전역변수로 저장.
+                    current_UserID = character.UserId;
+
                     // CharacterClassString을 CharacterClass로 변환
                     character.ConvertStringToEnum();
 
@@ -582,6 +589,7 @@ public class JsonDataManager : MonoBehaviour
         StartCoroutine(CharacterStatLoadCoroutine(onComplete));
     }
 
+    // 초기값 세팅
     private void InitializeStats(CharacterStats character)
     {
         switch (character.CharacterClass)
@@ -607,6 +615,7 @@ public class JsonDataManager : MonoBehaviour
         }
     }
 
+    // 파생스텟 계산 기능
     private void CalculateAndStoreDerivedStats(CharacterStats character)
     {
         int life = CharIntProp[$"{character.UserId}_Vitality"] * 3;
@@ -628,6 +637,7 @@ public class JsonDataManager : MonoBehaviour
         CharIntProp[$"{character.UserId}_CharacterExp"] = characterExp;
     }
 
+    // 경험치 계산 기능
     private int CalculateLevelUpExp(int Level)
     {
         if (Level == 1)
@@ -637,6 +647,46 @@ public class JsonDataManager : MonoBehaviour
         else
         {
             return (int)(100 * Math.Pow(1.5, Level - 1));
+        }
+    }
+
+    // 스텟 수정 기능
+    public void ModifyStatJsonDataSave(string stat)
+    {
+        string filePath = Path.Combine(Application.dataPath, "Resources", CharSaveStatJsonFile);
+
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            
+            CharacterData characterData = JsonUtility.FromJson<CharacterData>(json);
+
+            if (characterData != null && characterData.Characters != null)
+            {
+                foreach (var character in characterData.Characters)
+                {
+                    if (character.StatPoints > 0)
+                    {
+                        switch (stat.ToLower())
+                        {
+                            case "strength":
+                                character.Strength++;
+                                break;
+                            case "dexterity":
+                                character.Dexterity++;
+                                break;
+                            case "vitality":
+                                character.Vitality++;
+                                break;
+                            case "energy":
+                                character.Energy++;
+                                break;
+                        }
+                        character.StatPoints--;
+                    }
+                }
+            }
+            SaveToJson(characterData, filePath);
         }
     }
     #endregion

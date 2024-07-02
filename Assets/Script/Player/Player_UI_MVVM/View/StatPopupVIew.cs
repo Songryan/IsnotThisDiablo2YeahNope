@@ -28,6 +28,8 @@ public class StatPopupView : MonoBehaviour
 
     [SerializeField] Text Text_NewStatPoint;
 
+    [SerializeField] GameObject StatUpBtnSet;
+
     private StatPopupViewModel _vm;
 
     private void OnEnable()
@@ -47,6 +49,18 @@ public class StatPopupView : MonoBehaviour
             _vm.PropertyChanged -= OnPropertyChanged;
             _vm = null;
         }
+    }
+
+    public void OnStatBtnCilck(string stat)
+    {
+        if(Text_NewStatPoint.text == "1")
+            StatUpBtnSet.SetActive(false);
+
+        // Json에 StatUpdata 저장
+        JsonDataManager.Instance.ModifyStatJsonDataSave(stat);
+
+        // Json에서 다시 데이터 불러와서 초기화.
+        _vm.RefreshViewModel();  // 데이터 로드 및 초기화
     }
 
     private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -103,6 +117,11 @@ public class StatPopupView : MonoBehaviour
                 break;
             case nameof(_vm.NewStatPoint):
                 Text_NewStatPoint.text = $"{_vm.NewStatPoint}";
+
+                if(_vm.NewStatPoint == 0)
+                    StatUpBtnSet.SetActive(false);
+                else
+                    StatUpBtnSet.SetActive(true);
                 break;
         }
     }
