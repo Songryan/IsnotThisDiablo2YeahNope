@@ -980,6 +980,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1013589400}
   - component: {fileID: 1013589399}
+  - component: {fileID: 1013589401}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1064,6 +1065,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1013589401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013589398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &1015474245
 GameObject:
   m_ObjectHideFlags: 0
@@ -1622,7 +1646,7 @@ GameObject:
   - component: {fileID: 1396845972}
   - component: {fileID: 1396845973}
   m_Layer: 0
-  m_Name: UIManager
+  m_Name: SceneManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1652,7 +1676,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1396845971}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03acebcf196fd3d4d96e1f0f44c697f8, type: 3}
+  m_Script: {fileID: 11500000, guid: 591861d1735ffd149890ea3a623539d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1438835824 stripped
@@ -2824,31 +2848,31 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 99174afa947456741a44959b92435ba9, type: 3}
     - target: {fileID: 1087419130514134430, guid: c31fab0c8ce171f49a906bff0e2d5ad6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1087419130514134430, guid: c31fab0c8ce171f49a906bff0e2d5ad6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1087419130514134430, guid: c31fab0c8ce171f49a906bff0e2d5ad6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 480458277}
+      objectReference: {fileID: 1396845973}
     - target: {fileID: 1087419130514134430, guid: c31fab0c8ce171f49a906bff0e2d5ad6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1087419130514134430, guid: c31fab0c8ce171f49a906bff0e2d5ad6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
+      value: StartBattle
       objectReference: {fileID: 0}
     - target: {fileID: 1087419130514134430, guid: c31fab0c8ce171f49a906bff0e2d5ad6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: ScenesManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1087419130514134430, guid: c31fab0c8ce171f49a906bff0e2d5ad6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1087419130514134430, guid: c31fab0c8ce171f49a906bff0e2d5ad6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
