@@ -5,6 +5,7 @@ using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
+using static UnityEditor.Progress;
 using static UnityEngine.EventSystems.EventTrigger;
 using TextAsset = UnityEngine.TextAsset;
 
@@ -53,6 +54,17 @@ public class JsonDataManager : MonoBehaviour
     // 나머지 스탯 저장
     public Dictionary<string, int> CharIntProp = new Dictionary<string, int>();
 
+    // 장비 착용 추가 스텟 컨테이너
+    public Dictionary<string, int>  EquipBonusStat = new Dictionary<string, int>
+    {
+        { "Str", 0 },
+        { "Dex", 0 },
+        { "Vital", 0 },
+        { "Mana", 0 }
+    };
+
+    // 장비 업데이트시 StatPopupView에 뿌려줄 이벤트.
+    public event Action OnInventoryPositionUpdated;
     #endregion
 
     #region 케릭터 스킬 관련 Property
@@ -341,6 +353,23 @@ public class JsonDataManager : MonoBehaviour
             ibs.SpawnStoredItem();
 
             IGMs[invenArr[0]].InvenDataPostioning(int.Parse(invenArr[1]), int.Parse(invenArr[2]));
+
+            // 장비 탈착시 보너스 스탯 적용을 위한 스텟을 컨테이너에 담아둠.
+            // 시작할때 세팅.
+            if (invenArr[0].Equals("Inven") == false)
+            {
+                ItemClass itemClass = null;
+
+                if (data.Value.Item1.TryGetComponent<ItemButtonScript>(out ItemButtonScript itemButtonScript))
+                    itemClass = data.Value.Item1.GetComponent<ItemButtonScript>().item;
+                else
+                    itemClass = data.Value.Item1.transform.GetComponent<ItemScript>().item;
+
+                EquipBonusStat["Str"] += itemClass.Str;
+                EquipBonusStat["Dex"] += itemClass.Dex;
+                EquipBonusStat["Vital"] += itemClass.Vital;
+                EquipBonusStat["Mana"] += itemClass.Mana;
+            }
         }
     }
 
@@ -385,7 +414,7 @@ public class JsonDataManager : MonoBehaviour
     {
         GameInvenData newInvenData = new GameInvenData();
         GameInvenDataEntry currentEntry = new GameInvenDataEntry();
-
+        
         foreach (var item in totalInvenData.Values)
         {
             string[] positionData = item.Item2.Split('/');
@@ -413,6 +442,33 @@ public class JsonDataManager : MonoBehaviour
         SaveToJson(newInvenData, filePath);
     }
 
+    public void ChangeEquipBonusStat(string post_InvenPosition, string after_InvenPosition, GameObject gameObject)
+    {
+        // 아이템 데이터
+        ItemClass itemClass = null;
+
+        if (gameObject.TryGetComponent<ItemButtonScript>(out ItemButtonScript itemButtonScript))
+            itemClass = gameObject.GetComponent<ItemButtonScript>().item;
+        else
+            itemClass = gameObject.transform.GetComponent<ItemScript>().item;
+
+        // 이전 포지션이 인벤이 아니고 옮겨진 포지션이 인벤이면 그만큼 차감.
+        if (post_InvenPosition.Equals("Inven") == false && after_InvenPosition.Equals("Inven") == true)
+        {
+            EquipBonusStat["Str"] -= itemClass.Str;
+            EquipBonusStat["Dex"] -= itemClass.Dex;
+            EquipBonusStat["Vital"] -= itemClass.Vital;
+            EquipBonusStat["Mana"] -= itemClass.Mana;
+        }// 이전 포지션이 인벤이고 옮겨진 포지션이 인벤이 아니면 그만큼 추가.
+        else if(post_InvenPosition.Equals("Inven") == true && after_InvenPosition.Equals("Inven") == false)
+        {
+            EquipBonusStat["Str"] += itemClass.Str;
+            EquipBonusStat["Dex"] += itemClass.Dex;
+            EquipBonusStat["Vital"] += itemClass.Vital;
+            EquipBonusStat["Mana"] += itemClass.Mana;
+        }
+    }
+
     // uniqueKey를 사용하여 totalInvenData에서 해당 항목을 삭제하고, 새로운 위치 정보를 적용한 후, 다시 JSON 파일에 저장
     public void UpdateInvenItemPositionJson(string uniqueKey, string pPositionData)
     {
@@ -422,12 +478,19 @@ public class JsonDataManager : MonoBehaviour
             return;
         }
 
+        // 이전 인벤 정보.
+        var tupleData = totalInvenData[uniqueKey];
+        string post_InvenPosition = tupleData.Item2.Split('/')[0];
+        string after_InvenPosition = pPositionData.Split('/')[0];
+
         // 해당 항목을 totalInvenData에서 가져온 후 삭제
         var (gameObject, _) = totalInvenData[uniqueKey];
         totalInvenData.Remove(uniqueKey);
 
         // 새로운 위치 정보를 적용한 항목을 totalInvenData에 추가
         totalInvenData.Add(uniqueKey, (gameObject, pPositionData));
+
+        ChangeEquipBonusStat(post_InvenPosition, after_InvenPosition, gameObject);
 
         // GameInvenData 객체 생성 및 업데이트된 데이터 추가
         GameInvenData newInvenData = new GameInvenData();
@@ -461,6 +524,10 @@ public class JsonDataManager : MonoBehaviour
 
         // JSON 파일로 저장
         SaveToJson(newInvenData, filePath);
+
+        // 장비 업데이트시 StatPopupView에 뿌려줄 이벤트.
+        // 이벤트 트리거
+        OnInventoryPositionUpdated?.Invoke();
     }
 
     // uniqueKey를 사용하여 totalInvenData에서 해당 아이템 정보를 저장한 후, 다시 JSON 파일에 저장
@@ -557,10 +624,10 @@ public class JsonDataManager : MonoBehaviour
 
                     // JSON에서 로드된 데이터 적용
                     CharStrProp[character.UserId] = character.Name;
-                    CharIntProp[$"{character.UserId}_Strength"] += character.Strength;
-                    CharIntProp[$"{character.UserId}_Dexterity"] += character.Dexterity;
-                    CharIntProp[$"{character.UserId}_Vitality"] += character.Vitality;
-                    CharIntProp[$"{character.UserId}_Energy"] += character.Energy;
+                    CharIntProp[$"{character.UserId}_Strength"] += character.Strength + EquipBonusStat["Str"];
+                    CharIntProp[$"{character.UserId}_Dexterity"] += character.Dexterity + EquipBonusStat["Dex"];
+                    CharIntProp[$"{character.UserId}_Vitality"] += character.Vitality + EquipBonusStat["Vital"];
+                    CharIntProp[$"{character.UserId}_Energy"] += character.Energy + EquipBonusStat["Mana"];
                     CharIntProp[$"{character.UserId}_Level"] = character.Level;
                     CharIntProp[$"{character.UserId}_CurrentExp"] = character.CurrentExp;
                     CharIntProp[$"{character.UserId}_StatPoints"] = character.StatPoints;

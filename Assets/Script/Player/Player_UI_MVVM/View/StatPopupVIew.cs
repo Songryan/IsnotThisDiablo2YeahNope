@@ -40,6 +40,9 @@ public class StatPopupView : MonoBehaviour
             _vm.PropertyChanged += OnPropertyChanged;
             _vm.RefreshViewModel();  // 데이터 로드 및 초기화
         }
+
+        // 이벤트 구독
+        JsonDataManager.Instance.OnInventoryPositionUpdated += _vm.RefreshViewModel;
     }
 
     private void OnDisable()
@@ -49,6 +52,9 @@ public class StatPopupView : MonoBehaviour
             _vm.PropertyChanged -= OnPropertyChanged;
             _vm = null;
         }
+
+        // 이벤트 구독 해제
+        JsonDataManager.Instance.OnInventoryPositionUpdated -= _vm.RefreshViewModel;
     }
 
     public void OnStatBtnCilck(string stat)

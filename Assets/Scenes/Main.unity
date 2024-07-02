@@ -3871,6 +3871,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2084785216}
     m_Modifications:
+    - target: {fileID: 2229353547151255601, guid: 2c7351ef8e090744884774074dfdc36f, type: 3}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2830784295782652785, guid: 2c7351ef8e090744884774074dfdc36f, type: 3}
+      propertyPath: m_Transition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2830784295782652785, guid: 2c7351ef8e090744884774074dfdc36f, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2830784295782652785, guid: 2c7351ef8e090744884774074dfdc36f, type: 3}
+      propertyPath: m_SpriteState.m_DisabledSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7563fa6edf8846249976ccc592a37892, type: 3}
+    - target: {fileID: 3486518493968263528, guid: 2c7351ef8e090744884774074dfdc36f, type: 3}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4060430797331621273, guid: 2c7351ef8e090744884774074dfdc36f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3963,9 +3983,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4869953644382680876, guid: 2c7351ef8e090744884774074dfdc36f, type: 3}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5202240502099541762, guid: 2c7351ef8e090744884774074dfdc36f, type: 3}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7580440199330206316, guid: 2c7351ef8e090744884774074dfdc36f, type: 3}
       propertyPath: m_Name
       value: SkillPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266532650902190198, guid: 2c7351ef8e090744884774074dfdc36f, type: 3}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279415962307751851, guid: 2c7351ef8e090744884774074dfdc36f, type: 3}
+      propertyPath: m_Transition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8304842308760119300, guid: 2c7351ef8e090744884774074dfdc36f, type: 3}
+      propertyPath: m_Transition
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8547439434969784906, guid: 2c7351ef8e090744884774074dfdc36f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3978,6 +4018,10 @@ PrefabInstance:
     - target: {fileID: 8547439434969784906, guid: 2c7351ef8e090744884774074dfdc36f, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -125.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8572287258368668028, guid: 2c7351ef8e090744884774074dfdc36f, type: 3}
+      propertyPath: m_Transition
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8938153044229100803, guid: 2c7351ef8e090744884774074dfdc36f, type: 3}
       propertyPath: m_IsActive
