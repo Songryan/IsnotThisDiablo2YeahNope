@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
 
     private Action<int, int> _levelUpCallback;
 
+    [SerializeField] private GameObject UIRootObj;
+
     public static UIManager Instance
     {
         get
@@ -39,4 +41,8 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void EnableRootUI()
+    {
+        UIRootObj.SetActive(true);
+    }
 }

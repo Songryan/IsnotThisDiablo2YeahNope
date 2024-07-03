@@ -195,8 +195,6 @@ public class MapGenerator: MonoBehaviour
                 }
             }
         }
-        
-        
     }
 
     void ClearGeneratedRooms()

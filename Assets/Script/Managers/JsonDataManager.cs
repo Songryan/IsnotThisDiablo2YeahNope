@@ -100,12 +100,14 @@ public class JsonDataManager : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(gameObject);
+            UIManager.Instance.EnableRootUI();
         }
         else if (_instance != this)
         {
             Destroy(gameObject);
         }
     }
+
 
     public void LoadToGameData()
     {

@@ -34,6 +34,9 @@ public class StatPopupView : MonoBehaviour
 
     private void OnEnable()
     {
+        // 일단 끄고 생각해.
+        StatUpBtnSet.SetActive(false);
+
         if (_vm == null)
         {
             _vm = new StatPopupViewModel();
