@@ -7,10 +7,10 @@ public class MapGenerator : MonoBehaviour
 {
     public List<GameObject> roomPrefabs;
     public Vector3 startPosition;
-    public float roomOffset = 10.0f;
     public int maxRooms = 10;
 
-    [SerializeField] Mesh newPortalMesh; // 변경에 사용할 Mesh 필드 변수
+    [SerializeField] Mesh ClosedPortalMesh; // 변경에 사용할 Mesh 필드 변수
+    [SerializeField] Mesh OpenPortalMesh; // 변경에 사용할 Mesh 필드 변수
 
     private Dictionary<GameObject, List<Transform>> roomPortals = new Dictionary<GameObject, List<Transform>>();
     public List<GameObject> GeneratedRooms { get; private set; } = new List<GameObject>();
@@ -37,6 +37,10 @@ public class MapGenerator : MonoBehaviour
                 ClearGeneratedRooms();
             }
         }
+
+        // 포탈을 찾아서 위치를 저장하는 기능 호출
+        FindAndStorePortalPositions();
+
         Progress = 1.0f; // 완료 시 진행도를 100%로 설정
     }
 
@@ -137,11 +141,6 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
-
-        // 포탈의 메쉬를 변경하는 메서드 호출
-        Transform instantiatedPortal = Instantiate(portalA.gameObject, portalA.position, portalA.rotation).transform;
-        UpdatePortalMesh(instantiatedPortal);
-
         return false;
     }
 
@@ -205,12 +204,85 @@ public class MapGenerator : MonoBehaviour
 
         if (meshFilter != null)
         {
-            meshFilter.sharedMesh = newPortalMesh; // 새로운 메쉬로 변경
+            meshFilter.sharedMesh = ClosedPortalMesh; // 새로운 메쉬로 변경
         }
 
         if (meshCollider != null)
         {
-            meshCollider.sharedMesh = newPortalMesh; // 새로운 메쉬로 변경
+            meshCollider.sharedMesh = ClosedPortalMesh; // 새로운 메쉬로 변경
+        }
+    }
+
+    void UpdatePortalMesh2(Transform portal)
+    {
+        MeshFilter meshFilter = portal.GetComponent<MeshFilter>();
+        MeshCollider meshCollider = portal.GetComponent<MeshCollider>();
+
+        if (meshFilter != null)
+        {
+            meshFilter.sharedMesh = OpenPortalMesh; // 새로운 메쉬로 변경
+        }
+
+        if (meshCollider != null)
+        {
+            meshCollider.sharedMesh = OpenPortalMesh; // 새로운 메쉬로 변경
+        }
+    }
+
+    void FindAndStorePortalPositions()
+    {
+        portalPositions.Clear(); // 기존 데이터를 초기화
+
+        foreach (var room in GeneratedRooms)
+        {
+            Transform portalsTransform = room.transform.Find("Portals");
+            if (portalsTransform != null)
+            {
+                foreach (Transform portal in portalsTransform)
+                {
+                    UpdatePortalMesh2(portal.transform);
+                    portalPositions.Add(portal.gameObject, portal.position); // 자식 오브젝트와 월드 포지션 저장
+                }
+            }
+        }
+        // 중복된 위치를 가진 포탈 제거
+        RemoveDuplicatePortals();
+    }
+
+    void RemoveDuplicatePortals()
+    {
+        var keysToRemove = new List<GameObject>();
+
+        // 이중 foreach 문으로 중복된 위치 찾기 및 삭제
+        foreach (var kvp1 in portalPositions)
+        {
+            foreach (var kvp2 in portalPositions)
+            {
+                if (kvp1.Key != kvp2.Key && kvp1.Value == kvp2.Value)
+                {
+                    // 중복된 위치를 가진 키를 저장
+                    if (!keysToRemove.Contains(kvp1.Key))
+                    {
+                        keysToRemove.Add(kvp1.Key);
+                    }
+                    if (!keysToRemove.Contains(kvp2.Key))
+                    {
+                        keysToRemove.Add(kvp2.Key);
+                    }
+                }
+            }
+        }
+
+        // 중복된 키-값 쌍을 제거
+        foreach (var key in keysToRemove)
+        {
+            portalPositions.Remove(key);
+        }
+
+        foreach (var Obj in portalPositions)
+        {
+            UpdatePortalMesh(Obj.Key.transform);
         }
     }
 }
+
