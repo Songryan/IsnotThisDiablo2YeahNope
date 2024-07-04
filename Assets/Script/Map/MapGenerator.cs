@@ -53,6 +53,9 @@ public class MapGenerator : MonoBehaviour
         // 포탈을 찾아서 위치를 저장하는 기능 호출
         FindAndStorePortalPositions();
 
+        // parent Object로 이동
+        MoveGeneratedRoomsToBattleScene();
+
         Progress = 1.0f; // 완료 시 진행도를 100%로 설정
     }
 
@@ -324,6 +327,16 @@ public class MapGenerator : MonoBehaviour
 
         GameObject endObject = Instantiate(EndPointObj, position.transform.position, position.transform.rotation);
         endObject.transform.SetParent(position.transform);
+    }
+
+    private void MoveGeneratedRoomsToBattleScene()
+    {
+        GameObject mapParent = new GameObject("MapParent");
+
+        foreach (var room in GeneratedRooms)
+        {
+            room.transform.SetParent(mapParent.transform);
+        }
     }
 }
 
