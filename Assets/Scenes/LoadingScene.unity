@@ -2249,7 +2249,7 @@ PrefabInstance:
     - target: {fileID: 5225610500028340804, guid: f5ef8f8b12607f243afb1a206402e673, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 300b2cf7ae0d02f4d9858fc4760c6029, type: 2}
+      objectReference: {fileID: 9100000, guid: 7db5292ce46add744b97156fc205dd54, type: 2}
     - target: {fileID: 5406924162624167562, guid: f5ef8f8b12607f243afb1a206402e673, type: 3}
       propertyPath: m_Name
       value: Paladin

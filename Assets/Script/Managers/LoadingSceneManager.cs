@@ -34,16 +34,7 @@ public class LoadingSceneManager : MonoBehaviour
         // 몇 초 대기 후 BattleScene으로 전환
         yield return new WaitForSeconds(1.0f);
 
-        // 생성된 방 오브젝트들을 DontDestroyOnLoad 설정
-        //foreach (var room in mapGenerator.GeneratedRooms)
-        //{
-        //    DontDestroyOnLoad(room);
-        //}
-
         GameObject mapParent = GameObject.Find("MapParent");
-
-        // mapParent 자식으로 있는 Object들 NaviMesh로 굽는 기능추가.
-        BakedRoomNaviMesh();
 
         DontDestroyOnLoad(mapParent);
 
@@ -87,18 +78,4 @@ public class LoadingSceneManager : MonoBehaviour
         // 로딩 텍스트 업데이트
         loadingText.text = (progress * 100).ToString("F0") + "%";
     }
-
-    private void BakedRoomNaviMesh()
-    {
-        GameObject mapParent = GameObject.Find("MapParent");
-        if (mapParent != null)
-        {
-            foreach (Transform child in mapParent.transform)
-            {
-                NavMeshSurface navMeshSurface = child.gameObject.AddComponent<NavMeshSurface>();
-                navMeshSurface.BuildNavMesh();
-            }
-        }
-    }
-
 }

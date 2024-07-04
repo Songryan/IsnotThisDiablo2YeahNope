@@ -13,7 +13,7 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] Mesh OpenPortalMesh; // 변경에 사용할 Mesh 필드 변수
 
     [SerializeField] GameObject EndPointObj; // 변경에 사용할 Mesh 필드 변수
-    [SerializeField] GameObject Player; // 변경에 사용할 Mesh 필드 변수
+    
 
     private Dictionary<GameObject, List<Transform>> roomPortals = new Dictionary<GameObject, List<Transform>>();
     public List<GameObject> GeneratedRooms { get; private set; } = new List<GameObject>();
@@ -43,9 +43,6 @@ public class MapGenerator : MonoBehaviour
 
         // Room에서 BoxCollider 삭제하는 기능
         RemoveBoxCollider();
-
-        // 첫번째 방 StartOREndPosition에 Player 생성
-        //GeneratePlayer();
 
         // 마지막 방 StartOREndPosition에 오브젝트 생성
         GenerateEndObject();
@@ -311,13 +308,6 @@ public class MapGenerator : MonoBehaviour
                 Destroy(collider);
             }
         }
-    }
-
-    void GeneratePlayer()
-    {
-        // 첫번째 방에 플레이어 생성.
-        Transform position = GeneratedRooms[0].transform.Find("StartOREndPosition");
-        GameObject pala = Instantiate(Player, position.position, position.rotation);
     }
 
     void GenerateEndObject()

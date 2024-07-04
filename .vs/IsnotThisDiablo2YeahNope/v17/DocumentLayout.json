@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|d:\\gaeinproject\\isnotthisdiablo2yeahnope\\assets\\script\\managers\\loadingscenemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\managers\\loadingscenemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|d:\\gaeinproject\\isnotthisdiablo2yeahnope\\assets\\script\\managers\\gameplaymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\managers\\gameplaymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\map\\mapgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\map\\mapgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\managers\\jsondatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\managers\\jsondatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\managers\\loadingscenemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\managers\\loadingscenemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,28 +34,52 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "JsonDataManager.cs",
+              "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Managers\\JsonDataManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Managers\\JsonDataManager.cs",
+              "ToolTip": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Managers\\JsonDataManager.cs",
+              "RelativeToolTip": "Assets\\Script\\Managers\\JsonDataManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGYAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-04T05:34:19.327Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GamePlayManager.cs",
+              "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Managers\\GamePlayManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Managers\\GamePlayManager.cs",
+              "ToolTip": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Managers\\GamePlayManager.cs",
+              "RelativeToolTip": "Assets\\Script\\Managers\\GamePlayManager.cs",
+              "ViewState": "AQIAACoAAAAAAAAAAAAYwEIAAABkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-04T05:34:10.206Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "MapGenerator.cs",
               "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Map\\MapGenerator.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Map\\MapGenerator.cs",
               "ToolTip": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Map\\MapGenerator.cs",
               "RelativeToolTip": "Assets\\Script\\Map\\MapGenerator.cs",
-              "ViewState": "AQIAAAgBAAAAAAAAAAAqwD4BAAAvAAAA",
+              "ViewState": "AQIAAKMAAAAAAAAAAAAtwLAAAABhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-03T02:47:29.263Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "LoadingSceneManager.cs",
               "DocumentMoniker": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Managers\\LoadingSceneManager.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\Managers\\LoadingSceneManager.cs",
               "ToolTip": "D:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\Managers\\LoadingSceneManager.cs",
               "RelativeToolTip": "Assets\\Script\\Managers\\LoadingSceneManager.cs",
-              "ViewState": "AQIAAEsAAAAAAAAAAAAhwGQAAAAJAAAA",
+              "ViewState": "AQIAABsAAAAAAAAAAAAYwCQAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-03T00:50:12.003Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-03T00:50:12.003Z"
             }
           ]
         }
