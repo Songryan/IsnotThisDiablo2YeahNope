@@ -12,6 +12,9 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] Mesh ClosedPortalMesh; // 변경에 사용할 Mesh 필드 변수
     [SerializeField] Mesh OpenPortalMesh; // 변경에 사용할 Mesh 필드 변수
 
+    [SerializeField] GameObject EndPointObj; // 변경에 사용할 Mesh 필드 변수
+    [SerializeField] GameObject Player; // 변경에 사용할 Mesh 필드 변수
+
     private Dictionary<GameObject, List<Transform>> roomPortals = new Dictionary<GameObject, List<Transform>>();
     public List<GameObject> GeneratedRooms { get; private set; } = new List<GameObject>();
 
@@ -37,6 +40,15 @@ public class MapGenerator : MonoBehaviour
                 ClearGeneratedRooms();
             }
         }
+
+        // Room에서 BoxCollider 삭제하는 기능
+        RemoveBoxCollider();
+
+        // 첫번째 방 StartOREndPosition에 Player 생성
+        //GeneratePlayer();
+
+        // 마지막 방 StartOREndPosition에 오브젝트 생성
+        GenerateEndObject();
 
         // 포탈을 찾아서 위치를 저장하는 기능 호출
         FindAndStorePortalPositions();
@@ -72,6 +84,7 @@ public class MapGenerator : MonoBehaviour
     {
         GameObject initialRoomPrefab = roomPrefabs[2];
         GameObject initialRoom = Instantiate(initialRoomPrefab, startPosition, Quaternion.identity);
+        initialRoom.name = "StartingRoom";
         initialRoom.AddComponent<BoxCollider>().isTrigger = true;
 
         GeneratedRooms.Add(initialRoom);
@@ -283,6 +296,34 @@ public class MapGenerator : MonoBehaviour
         {
             UpdatePortalMesh(Obj.Key.transform);
         }
+    }
+
+    void RemoveBoxCollider()
+    {
+        foreach (var room in GeneratedRooms)
+        {
+            BoxCollider[] colliders = room.GetComponents<BoxCollider>();
+            foreach (BoxCollider collider in colliders)
+            {
+                Destroy(collider);
+            }
+        }
+    }
+
+    void GeneratePlayer()
+    {
+        // 첫번째 방에 플레이어 생성.
+        Transform position = GeneratedRooms[0].transform.Find("StartOREndPosition");
+        GameObject pala = Instantiate(Player, position.position, position.rotation);
+    }
+
+    void GenerateEndObject()
+    {
+        // 맨 마지막 방에 생성.
+        GameObject position = GeneratedRooms[GeneratedRooms.Count - 1].transform.Find("StartOREndPosition").gameObject;
+
+        GameObject endObject = Instantiate(EndPointObj, position.transform.position, position.transform.rotation);
+        endObject.transform.SetParent(position.transform);
     }
 }
 
