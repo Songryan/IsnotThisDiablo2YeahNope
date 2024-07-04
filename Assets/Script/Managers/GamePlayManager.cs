@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
 using UnityEngine;
+using Cinemachine;
 
 public class GamePlayManager : MonoBehaviour
 {
     [SerializeField] GameObject Player;
 
-
+    [SerializeField] CinemachineVirtualCamera virtualCamera;
 
     private static GamePlayManager _instance;
     public static GamePlayManager Instance
@@ -65,5 +66,8 @@ public class GamePlayManager : MonoBehaviour
         Transform StartingRoom = GameObject.Find("StartingRoom").transform.Find("StartOREndPosition").transform;
 
         GameObject pala = Instantiate(Player, StartingRoom.transform.position, Quaternion.identity);
+
+        virtualCamera.Follow = pala.transform;
+        virtualCamera.LookAt = pala.transform;
     }
 }

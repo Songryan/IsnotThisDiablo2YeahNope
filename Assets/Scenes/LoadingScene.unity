@@ -321,7 +321,6 @@ MonoBehaviour:
   ClosedPortalMesh: {fileID: 4300000, guid: 069da1bfd8a2ad343bca018b79bbff0f, type: 2}
   OpenPortalMesh: {fileID: 4300000, guid: f7645953a4c98a74292df6d0afb4ba06, type: 2}
   EndPointObj: {fileID: 100000, guid: 5f91e1f5afadca645836acbbd7fd7cc6, type: 3}
-  Player: {fileID: 5406924162624167562, guid: f5ef8f8b12607f243afb1a206402e673, type: 3}
 --- !u!4 &247257420
 Transform:
   m_ObjectHideFlags: 0
