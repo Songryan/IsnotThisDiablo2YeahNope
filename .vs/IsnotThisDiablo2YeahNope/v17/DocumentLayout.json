@@ -3,11 +3,15 @@
   "WorkspaceRootPath": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|g:\\gaeinproject\\isnotthisdiablo2yeahnope\\assets\\script\\behaviortree\\task\\taskattack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\behaviortree\\task\\taskattack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|g:\\gaeinproject\\isnotthisdiablo2yeahnope\\assets\\script\\behaviortree\\task\\taskgototarget.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\behaviortree\\task\\taskgototarget.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|g:\\gaeinproject\\isnotthisdiablo2yeahnope\\assets\\script\\behaviortree\\task\\taskpatrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\behaviortree\\task\\taskpatrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\behaviortree\\task\\taskpatrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -15,12 +19,16 @@
       "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\behaviortree\\bt\\guardbt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\behaviortree\\sequence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\behaviortree\\sequence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\behaviortree\\subtask\\checkenemyinfovrange.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\behaviortree\\subtask\\checkenemyinfovrange.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|g:\\gaeinproject\\isnotthisdiablo2yeahnope\\assets\\script\\behaviortree\\subtask\\checkenemyinfovrange.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\behaviortree\\subtask\\checkenemyinfovrange.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\behaviortree\\subtask\\checkenemyinattackrange.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\behaviortree\\subtask\\checkenemyinattackrange.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|g:\\gaeinproject\\isnotthisdiablo2yeahnope\\assets\\script\\behaviortree\\sequence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\behaviortree\\sequence.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\behaviortree\\selector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,7 +39,7 @@
       "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\behaviortree\\tree.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|g:\\gaeinproject\\isnotthisdiablo2yeahnope\\assets\\script\\behaviortree\\node.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\assets\\script\\behaviortree\\node.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F50540A9-0F77-2F66-7072-59133CAE3EC1}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\behaviortree\\node.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -51,19 +59,44 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "TaskAttack.cs",
+              "DocumentMoniker": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\BehaviorTree\\Task\\TaskAttack.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\BehaviorTree\\Task\\TaskAttack.cs",
+              "ToolTip": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\BehaviorTree\\Task\\TaskAttack.cs",
+              "RelativeToolTip": "Assets\\Script\\BehaviorTree\\Task\\TaskAttack.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-07T12:15:04.693Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CheckEnemyInAttackRange.cs",
+              "DocumentMoniker": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\BehaviorTree\\SubTask\\CheckEnemyInAttackRange.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\BehaviorTree\\SubTask\\CheckEnemyInAttackRange.cs",
+              "ToolTip": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\BehaviorTree\\SubTask\\CheckEnemyInAttackRange.cs",
+              "RelativeToolTip": "Assets\\Script\\BehaviorTree\\SubTask\\CheckEnemyInAttackRange.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAmwBQAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-07T12:02:47.398Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "TaskGoToTarget.cs",
               "DocumentMoniker": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\BehaviorTree\\Task\\TaskGoToTarget.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\BehaviorTree\\Task\\TaskGoToTarget.cs",
               "ToolTip": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\BehaviorTree\\Task\\TaskGoToTarget.cs",
               "RelativeToolTip": "Assets\\Script\\BehaviorTree\\Task\\TaskGoToTarget.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAACEAAAAuAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-07T09:27:33.126Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "TaskPatrol.cs",
               "DocumentMoniker": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\BehaviorTree\\Task\\TaskPatrol.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\BehaviorTree\\Task\\TaskPatrol.cs",
@@ -71,21 +104,19 @@
               "RelativeToolTip": "Assets\\Script\\BehaviorTree\\Task\\TaskPatrol.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACIAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-07T05:30:25.066Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-07T05:30:25.066Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "GuardBT.cs",
               "DocumentMoniker": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\BehaviorTree\\BT\\GuardBT.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\BehaviorTree\\BT\\GuardBT.cs",
               "ToolTip": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\BehaviorTree\\BT\\GuardBT.cs",
               "RelativeToolTip": "Assets\\Script\\BehaviorTree\\BT\\GuardBT.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAkAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-07T05:44:28.646Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-07T05:44:28.646Z"
             },
             {
               "$type": "Document",
@@ -95,10 +126,9 @@
               "RelativeDocumentMoniker": "Assets\\Script\\BehaviorTree\\SubTask\\CheckEnemyInFOVRange.cs",
               "ToolTip": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\BehaviorTree\\SubTask\\CheckEnemyInFOVRange.cs",
               "RelativeToolTip": "Assets\\Script\\BehaviorTree\\SubTask\\CheckEnemyInFOVRange.cs",
-              "ViewState": "AQIAACQAAAAAAAAAAAAtwDcAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAABFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-07T09:37:17.119Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-07T09:37:17.119Z"
             }
           ]
         },
@@ -108,13 +138,13 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "Sequence.cs",
               "DocumentMoniker": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\BehaviorTree\\Sequence.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\BehaviorTree\\Sequence.cs",
               "ToolTip": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\BehaviorTree\\Sequence.cs",
               "RelativeToolTip": "Assets\\Script\\BehaviorTree\\Sequence.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABUAAAAAAAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAA+wBUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-07T04:51:07.803Z",
               "IsPinned": true,
@@ -122,7 +152,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "Selector.cs",
               "DocumentMoniker": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\BehaviorTree\\Selector.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\BehaviorTree\\Selector.cs",
@@ -131,12 +161,11 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-07T05:11:25.707Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "Node.cs",
               "DocumentMoniker": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\BehaviorTree\\Node.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\BehaviorTree\\Node.cs",
@@ -144,12 +173,11 @@
               "RelativeToolTip": "Assets\\Script\\BehaviorTree\\Node.cs",
               "ViewState": "AQIAAC0AAAAAAAAAAAAywB4AAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-04T14:57:20.411Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-04T14:57:20.411Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "Tree.cs",
               "DocumentMoniker": "G:\\GaeInProject\\IsnotThisDiablo2YeahNope\\Assets\\Script\\BehaviorTree\\Tree.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\BehaviorTree\\Tree.cs",
@@ -157,8 +185,7 @@
               "RelativeToolTip": "Assets\\Script\\BehaviorTree\\Tree.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-07T04:19:00.862Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-07T04:19:00.862Z"
             }
           ]
         }

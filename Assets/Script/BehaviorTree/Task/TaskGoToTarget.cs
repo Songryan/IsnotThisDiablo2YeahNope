@@ -20,7 +20,7 @@ public class TaskGoToTarget : Node
         Transform target = (Transform)GetData("target");
 
         // 목표 지점과의 거리가 0.01보다 큰 경우 이동을 시작합니다.
-        if (Vector3.Distance(_transform.position, target.position) > 1f)
+        if (Vector3.Distance(_transform.position, target.position) > 0.01f)
         {
             // 목표 지점의 Y 좌표를 0으로 설정합니다.
             Vector3 targetPosition = new Vector3(target.position.x, 0, target.position.z);
