@@ -2,7 +2,7 @@ using BehaviorTree;
 using UnityEngine;
 
 // CheckEnemyInFOVRange 클래스: AI 캐릭터가 시야(FOV) 범위 내에 적이 있는지 확인하는 노드입니다.
-public class CheckEnemyInFOVRange : Node
+public class CheckPlayerInFOVRange : Node
 {
     // _enemyLayerMask: 적이 있는 레이어를 나타내는 레이어 마스크입니다.
     //private static int _enemyLayerMask = 1 << 6;
@@ -17,7 +17,7 @@ public class CheckEnemyInFOVRange : Node
     private string TargetRole = string.Empty;
 
     // CheckEnemyInFOVRange 생성자: Transform 컴포넌트를 받아 초기화합니다.
-    public CheckEnemyInFOVRange(Transform transform, string TargetRole)
+    public CheckPlayerInFOVRange(Transform transform, string TargetRole)
     {
         this.TargetRole = TargetRole;
         _transform = transform; // AI 캐릭터의 Transform을 설정합니다.
@@ -36,7 +36,7 @@ public class CheckEnemyInFOVRange : Node
         {
             // 시야 범위 내의 적을 감지합니다.
             Collider[] colliders = Physics.OverlapSphere(
-                _transform.position, PlayerBT.fovRange, _enemyLayerMask);
+                _transform.position, MonsterBT.fovRange, _enemyLayerMask);
 
             // 감지된 적이 있는 경우
             if (colliders.Length > 0)

@@ -1,14 +1,15 @@
 using BehaviorTree;
 using UnityEngine;
 
-public class CheckEnemyInAttackRange : Node
+
+public class CheckEnemyInAttackRangeOfMonster : Node
 {
-    private static int _enemyLayerMask = LayerMask.GetMask("Player");
+    //private static int _enemyLayerMask = LayerMask.GetMask("Player");
 
     private Transform _transform;
     private Animator _animator;
 
-    public CheckEnemyInAttackRange(Transform transform)
+    public CheckEnemyInAttackRangeOfMonster(Transform transform)
     {
         _transform = transform;
         _animator = transform.GetComponent<Animator>();
@@ -23,9 +24,9 @@ public class CheckEnemyInAttackRange : Node
             state = NodeState.FAILURE;
             return state;
         }
-        
+
         Transform target = (Transform)t;
-        if(Vector3.Distance(_transform.position, target.position) <= GuardBT.attackRange)
+        if (Vector3.Distance(_transform.position, target.position) <= MonsterBT.attackRange)
         {
             _animator.SetBool("Attacking", true);
             _animator.SetBool("Walking", false);

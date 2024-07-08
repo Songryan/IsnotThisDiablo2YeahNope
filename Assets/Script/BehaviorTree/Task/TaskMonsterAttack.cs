@@ -1,17 +1,19 @@
-using UnityEngine;
 using BehaviorTree;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class TaskAttack : Node
+public class TaskMonsterAttack : Node
 {
     private Animator _animator;
 
     private Transform _lastTarget;
-    private MonsterManager _monsterManager;
+    private PlayerManager _playerManager;
 
     private float _attackTime = 1f;
     private float _attackCount = 0f;
 
-    public TaskAttack(Transform transform)
+    public TaskMonsterAttack(Transform transform)
     {
         _animator = transform.GetComponent<Animator>();
     }
@@ -20,23 +22,23 @@ public class TaskAttack : Node
     {
         Transform target = (Transform)GetData("target");
 
-        if(target != _lastTarget)
+        if (target != _lastTarget)
         {
-            _monsterManager = target.GetComponent<MonsterManager>();
+            _playerManager = target.GetComponent<PlayerManager>();
             _lastTarget = target;
         }
 
         _attackCount += Time.deltaTime;
-        if(_attackCount >= _attackTime )
+        if (_attackCount >= _attackTime)
         {
-            bool isDead = _monsterManager.TakeHit();
+            bool isDead = _playerManager.TakeHit();
 
-            if(isDead) 
+            if (isDead)
             {
                 ClearData("target");
-                _animator.SetBool("Attacking",false);
-                _animator.SetBool("Walking",true);
-                _animator.SetBool("Run",false);
+                _animator.SetBool("Attacking", false);
+                _animator.SetBool("Walking", true);
+                _animator.SetBool("Run", false);
             }
             else
             {

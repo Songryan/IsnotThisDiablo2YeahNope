@@ -117,19 +117,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 1
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Run
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Attacking
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -944,49 +944,49 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 110225162}
-    m_Position: {x: -130, y: -350, z: 0}
+    m_Position: {x: -530, y: -360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110209886}
-    m_Position: {x: -280, y: -290, z: 0}
+    m_Position: {x: -570, y: -300, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110263628}
-    m_Position: {x: -390, y: -240, z: 0}
+    m_Position: {x: -680, y: -250, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110263304}
-    m_Position: {x: -470, y: -170, z: 0}
+    m_Position: {x: -760, y: -180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110208490}
-    m_Position: {x: -540, y: -100, z: 0}
+    m_Position: {x: -830, y: -110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110209726}
-    m_Position: {x: -550, y: -20, z: 0}
+    m_Position: {x: -840, y: -30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110297456}
-    m_Position: {x: 1060, y: 40, z: 0}
+    m_Position: {x: 400, y: 90, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110266700}
-    m_Position: {x: -540, y: 130, z: 0}
+    m_Position: {x: -830, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110255120}
-    m_Position: {x: -540, y: 200, z: 0}
+    m_Position: {x: -830, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110268078}
-    m_Position: {x: -540, y: 270, z: 0}
+    m_Position: {x: -830, y: 260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110233844}
-    m_Position: {x: -470, y: 330, z: 0}
+    m_Position: {x: -760, y: 320, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110239154}
-    m_Position: {x: -490, y: 410, z: 0}
+    m_Position: {x: -780, y: 400, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110276818}
-    m_Position: {x: -410, y: 490, z: 0}
+    m_Position: {x: -700, y: 480, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110226318}
-    m_Position: {x: -300, y: 550, z: 0}
+    m_Position: {x: -590, y: 540, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110262490}
-    m_Position: {x: -140, y: 600, z: 0}
+    m_Position: {x: -520, y: 610, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110246230}
     m_Position: {x: 360, y: -330, z: 0}
@@ -1007,10 +1007,10 @@ AnimatorStateMachine:
     m_Position: {x: 630, y: 60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110265892}
-    m_Position: {x: 60, y: 10, z: 0}
+    m_Position: {x: -300, y: 20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110208506}
-    m_Position: {x: 640, y: 120, z: 0}
+    m_Position: {x: 80, y: 160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110228042}
     m_Position: {x: 640, y: 190, z: 0}
@@ -1028,7 +1028,7 @@ AnimatorStateMachine:
     m_Position: {x: 320, y: 480, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110204114}
-    m_Position: {x: 120, y: 600, z: 0}
+    m_Position: {x: -220, y: 590, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110217590}
     m_Position: {x: 240, y: 540, z: 0}
@@ -1038,8 +1038,8 @@ AnimatorStateMachine:
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 120, y: -230, z: 0}
-  m_EntryPosition: {x: 80, y: 110, z: 0}
-  m_ExitPosition: {x: 70, y: 200, z: 0}
+  m_EntryPosition: {x: -110, y: -120, z: 0}
+  m_ExitPosition: {x: -400, y: 240, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 110265892}
 --- !u!1101 &500835749536712637

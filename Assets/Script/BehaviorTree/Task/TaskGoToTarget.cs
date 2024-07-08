@@ -27,7 +27,7 @@ public class TaskGoToTarget : Node
 
             // AI 캐릭터를 목표 지점으로 이동시킵니다.
             _transform.position = Vector3.MoveTowards(
-                _transform.position, targetPosition, GuardBT.Runspeed * Time.deltaTime);
+                _transform.position, targetPosition, MonsterBT.Runspeed * Time.deltaTime);
 
             // AI 캐릭터가 목표 지점을 바라보도록 회전시킵니다.
             Vector3 lookAtPosition = new Vector3(target.position.x, _transform.position.y, target.position.z);

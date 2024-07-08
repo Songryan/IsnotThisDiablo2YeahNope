@@ -1,13 +1,13 @@
-using System.Collections.Generic;
 using BehaviorTree;
+using System.Collections.Generic;
 
-public class GuardBT : Tree
+public class PlayerBT : Tree
 {
     public UnityEngine.Transform[] waypoints;
 
     public static float speed = 2f;
     public static float Runspeed = 4f;
-    public static float fovRange = 10f;
+    public static float fovRange = 5f;
     public static float attackRange = 1f;
 
     protected override Node SetupTree()
@@ -15,14 +15,14 @@ public class GuardBT : Tree
         Node root = new Selector(new List<Node>
         {
             new Sequence(new List<Node>{
-                new CheckEnemyInAttackRange(transform),
-                new TaskAttack(transform),
+                new CheckEnemyInAttackRangeOfPlayer(transform),
+                new TaskPlayerAttack(transform),
             }),
-            new Sequence(new List<Node>{ 
-                new CheckEnemyInFOVRange(transform),
+            new Sequence(new List<Node>{
+                new CheckEnemyInFOVRange(transform, "Monster"),
                 new TaskGoToTarget(transform),
             }),
-            new TaskPatrol(transform, waypoints),
+            new TaskSearchEndPoint(transform, waypoints),
         });
 
         return root;

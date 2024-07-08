@@ -1,8 +1,8 @@
-using UnityEngine;
+using System.Collections.Generic;
 using BehaviorTree;
+using UnityEngine;
 
-// TaskPatrol 클래스: AI 캐릭터가 정해진 웨이포인트를 따라 순찰하는 행동을 정의합니다.
-public class TaskPatrol : Node
+public class TaskSearchEndPoint : Node
 {
     // AI 캐릭터의 Transform 컴포넌트를 저장합니다.
     private Transform _transform;
@@ -21,7 +21,7 @@ public class TaskPatrol : Node
     private bool _waiting = false;      // 대기 중인지 여부를 추적합니다.
 
     // TaskPatrol 생성자: Transform 컴포넌트와 웨이포인트 배열을 받아 초기화합니다.
-    public TaskPatrol(Transform transform, Transform[] waypoints)
+    public TaskSearchEndPoint(Transform transform, Transform[] waypoints)
     {
         _transform = transform;     // AI 캐릭터의 Transform을 설정합니다.
         _animator = transform.GetComponent<Animator>();
@@ -59,7 +59,7 @@ public class TaskPatrol : Node
             else // 웨이포인트로 이동 중인 경우
             {
                 // AI 캐릭터를 웨이포인트 방향으로 이동시킵니다.
-                _transform.position = Vector3.MoveTowards(_transform.position, wp.position, MonsterBT.speed * Time.deltaTime);
+                _transform.position = Vector3.MoveTowards(_transform.position, wp.position, PlayerBT.speed * Time.deltaTime);
 
                 // AI 캐릭터가 웨이포인트를 바라보도록 회전시킵니다.
                 _transform.LookAt(wp.position);
