@@ -38,7 +38,7 @@ public class TaskMonsterAttack : Node
             {
                 ClearData("target");
                 //_animator.SetBool("Attacking", false);
-                _animator.ResetTrigger("Hitting");
+                //_animator.ResetTrigger("Hitting");
                 _animator.SetBool("Walking", true);
                 _animator.SetBool("Run", false);
             }
@@ -46,7 +46,7 @@ public class TaskMonsterAttack : Node
             {
                 _attackCount = 0f;
             }
-            _animator.ResetTrigger("Hitting");
+            //_animator.ResetTrigger("Hitting");
         }
 
         state = NodeState.RUNNING;

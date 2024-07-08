@@ -29,22 +29,27 @@ public class TaskPlayerAttack : Node
         _attackCount += Time.deltaTime;
         if(_attackCount >= _attackTime )
         {
-            bool isDead = _monsterManager.TakeHit();
+            bool isDead = false;
+            if (_monsterManager._healthpoints >= 0)
+                isDead = _monsterManager.TakeHit();
+
+
             _animator.SetTrigger("Hitting");
+            //_animator.ResetTrigger("Hitting");
 
             if (isDead) 
             {
                 ClearData("target");
                 //_animator.SetBool("Attacking",false);
-                _animator.ResetTrigger("Hitting");
                 _animator.SetBool("Walking",true);
                 _animator.SetBool("Run",false);
+                // _monsterManager._Exp로 Exp받아서 추가하기.
             }
             else
             {
                 _attackCount = 0f;
             }
-            _animator.ResetTrigger("Hitting");
+            //_animator.ResetTrigger("Hitting");
         }
 
         state = NodeState.RUNNING;

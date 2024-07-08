@@ -27,12 +27,21 @@ public class CheckEnemyInAttackRangeOfPlayer : Node
             state = NodeState.FAILURE;
             return state;
         }
-        
+
+        // 타겟이 유효한지 확인
         Transform target = (Transform)t;
-        if(Vector3.Distance(_transform.position, target.position) <= PlayerBT.attackRange)
+        if (target == null || !target.gameObject.activeInHierarchy)
+        {
+            ClearData("target");
+            _animator.SetBool("Walking", true);
+            state = NodeState.FAILURE;
+            return state;
+        }
+
+        if (Vector3.Distance(_transform.position, target.position) <= PlayerBT.attackRange)
         {
             //_animator.SetBool("Attacking", true);
-            _animator.SetTrigger("Hitting");
+            //_animator.SetTrigger("Hitting");
             _animator.SetBool("Walking", false);
             _animator.SetBool("Run", false);
 
@@ -46,12 +55,7 @@ public class CheckEnemyInAttackRangeOfPlayer : Node
         }
 
         //_animator.SetBool("Attacking", false);
-        _animator.ResetTrigger("Hitting");
-
-        if (_navMeshAgent != null)
-        {
-            _navMeshAgent.isStopped = false; // NavMesh 에이전트 이동 재개
-        }
+        //_animator.ResetTrigger("Hitting");
 
         state = NodeState.FAILURE;
         return state;

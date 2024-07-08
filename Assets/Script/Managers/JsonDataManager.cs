@@ -71,7 +71,7 @@ public class JsonDataManager : MonoBehaviour
 
     private string CharSaveSkillJsonFile = "Skill.json";
 
-    private string current_UserID = string.Empty;
+    public string current_UserID = string.Empty;
 
     #endregion
 
