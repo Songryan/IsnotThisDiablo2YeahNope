@@ -30,11 +30,13 @@ public class TaskPlayerAttack : Node
         if(_attackCount >= _attackTime )
         {
             bool isDead = _monsterManager.TakeHit();
+            _animator.SetTrigger("Hitting");
 
-            if(isDead) 
+            if (isDead) 
             {
                 ClearData("target");
-                _animator.SetBool("Attacking",false);
+                //_animator.SetBool("Attacking",false);
+                _animator.ResetTrigger("Hitting");
                 _animator.SetBool("Walking",true);
                 _animator.SetBool("Run",false);
             }
@@ -42,6 +44,7 @@ public class TaskPlayerAttack : Node
             {
                 _attackCount = 0f;
             }
+            _animator.ResetTrigger("Hitting");
         }
 
         state = NodeState.RUNNING;

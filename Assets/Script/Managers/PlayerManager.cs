@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    private int _healthpoints;
+    [SerializeField] private int _healthpoints;
 
     private void Awake()
     {
-        _healthpoints = 30;
+        _healthpoints = 3000000;
     }
 
     public bool TakeHit()

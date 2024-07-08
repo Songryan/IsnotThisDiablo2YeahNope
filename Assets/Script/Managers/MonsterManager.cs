@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class MonsterManager : MonoBehaviour
 {
-    private int _healthpoints;
+    [SerializeField] private int _healthpoints;
 
     private void Awake()
     {
-        _healthpoints = 30;
+        _healthpoints = 30000000;
     }
 
     public bool TakeHit()

@@ -317,7 +317,7 @@ MonoBehaviour:
   - {fileID: 5549518116252682933, guid: 0088078009071384587006d2371a99ef, type: 3}
   - {fileID: 5297265854305597916, guid: c2abdc670e93f8447a9483a17ed2d8bb, type: 3}
   startPosition: {x: 0, y: 0, z: 0}
-  maxRooms: 10
+  maxRooms: 20
   ClosedPortalMesh: {fileID: 4300000, guid: 069da1bfd8a2ad343bca018b79bbff0f, type: 2}
   OpenPortalMesh: {fileID: 4300000, guid: f7645953a4c98a74292df6d0afb4ba06, type: 2}
   EndPointObj: {fileID: 100000, guid: 5f91e1f5afadca645836acbbd7fd7cc6, type: 3}

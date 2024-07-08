@@ -345,6 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 5406924162624167562, guid: 743f507a0b9dcaa47be39cda626d1f51, type: 3}
+  Minotaur_Legacy: {fileID: 7006151762109922117, guid: 0f28261a6c2e78d4b98d48e77da3e3d5, type: 3}
   virtualCamera: {fileID: 1449492788}
 --- !u!1 &1431834363
 GameObject:
