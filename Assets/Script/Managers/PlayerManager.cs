@@ -26,5 +26,6 @@ public class PlayerManager : MonoBehaviour
     private void _Die()
     {
         Destroy(gameObject);
+        InGameUIManager.Instance.OnReStartButton();
     }
 }

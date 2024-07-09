@@ -7,9 +7,9 @@ public class MonsterBT : BehaviorTree.Tree
 {
     public UnityEngine.Transform[] waypoints;
 
-    public static float speed = 2f;
+    public static float speed = 2.5f;
     public static float Runspeed = 4f;
-    public static float fovRange = 5f;
+    public static float fovRange = 8f;
     public static float attackRange = 2f;
 
     [SerializeField] private NavMeshAgent agent;

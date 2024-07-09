@@ -317,6 +317,8 @@ public class MapGenerator : MonoBehaviour
 
         GameObject endObject = Instantiate(EndPointObj, position.transform.position, position.transform.rotation);
         endObject.transform.SetParent(position.transform);
+        Rigidbody rb = endObject.GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
     private void MoveGeneratedRoomsToBattleScene()

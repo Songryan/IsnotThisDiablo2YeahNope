@@ -881,6 +881,9 @@ public class JsonDataManager : MonoBehaviour
             GameData loadedData = JsonUtility.FromJson<GameData>(jsonTextAsset.text);
             if (loadedData != null && loadedData.Entries != null)
             {
+                // 추가전 초기화
+                toJsonData.Clear();
+
                 // 불러온 데이터를 toJsonData에 추가
                 foreach (var entry in loadedData.Entries)
                 {

@@ -1088,6 +1088,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PostProcess
       objectReference: {fileID: 0}
+    - target: {fileID: 3608126793469143892, guid: 82682eaff12f0174899a4327e0535ede, type: 3}
+      propertyPath: weight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4754888796658665596, guid: 82682eaff12f0174899a4327e0535ede, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
