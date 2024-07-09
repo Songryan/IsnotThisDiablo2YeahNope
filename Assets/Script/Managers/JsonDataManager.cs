@@ -5,6 +5,7 @@ using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
+using static LoadItemDatabase;
 using static UnityEditor.Progress;
 using static UnityEngine.EventSystems.EventTrigger;
 using TextAsset = UnityEngine.TextAsset;
@@ -12,6 +13,7 @@ using TextAsset = UnityEngine.TextAsset;
 public class JsonDataManager : MonoBehaviour
 {
     [SerializeField] private LoadItemDatabase itemDB;
+    [SerializeField] private List<ItemData> dbList;
     [SerializeField] private ItemListManager listManager;
 
     private List<ItemClass> startItemList = new List<ItemClass>();
@@ -101,6 +103,8 @@ public class JsonDataManager : MonoBehaviour
             _instance = this;
             DontDestroyOnLoad(gameObject);
             UIManager.Instance.EnableRootUI();
+            if (itemDB != null)
+                this.dbList = itemDB.dbList;
         }
         else if (_instance != this)
         {
@@ -817,6 +821,127 @@ public class JsonDataManager : MonoBehaviour
         {
             Debug.LogWarning("Character stats JSON file not found");
         }
+    }
+
+    #endregion
+
+    #region 드랍 아이템 추가
+    public void FarmingItemAddInventory2()
+    {
+        // 랜덤 드랍 아이템 개수 설정
+        //int numberOfItemsToDrop = UnityEngine.Random.Range(1, 5); // 예: 1에서 5개 사이의 아이템 드랍
+        int numberOfItemsToDrop = 1; // 예: 1에서 5개 사이의 아이템 드랍
+
+        for (int i = 0; i < numberOfItemsToDrop; i++)
+        {
+            // 아이템 데이터베이스에서 랜덤으로 아이템 선택
+            int Index = UnityEngine.Random.Range(0, dbList.Count-2);
+
+            int Level = UnityEngine.Random.Range(1, CharIntProp[$"{current_UserID}_Level"]+1);
+            int qualityInt = UnityEngine.Random.Range(0, 4);
+
+            int Str = UnityEngine.Random.Range(0, qualityInt);
+            int Dex = UnityEngine.Random.Range(0, qualityInt);
+            int Vit = UnityEngine.Random.Range(0, qualityInt);
+            int Mana = UnityEngine.Random.Range(0, qualityInt);
+
+            // 랜덤 아이템 생성
+            ItemClass randomItem = new ItemClass();
+            ItemClass.SetItemValues(randomItem, dbList[Index].GlobalID, Level, qualityInt);
+            ItemClass.SetItemValues(randomItem, $"{Str}/{Dex}/{Vit}/{Mana}");
+
+            // 유니크 키 설정
+            Guid uniqueId = Guid.NewGuid();
+            randomItem.UniqueKey = uniqueId.ToString();
+
+            // 아이템 인벤토리에 추가
+            //startItemList.Add(randomItem);
+            toJsonData.Add(uniqueId.ToString(), randomItem);
+
+            // 버튼 생성 및 인벤토리에 추가
+            //listManager.ForInvenAddButton(randomItem);
+
+            // 드롭 아이템 알람.
+            InGameUIManager.Instance.AlertGetItemMsg(randomItem.EquipCategory, qualityInt);
+        }
+
+        // 변경된 데이터를 JSON 파일에 저장
+        GameData newGameData = ConvertToGameData(toJsonData);
+        jsonFilePath = Path.Combine(Application.dataPath, "Resources", jsonFileName);
+        SaveToJson(newGameData, jsonFilePath);
+
+    }
+
+    public void FarmingItemAddInventory()
+    {
+        // 기존 JSON 파일의 내용을 불러오기
+        TextAsset jsonTextAsset = Resources.Load<TextAsset>(Path.GetFileNameWithoutExtension(jsonFileName));
+        if (jsonTextAsset != null)
+        {
+            GameData loadedData = JsonUtility.FromJson<GameData>(jsonTextAsset.text);
+            if (loadedData != null && loadedData.Entries != null)
+            {
+                // 불러온 데이터를 toJsonData에 추가
+                foreach (var entry in loadedData.Entries)
+                {
+                    for (int i = 0; i < entry.GlobalIDs.Count; i++)
+                    {
+                        ItemClass item = new ItemClass();
+                        ItemClass.SetItemValues(item, entry.GlobalIDs[i], entry.Levels[i], entry.Qualities[i]);
+                        ItemClass.SetItemValues(item, entry.StatBonuses[i]);
+                        Guid uniqueId = Guid.NewGuid();
+                        item.UniqueKey = uniqueId.ToString();
+                        toJsonData.Add(uniqueId.ToString(), item);
+                    }
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Loaded data or Entries is null");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("JSON file not found in Resources");
+        }
+
+        // 랜덤 드랍 아이템 개수 설정
+        //int numberOfItemsToDrop = UnityEngine.Random.Range(1, 5); // 예: 1에서 5개 사이의 아이템 드랍
+        int numberOfItemsToDrop = 1;
+
+        for (int i = 0; i < numberOfItemsToDrop; i++)
+        {
+            // 아이템 데이터베이스에서 랜덤으로 아이템 선택
+            int Index = UnityEngine.Random.Range(0, dbList.Count);
+
+            int Level = UnityEngine.Random.Range(1, CharIntProp[$"{current_UserID}_Level"] + 1);
+            int qualityInt = UnityEngine.Random.Range(0, 4);
+
+            int Str = UnityEngine.Random.Range(0, qualityInt);
+            int Dex = UnityEngine.Random.Range(0, qualityInt);
+            int Vit = UnityEngine.Random.Range(0, qualityInt);
+            int Mana = UnityEngine.Random.Range(0, qualityInt);
+
+            // 랜덤 아이템 생성
+            ItemClass randomItem = new ItemClass();
+            ItemClass.SetItemValues(randomItem, dbList[Index].GlobalID, Level, qualityInt);
+            ItemClass.SetItemValues(randomItem, $"{Str}/{Dex}/{Vit}/{Mana}");
+
+            // 유니크 키 설정
+            Guid uniqueId = Guid.NewGuid();
+            randomItem.UniqueKey = uniqueId.ToString();
+
+            // 아이템 인벤토리에 추가
+            toJsonData.Add(uniqueId.ToString(), randomItem);
+
+            // 드롭 아이템 알람
+            InGameUIManager.Instance.AlertGetItemMsg(randomItem.EquipCategory, qualityInt);
+        }
+
+        // 변경된 데이터를 JSON 파일에 저장
+        GameData newGameData = ConvertToGameData(toJsonData);
+        jsonFilePath = Path.Combine(Application.dataPath, "Resources", jsonFileName);
+        SaveToJson(newGameData, jsonFilePath);
     }
 
     #endregion

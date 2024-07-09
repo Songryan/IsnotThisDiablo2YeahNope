@@ -161,9 +161,32 @@ public class InGameUIManager : MonoBehaviour
         exp_Image.fillAmount = (float)currentExp / maxExp;
     }
 
-    public void AlertGetItemMsg(string itemName)
+    public void AlertGetItemMsg(string itemName, int gradeNum)
     {
-        Message.text = $"You have acquired the item({itemName}).\n It will automatically be saved \n to your inventory.";
+        string grade = string.Empty;
+        string color = string.Empty;
+
+        switch (gradeNum)
+        {
+            case 0:
+                grade = "Broken";
+                color = "#808080"; // 회색
+                break;
+            case 1:
+                grade = "Normal";
+                color = "#FFFFFF"; // 흰색
+                break;
+            case 2:
+                grade = "Magic";
+                color = "#0000FF"; // 파란색
+                break;
+            case 3:
+                grade = "Rare";
+                color = "#FFFF00"; // 노란색
+                break;
+        }
+
+        Message.text = $"You have acquired (<color={color}>[{grade}]</color>{itemName}).\nIt will automatically be saved\nto your inventory.";
         alertMsgObj.SetActive(true);
 
         StartCoroutine(OffAlertGetItemMsg());
@@ -171,7 +194,7 @@ public class InGameUIManager : MonoBehaviour
 
     IEnumerator OffAlertGetItemMsg()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         alertMsgObj.SetActive(false);
     }
 }

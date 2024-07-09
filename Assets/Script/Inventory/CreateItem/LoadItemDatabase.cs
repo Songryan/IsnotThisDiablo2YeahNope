@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class LoadItemDatabase : MonoBehaviour
 {
@@ -10,10 +11,38 @@ public class LoadItemDatabase : MonoBehaviour
 
     public List<string> TypeNameList = new List<string>();
 
-
-    private void Awake()
+    private static LoadItemDatabase _instance;
+    public static LoadItemDatabase Instance
     {
-        LoadDb(dbFile);
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<LoadItemDatabase>();
+                if (_instance == null)
+                {
+                    GameObject singletonObject = new GameObject(typeof(LoadItemDatabase).ToString());
+                    _instance = singletonObject.AddComponent<LoadItemDatabase>();
+                    DontDestroyOnLoad(singletonObject);
+                }
+            }
+            return _instance;
+        }
+    }
+
+    void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            LoadDb(dbFile);
+        }
+        else if (_instance != this)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public class ItemData

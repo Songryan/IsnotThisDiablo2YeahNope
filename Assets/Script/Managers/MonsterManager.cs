@@ -44,7 +44,7 @@ public class MonsterManager : MonoBehaviour
         // 죽으면 Exp 추가
         JsonDataManager.Instance.UpdateAddExp(_Exp);
         // 드롭 아이템 추가 및 알람.
-        //JsonDataManager.Instance.FarmingItemAddInventory();
+        JsonDataManager.Instance.FarmingItemAddInventory();
 
         Destroy(gameObject);
     }
