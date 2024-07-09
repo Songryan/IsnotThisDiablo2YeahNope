@@ -36,6 +36,8 @@ public class LoadingSceneManager : MonoBehaviour
 
         GameObject mapParent = GameObject.Find("MapParent");
 
+        //mapParent.tag = "MapParent";
+
         DontDestroyOnLoad(mapParent);
 
         // BattleScene을 비동기로 로드
@@ -58,6 +60,8 @@ public class LoadingSceneManager : MonoBehaviour
     private void MoveGeneratedRoomsToBattleScene()
     {
         GameObject mapParent = new GameObject("MapParent");
+
+        //mapParent.tag = "MapParent";
 
         foreach (var room in mapGenerator.GeneratedRooms)
         {

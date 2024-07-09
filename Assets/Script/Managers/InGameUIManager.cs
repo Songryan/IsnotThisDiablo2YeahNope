@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InGameUIManager : MonoBehaviour
@@ -51,6 +52,9 @@ public class InGameUIManager : MonoBehaviour
     [Header("AlertMsg")]
     [SerializeField] private GameObject alertMsgObj;
     [SerializeField] private Text Message;
+
+    [Header("MenuBtnSet")]
+    [SerializeField] private GameObject MenuBtnSet;
 
     private string current_UserID;
 
@@ -197,4 +201,54 @@ public class InGameUIManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
         alertMsgObj.SetActive(false);
     }
+
+    public void PopupMenu()
+    {
+        MenuBtnSet.SetActive(!MenuBtnSet.activeSelf);
+    }
+
+    public void OnReStartButton()
+    {
+        //GameObject objectToDestroy = GameObject.FindWithTag("MapParent");
+        
+        GameObject objectToDestroy = GameObject.Find("MapParent");
+        GameObject objectToDestroy2 = GameObject.Find("GamePlayManager");
+        GameObject objectToDestroy3 = GameObject.Find("InGameUIManager");
+        Destroy(objectToDestroy);
+        Destroy(objectToDestroy2);
+        Destroy(objectToDestroy3);
+
+        //GamePlayManager.Instance.ReFresh();
+        //RefreshUI();
+
+        SceneManager.LoadScene("LoadingScene");
+    }
+
+    public void OnBackToMainMenuButton()
+    {
+        //GameObject objectToDestroy = GameObject.FindWithTag("MapParent");
+
+        GameObject objectToDestroy = GameObject.Find("MapParent");
+        GameObject objectToDestroy2 = GameObject.Find("GamePlayManager");
+        GameObject objectToDestroy3 = GameObject.Find("InGameUIManager");
+        GameObject objectToDestroy4 = GameObject.Find("UIManager");
+        GameObject objectToDestroy5 = GameObject.Find("SceneManager");
+        GameObject objectToDestroy6 = GameObject.Find("ItemDatabase");
+        GameObject objectToDestroy7 = GameObject.Find("JsonDataManager");
+        GameObject objectToDestroy8 = GameObject.Find("DungeonGenerator");
+        Destroy(objectToDestroy);
+        Destroy(objectToDestroy2);
+        Destroy(objectToDestroy3);
+        Destroy(objectToDestroy4);
+        Destroy(objectToDestroy5);
+        Destroy(objectToDestroy6);
+        Destroy(objectToDestroy7);
+        Destroy(objectToDestroy8);
+
+        //GamePlayManager.Instance.ReFresh();
+        //RefreshUI();
+
+        SceneManager.LoadScene("Main");
+    }
+
 }

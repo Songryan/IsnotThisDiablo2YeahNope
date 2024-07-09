@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.AI.Navigation;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.AI;
 
 public class GamePlayManager : MonoBehaviour
 {
@@ -45,6 +46,18 @@ public class GamePlayManager : MonoBehaviour
     }
 
     private void Start()
+    {
+        // ¸Ê ±Á±â
+        BakedMapNavMesh();
+        // ÇÃ·¹ÀÌ¾î »ý¼º
+        GeneratePlayer();
+        // ¸ó½ºÅÍ »ý¼º
+        GenerateMonsters();
+        // UI Refresh
+        InGameUIManager.Instance.RefreshUI();
+    }
+
+    public void ReFresh()
     {
         // ¸Ê ±Á±â
         BakedMapNavMesh();

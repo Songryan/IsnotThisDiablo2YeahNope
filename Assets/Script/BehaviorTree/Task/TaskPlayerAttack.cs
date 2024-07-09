@@ -32,9 +32,7 @@ public class TaskPlayerAttack : Node
             bool isDead = false;
             if (_monsterManager._healthpoints >= 0)
                 isDead = _monsterManager.TakeHit();
-
-
-            _animator.SetTrigger("Hitting");
+            
             //_animator.ResetTrigger("Hitting");
 
             if (isDead) 
@@ -46,6 +44,7 @@ public class TaskPlayerAttack : Node
             }
             else
             {
+                _animator.SetTrigger("Hitting");
                 _attackCount = 0f;
             }
             //_animator.ResetTrigger("Hitting");
