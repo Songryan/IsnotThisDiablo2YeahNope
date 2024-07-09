@@ -9,13 +9,15 @@ public class TaskMonsterAttack : Node
 
     private Transform _lastTarget;
     private PlayerManager _playerManager;
+    private MonsterManager _monsterManager;
 
-    private float _attackTime = 1f;
+    private float _attackTime = 3f;
     private float _attackCount = 0f;
 
     public TaskMonsterAttack(Transform transform)
     {
         _animator = transform.GetComponent<Animator>();
+        _monsterManager = transform.GetComponent<MonsterManager>();
     }
 
     public override NodeState Evaluate()
@@ -31,7 +33,10 @@ public class TaskMonsterAttack : Node
         _attackCount += Time.deltaTime;
         if (_attackCount >= _attackTime)
         {
-            bool isDead = _playerManager.TakeHit();
+            bool isDead = false;
+            if (_monsterManager._healthpoints >= 0)
+                isDead = _playerManager.TakeHit();
+
             _animator.SetTrigger("Hitting");
 
             if (isDead)

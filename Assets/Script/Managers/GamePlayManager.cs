@@ -6,10 +6,10 @@ using Cinemachine;
 
 public class GamePlayManager : MonoBehaviour
 {
+    [Header("Prefab")]
     [SerializeField] GameObject Player;
-
     [SerializeField] GameObject Minotaur_Legacy;
-
+    [Header("Camera")]
     [SerializeField] CinemachineVirtualCamera virtualCamera;
 
     private static GamePlayManager _instance;
@@ -52,6 +52,8 @@ public class GamePlayManager : MonoBehaviour
         GeneratePlayer();
         // 몬스터 생성
         GenerateMonsters();
+        // UI Refresh
+        InGameUIManager.Instance.RefreshUI();
     }
 
     void BakedMapNavMesh()
