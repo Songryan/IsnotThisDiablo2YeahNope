@@ -43,7 +43,6 @@ public class TaskPlayerAttack : Node
                 //_animator.SetBool("Attacking",false);
                 _animator.SetBool("Walking",true);
                 _animator.SetBool("Run",false);
-                // _monsterManager._Exp로 Exp받아서 추가하기.
             }
             else
             {

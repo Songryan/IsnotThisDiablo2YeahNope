@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -46,6 +47,10 @@ public class InGameUIManager : MonoBehaviour
     [SerializeField] private GameObject EnemyBar;
     [SerializeField] private Text MonsterName_Text;
     [SerializeField] private Image MonsterHp_Image;
+
+    [Header("AlertMsg")]
+    [SerializeField] private GameObject alertMsgObj;
+    [SerializeField] private Text Message;
 
     private string current_UserID;
 
@@ -149,5 +154,24 @@ public class InGameUIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(4f);
         EnemyBar.SetActive(false);
+    }
+
+    public void IncreaseEXP(int currentExp, int maxExp)
+    {
+        exp_Image.fillAmount = (float)currentExp / maxExp;
+    }
+
+    public void AlertGetItemMsg(string itemName)
+    {
+        Message.text = $"You have acquired the item({itemName}).\n It will automatically be saved \n to your inventory.";
+        alertMsgObj.SetActive(true);
+
+        StartCoroutine(OffAlertGetItemMsg());
+    }
+
+    IEnumerator OffAlertGetItemMsg()
+    {
+        yield return new WaitForSeconds(2f);
+        alertMsgObj.SetActive(false);
     }
 }

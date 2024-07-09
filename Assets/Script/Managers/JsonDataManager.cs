@@ -759,6 +759,67 @@ public class JsonDataManager : MonoBehaviour
         }
     }
     #endregion
+
+    #region 케릭터 Exp 추가 및 레벨업 처리.
+    // private string CharSaveStatJsonFile = "CharStat.json";
+    // 위 Json파일 읽어와서 추가된 CurrentExp 로 업데이트하고
+    // 업데이트 하기전에 LevelUP인지 아닌지 판단해서 레벨업 처리하기.
+
+    public void UpdateAddExp(int exp)
+    {
+        string filePath = Path.Combine(Application.dataPath, "Resources", CharSaveStatJsonFile);
+
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            CharacterData characterData = JsonUtility.FromJson<CharacterData>(json);
+
+            if (characterData != null && characterData.Characters != null)
+            {
+                foreach (var character in characterData.Characters)
+                {
+                    if (character.UserId == current_UserID)
+                    {
+                        character.CurrentExp += exp;
+
+                        int levelUpExp = CalculateLevelUpExp(character.Level);
+
+                        // 레벨업 조건 확인 및 처리
+                        while (character.CurrentExp >= levelUpExp)
+                        {
+                            character.CurrentExp -= levelUpExp;
+                            character.Level++;
+                            character.StatPoints += 5; // 레벨업 시 추가되는 스탯 포인트
+                            levelUpExp = CalculateLevelUpExp(character.Level);
+                        }
+
+                        // JSON 파일에 저장된 데이터를 업데이트
+                        CharIntProp[$"{character.UserId}_Level"] = character.Level;
+                        CharIntProp[$"{character.UserId}_CurrentExp"] = character.CurrentExp;
+                        CharIntProp[$"{character.UserId}_StatPoints"] = character.StatPoints;
+
+                        // 파생되는 스탯 재계산
+                        //InitializeStats(character);
+                        //CalculateAndStoreDerivedStats(character);
+                        InGameUIManager.Instance.IncreaseEXP(character.CurrentExp, levelUpExp);
+                    }
+                }
+
+                // 변경된 데이터를 JSON 파일에 저장
+                SaveToJson(characterData, filePath);
+            }
+            else
+            {
+                Debug.LogWarning("Character data or Characters list is null");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Character stats JSON file not found");
+        }
+    }
+
+    #endregion
 }
 
 

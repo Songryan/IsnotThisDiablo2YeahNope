@@ -7,7 +7,8 @@ public class MonsterManager : MonoBehaviour
     [SerializeField] public int _healthpoints;
     [SerializeField] public int _maxHealthpoints;
     [SerializeField] private Animator _animator;
-    [SerializeField] private int _Exp = 20;
+    
+    public int _Exp = 20;
 
     [SerializeField] private string current_UserID;
 
@@ -40,6 +41,11 @@ public class MonsterManager : MonoBehaviour
     IEnumerator DelayDeath()
     {
         yield return new WaitForSeconds(3.0f);
+        // 죽으면 Exp 추가
+        JsonDataManager.Instance.UpdateAddExp(_Exp);
+        // 드롭 아이템 추가 및 알람.
+        //JsonDataManager.Instance.FarmingItemAddInventory();
+
         Destroy(gameObject);
     }
 }
